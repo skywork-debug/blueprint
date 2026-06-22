@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交易啟航營｜交易學習升級藍圖</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Serif TC"', 'serif'],
+                        serif: ['"Noto Serif TC"', 'serif'],
+                        heading: ['"Cormorant Garamond"', '"Noto Serif TC"', 'serif'],
+                        mono: ['"Share Tech Mono"', 'monospace'],
+                    },
+                    colors: {
+                        gold: {
+                            light: '#f3e5ab', // Champagne gold
+                            DEFAULT: '#e5c158', // Main rich gold
+                            dark: '#b5893d', // Deep bronze gold
+                            accent: '#8a6f27', // Muted gold
+                        },
+                        dark: {
+                            950: '#030303', // Pure deep obsidian black
+                            900: '#08080a',
+                            800: '#0e0e12',
+                            700: '#15151b',
+                            600: '#1f1f27',
+                        }
+                    },
+                    boxShadow: {
+                        'neon-gold': '0 0 25px rgba(229, 193, 88, 0.25)',
+                        'neon-gold-subtle': '0 0 15px rgba(229, 193, 88, 0.15)',
+                        'neon-purple': '0 0 20px rgba(168, 85, 247, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* ========================================== */
+        /* 第 56 - 83 行：背景與遮罩包裝區塊 (Fixed)     */
+        /* ========================================== */
+        body { 
+            background-color: #030303; 
+            color: #f3f4f6; 
+            overflow-x: hidden; 
+        }
+        /* 專屬織紋背景層：只在 .bg-with-texture 容器內生效並保持固定 */
+        .bg-with-texture {
+            position: relative;
+            z-index: 1;
+        }
+        .bg-with-texture::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -10;
+            background-image: url('https://i.meee.com.tw/aJ3AEKM.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* 滑動時背景靜止不動 */
+        }
+        /* 獨立遮罩與微光網格層 */
+        .bg-with-texture::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -9;
+            pointer-events: none;
+            background-image: radial-gradient(circle, rgba(229, 193, 88, 0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
+            background-color: rgba(3, 3, 3, 0.78); /* 78% 黑色遮罩，確保文字對比度極佳 */
+        }
+        
+        @keyframes shine { 
+            0% { background-position: -200% center; } 
+            100% { background-position: 200% center; } 
+        }
+        .text-gold-gradient { 
+            background: linear-gradient(135deg, #f3e5ab 0%, #e5c158 40%, #b5893d 70%, #f3e5ab 100%); 
+            background-size: 200% auto; 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text; 
+            animation: shine 6s linear infinite; 
+        }
+        .reveal { opacity: 0; transform: translateY(24px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Glassmorphism from screenshots */
+        .glass-dark { 
+            background: rgba(10, 10, 12, 0.85); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px); 
+            border: 1px solid rgba(229, 193, 88, 0.18); 
+        }
+        .glass-premium { 
+            background: linear-gradient(135deg, rgba(14, 14, 18, 0.95) 0%, rgba(5, 5, 5, 0.98) 100%);
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            border: 1px solid rgba(229, 193, 88, 0.25); 
+        }
+        
+        /* Glow elements */
+        .gold-glow { 
+            position: absolute; 
+            width: 70vw; 
+            height: 70vw; 
+            max-width: 850px; 
+            background: radial-gradient(circle, rgba(229,193,88,0.06) 0%, rgba(138,111,39,0.01) 60%, rgba(3,3,3,0) 80%); 
+            z-index: -1; 
+            pointer-events: none; 
+        }
+        
+        .faq-answer { 
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+            max-height: 0; 
+            opacity: 0; 
+            overflow: hidden; 
+        }
+        .faq-item.active .faq-answer { 
+            max-height: 1000px; 
+            opacity: 1; 
+            padding-bottom: 1.25rem;
+        }
+        .faq-item.active .faq-icon { 
+            transform: rotate(180deg); 
+            color: #e5c158; 
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(5, 5, 5, 0.8); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(229, 193, 88, 0.25); border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(229, 193, 88, 0.5); }
+
+        .gold-dots-grid {
+            /* 移除此處的 background-image 設定，避免優先權覆蓋掉 body 的背景圖 */
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold selection:text-dark-950 gold-dots-grid font-serif">
+
+    <!-- 頂部奢華導航欄 -->
+    <header class="fixed top-0 inset-x-0 z-[120] glass-dark border-b border-gold/15 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- 左側尊爵Logo -->
+            <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-lg bg-gradient-to-tr from-gold-dark via-gold to-gold-light flex items-center justify-center shadow-neon-gold">
+                    <i class="fa-solid fa-compass text-dark-950 text-xl animate-spin" style="animation-duration: 25s"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif font-bold tracking-widest text-white text-base md:text-lg">交易啟航營</span>
+                    <span class="text-[10px] text-gold font-serif tracking-widest leading-none">ELITE TRADING CAMP</span>
+                </div>
+            </div>
+            <!-- 中間桌面端導航按鈕 (高質感黑金磨砂) -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-serif font-medium text-gray-300">
+                <a href="#roadmap" class="hover:text-gold transition-colors tracking-widest">學習藍圖</a>
+                <!-- 調整：本月課表改為另開新網頁 -->
+                <a href="https://skywork-debug.github.io/timetable/" target="_blank" class="hover:text-gold transition-colors tracking-widest">本月課表</a>
+                <button onclick="openModal('faq', '✨ 指標常見問題解答')" class="hover:text-gold transition-colors tracking-widest focus:outline-none cursor-pointer">常見問題</button>
+            </nav>
+
+            <!-- 右側行動按鈕 (LINE諮詢) -->
+            <div class="flex items-center gap-2">
+                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light hover:opacity-90 text-dark-950 text-xs md:text-sm font-bold shadow-neon-gold transition-all flex items-center gap-2 tracking-wider focus:outline-none cursor-pointer">
+                    <i class="fa-brands fa-line text-base md:text-lg"></i> 聯繫官方LINE
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- AI 交易導師助理視窗 -->
+    <div id="ai-chat-container" class="fixed bottom-24 right-6 z-[150] w-[calc(100vw-32px)] sm:w-96 glass-premium rounded-2xl shadow-2xl flex flex-col hidden overflow-hidden transition-all duration-300">
+        <!-- Chat Header -->
+        <div class="p-4 border-b border-gold/15 flex justify-between items-center bg-dark-900/90">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-gold-dark to-gold-light flex items-center justify-center text-dark-950 shadow-neon-gold">
+                        <i class="fa-solid fa-robot text-lg"></i>
+                    </div>
+                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-dark-950 rounded-full"></span>
+                </div>
+                <div>
+                    <h3 class="font-serif font-bold text-gold text-sm flex items-center gap-1.5">
+                        ✨ AI 交易私教導師
+                    </h3>
+                    <p class="text-[9px] text-gray-400 font-mono">POWERED BY GEMINI 2.5 ELITE</p>
+                </div>
+            </div>
+            <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition-colors w-8 h-8 rounded-full hover:bg-white/5 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Messages Area -->
+        <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-dark-950/40 font-serif">
+            <div class="flex gap-3">
+                <div class="w-8 h-8 rounded-lg bg-dark-800 border border-gold/20 flex items-center justify-center text-gold shrink-0">
+                    <i class="fa-solid fa-robot text-xs"></i>
+                </div>
+                <div class="text-sm bg-dark-800/80 p-3 rounded-2xl rounded-tl-none border border-gold/10 max-w-[85%] text-gray-200 leading-relaxed">
+                    您好！我是您的專屬交易啟航導師。關於一階新手課、13333法則、或者是首K、破框指標的使用邏輯，我都能一對一為您深入解答唷！
+                </div>
+            </div>
+        </div>
+
+        <!-- Suggestion Chips -->
+        <div class="px-4 pb-2.5 pt-1.5 flex gap-1.5 overflow-x-auto custom-scrollbar whitespace-nowrap bg-dark-950/40 border-t border-gold/5 font-serif">
+            <button onclick="quickQuestion('什麼是一階新手課？')" class="text-xs bg-dark-800 hover:bg-dark-700 hover:border-gold/30 text-gray-300 px-3 py-1.5 rounded-full border border-gold/10 transition-all">一階新手課</button>
+            <button onclick="quickQuestion('什麼是 13333 法則？')" class="text-xs bg-dark-800 hover:bg-dark-700 hover:border-gold/30 text-gray-300 px-3 py-1.5 rounded-full border border-gold/10 transition-all">13333法則</button>
+            <button onclick="quickQuestion('首K與破框指標有何不同？')" class="text-xs bg-dark-800 hover:bg-dark-700 hover:border-gold/30 text-gray-300 px-3 py-1.5 rounded-full border border-gold/10 transition-all">雙指標核心</button>
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-3 border-t border-gold/15 flex gap-2 bg-dark-900/90 font-serif">
+            <input id="chat-input" type="text" placeholder="輸入您的交易問題..." onkeydown="if(event.key==='Enter') sendChatMessage()" class="flex-1 bg-dark-950 border border-gold/20 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold bg-dark-950/80">
+            <button onclick="sendChatMessage()" class="bg-gradient-to-r from-gold-dark to-gold-light hover:opacity-90 text-dark-950 px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-neon-gold flex items-center justify-center">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- AI 懸浮球 -->
+    <button onclick="toggleChat()" class="fixed bottom-6 right-6 z-[140] w-14 h-14 bg-gradient-to-tr from-gold-dark via-gold to-gold-light text-dark-950 rounded-full shadow-lg hover:shadow-gold/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all group border border-white/10">
+        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-gold-dark to-gold-light animate-ping opacity-25 group-hover:opacity-40"></div>
+        <i class="fa-solid fa-robot text-2xl relative z-10 transition-transform group-hover:rotate-12"></i>
+    </button>
+
+    <main class="pt-20">
+        <!-- Hero 區塊 (保持乾淨無背景圖，呈現高對比純深黑) -->
+        <section id="about" class="relative pt-16 pb-24 lg:pt-28 lg:pb-32 overflow-hidden flex flex-col justify-center min-h-[92vh]">
+            
+            <!-- Global grid line pattern and arc glows -->
+            <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-30">
+                <svg viewBox="0 0 1000 1000" class="w-[90%] h-[90%] text-gold animate-[spin_100s_linear_infinite]" fill="none" stroke="currentColor" stroke-width="0.75">
+                    <circle cx="500" cy="500" r="400" />
+                    <circle cx="500" cy="500" r="300" stroke-dasharray="4 4" />
+                    <circle cx="500" cy="500" r="200" />
+                    <ellipse cx="500" cy="500" rx="400" ry="150" />
+                    <ellipse cx="500" cy="500" rx="150" ry="400" />
+                    <line x1="100" y1="500" x2="900" y2="500" />
+                    <line x1="500" y1="100" x2="500" y2="900" />
+                </svg>
+            </div>
+            
+            <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-25 mix-blend-screen">
+                <img src="交易啟航營.png" alt="背景帆船" onerror="this.style.display='none'" class="w-[120%] h-[120%] md:w-full md:h-full object-cover md:object-contain transform scale-110 md:scale-125">
+            </div>
+
+            <div class="gold-glow top-[10%] left-1/2 -translate-x-1/2 z-0"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                
+                <h1 class="text-5xl sm:text-7xl md:text-8xl font-serif font-black tracking-wider mb-8 reveal text-gold-gradient drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] py-2">
+                    交易啟航營
+                </h1>
+                
+                <p class="mt-4 text-xl md:text-3xl font-serif text-gray-200 max-w-4xl mx-auto leading-relaxed reveal tracking-wide drop-shadow-md">
+                    探索外匯市場的最佳起點<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-dark font-bold text-lg md:text-2xl mt-4 block tracking-widest">從零開始・手把手帶您建立屬於自己的交易底氣</span>
+                </p>
+
+                <!-- Feature Mini Tags -->
+                <div class="mt-12 flex flex-wrap justify-center gap-4 reveal">
+                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-gold/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-crown text-gold"></i> 頂尖師資領軍</span>
+                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-gold/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-gold"></i> 每週免費教學</span>
+                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-gold/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-gold"></i> 獨家實戰指標</span>
+                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-gold/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-gem text-gold"></i> 實用交易策略</span>
+                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-gold/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-shield-halved text-gold"></i> 風控心法觀念</span>
+                </div>
+                
+                <div class="mt-14 flex flex-col sm:flex-row gap-5 justify-center items-center reveal">
+                    <button onclick="openModal('advantages', '了解外匯市場')" class="w-full sm:w-auto px-10 py-4.5 rounded-full glass-dark hover:bg-dark-800 text-white font-bold text-lg transition-all flex items-center justify-center gap-2 border-gold/25 hover:border-gold/60 tracking-widest cursor-pointer focus:outline-none">
+                        了解外匯市場 <i class="fa-solid fa-arrow-right text-gold animate-pulse"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+ 
+        <!-- ========================================== -->
+        <div class="bg-with-texture">
+            
+            <!-- 交易學習升級藍圖 Section (背景透明 bg-transparent) -->
+            <section id="roadmap" class="py-24 bg-transparent relative border-t border-gold/15 overflow-hidden">
+                <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-gold/3 rounded-full blur-[130px] pointer-events-none translate-y-1/2 translate-x-1/3"></div>
+                
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center mb-20 reveal">
+                        <span class="text-xs font-mono tracking-[0.3em] text-gold uppercase">THE BLUEPRINT ROADMAP</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-bold mb-4 mt-2 text-gold-gradient">🗺️ 交易學習升級藍圖</h2>
+                        <p class="text-gray-400 max-w-2xl mx-auto text-base">點擊各級別節點卡片，解鎖專屬課程單元、開戶體驗門檻與實戰社群特權</p>
+                        <div class="w-24 h-[1px] bg-gold-dark mx-auto mt-6"></div>
+                    </div>
+
+                    <div class="relative max-w-lg mx-auto reveal">
+                        <!-- Flow Line System -->
+                        <div class="absolute left-1/2 top-4 bottom-4 w-[1px] bg-gradient-to-b from-gold-light via-gold to-gold-accent -translate-x-1/2 hidden md:block"></div>
+                        
+                        <div class="flex flex-col items-center w-full relative">
+                            
+                            <!-- Section 1: Base Tier -->
+                            <div class="relative flex flex-col items-center w-full">
+                                
+                                <!-- 01 START (金色襯線字體) -->
+                                <div class="flex flex-col items-center w-full relative z-10 mb-4">
+                                    <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
+                                        01 START
+                                    </div>
+                                    <div class="h-6 w-[1px] bg-gold/50"></div>
+                                </div>
+
+                                <!-- 交易啟航營 -->
+                                <button onclick="openModal('join-camp', '加入【交易啟航營】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <i class="fa-solid fa-anchor text-sm"></i>
+                                        加入【交易啟航營】
+                                    </div>
+                                </button>
+                                
+                                <!-- Down connector -->
+                                <div class="flex flex-col items-center my-4 relative">
+                                    <div class="h-8 w-[1px] bg-gold/40"></div>
+                                    <i class="fa-solid fa-circle-chevron-down text-gold text-xs -mt-1"></i>
+                                </div>
+
+                                <!-- 一階新手課 -->
+                                <button onclick="openModal('novice-class', '報名【一階新手課】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <i class="fa-solid fa-graduation-cap text-sm"></i>
+                                        報名【一階新手課】
+                                    </div>
+                                </button>
+                                
+                                <!-- Down connector -->
+                                <div class="flex flex-col items-center my-4 relative">
+                                    <div class="h-8 w-[1px] bg-gold/40"></div>
+                                    <i class="fa-solid fa-circle-chevron-down text-gold text-xs -mt-1"></i>
+                                </div>
+
+                                <!-- 指標基礎課 -->
+                                <button onclick="openModal('basic-class', '報名【指標基礎課】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <i class="fa-solid fa-compass text-sm"></i>
+                                        報名【指標基礎課】
+                                    </div>
+                                </button>
+                            </div>
+
+                            <!-- Section 2 Transition Line & 02 SYSTEM TIER Label -->
+                            <div class="flex flex-col items-center my-6 w-full relative z-10">
+                                <div class="h-8 w-[1px] bg-gold/50"></div>
+                                <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
+                                    02 SYSTEM TIER
+                                </div>
+                                <div class="h-8 w-[1px] bg-gold/50"></div>
+                            </div>
+
+                            <!-- Section 2: Indicator Suite -->
+                            <div class="relative flex flex-col items-center w-full">
+                                <!-- 首K指標 -->
+                                <button onclick="openModal('firstk', '開通【首K指標】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider font-serif-luxury">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <i class="fa-solid fa-key text-sm"></i>
+                                        開通【首K指標】(<span class="font-serif-luxury">100U</span>)
+                                    </div>
+                                </button>
+
+                                <!-- Down connector -->
+                                <div class="flex flex-col items-center my-4 relative">
+                                    <div class="h-8 w-[1px] bg-gold/40"></div>
+                                    <i class="fa-solid fa-circle-chevron-down text-gold text-xs -mt-1"></i>
+                                </div>
+
+                                <!-- 破框指標 -->
+                                <button onclick="openModal('pokwang', '開通【破框指標】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider font-serif-luxury">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <i class="fa-solid fa-vector-square text-sm"></i>
+                                        開通【破框指標】(<span class="font-serif-luxury">500U</span>)
+                                    </div>
+                                </button>
+                            </div>
+
+                            <!-- Section 3 Transition Line & 03 ELITE CLUB Label -->
+                            <div class="flex flex-col items-center my-6 w-full relative z-10">
+                                <div class="h-8 w-[1px] bg-gold/50"></div>
+                                <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
+                                    03 ELITE CLUB
+                                </div>
+                                <div class="h-8 w-[1px] bg-gold/50"></div>
+                            </div>
+
+                            <!-- Section 3: Elite Club -->
+                            <div class="relative flex flex-col items-center w-full">
+                                <!-- 加入指標群 -->
+                                <button onclick="openModal('indicator-group', '加入【指標群】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <i class="fa-solid fa-users-viewfinder text-sm"></i>
+                                        加入【指標群】
+                                    </div>
+                                </button>
+
+                                <!-- Down connector -->
+                                <div class="flex flex-col items-center my-4 relative">
+                                    <div class="h-8 w-[1px] bg-gold/40"></div>
+                                    <i class="fa-solid fa-circle-chevron-down text-gold text-xs -mt-1"></i>
+                                </div>
+
+                                <!-- 指標實戰課 -->
+                                <button onclick="openModal('practical-class', '報名【指標實戰課】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <i class="fa-solid fa-laptop-code text-sm"></i>
+                                        報名【指標實戰課】
+                                    </div>
+                                </button>
+                            </div>
+
+                            <!-- Section 4 Transition Line & 04 ROYAL MASTER Label -->
+                            <div class="flex flex-col items-center my-6 w-full relative z-10">
+                                <div class="h-8 w-[1px] bg-gold/50"></div>
+                                <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
+                                    04 ROYAL MASTER
+                                </div>
+                                <div class="h-8 w-[1px] bg-gold/50"></div>
+                            </div>
+
+                            <!-- Section 4: Advanced Mastery -->
+                            <div class="relative flex flex-col items-center w-full">
+                                <!-- 進階策略課程 -->
+                                <button onclick="openModal('advanced-class', '報名【進階策略課程】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border-2 border-gold hover:border-gold-light text-gold-light font-serif font-bold shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <i class="fa-solid fa-crown text-sm"></i>
+                                        報名【進階策略課程】
+                                    </div>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Q&A 常見問題與課表控制面板 Section (背景透明 bg-transparent) -->
+            <section id="support" class="py-24 bg-transparent relative border-t border-gold/15 overflow-hidden">
+                <div class="absolute top-0 right-0 w-[450px] h-[450px] bg-gold-dark/4 rounded-full blur-[110px] pointer-events-none -translate-y-1/2"></div>
+                
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center mb-16 reveal">
+                        <span class="text-xs font-mono tracking-[0.3em] text-gold uppercase">STUDENT SERVICE CENTER</span>
+                        <h2 class="text-3xl md:text-5xl font-serif font-bold mb-4 mt-2 text-gold-gradient">✨ 學習支援中心</h2>
+                        <p class="text-gray-450 max-w-2xl mx-auto text-base">解鎖本月課程時間表，及指標授權及使用疑難排解 FAQ</p>
+                        <div class="w-24 h-[1px] bg-gold-dark mx-auto mt-6"></div>
+                    </div>
+
+                    <!-- 奢華黑金雙按鈕控制面板 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl mx-auto mb-16 reveal">
+                        <!-- 按鈕 1: 本月課表 (調整為另開網頁) -->
+                        <a href="https://skywork-debug.github.io/timetable/" target="_blank" class="relative group overflow-hidden py-8 px-6 rounded-3xl glass-dark border border-gold/25 hover:border-gold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all duration-300 transform hover:-translate-y-1 text-center flex flex-col items-center justify-center cursor-pointer">
+                            <div class="absolute -right-4 -bottom-4 translate-x-2 translate-y-2 opacity-5 text-[100px] text-gold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </div>
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-gold-dark to-gold-light flex items-center justify-center text-dark-950 text-2xl mb-4 shadow-neon-gold group-hover:scale-105 transition-transform">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-white tracking-widest mb-2">本月課表</h3>
+                            <p class="text-xs text-gray-400 max-w-[200px]">查看一階新手課、指標基礎課、實戰解析直播時間</p>
+                        </a>
+
+                        <!-- 按鈕 2: 常見問題 -->
+                        <button onclick="openModal('faq', '✨ 指標常見問題解答')" class="relative group overflow-hidden py-8 px-6 rounded-3xl glass-dark border border-gold/25 hover:border-gold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all duration-300 transform hover:-translate-y-1 text-center flex flex-col items-center justify-center cursor-pointer focus:outline-none">
+                            <div class="absolute -right-4 -bottom-4 translate-x-2 translate-y-2 opacity-5 text-[100px] text-gold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-circle-question"></i>
+                            </div>
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-gold-dark to-gold-light flex items-center justify-center text-dark-950 text-2xl mb-4 shadow-neon-gold group-hover:scale-105 transition-transform">
+                                <i class="fa-solid fa-circle-question"></i>
+                            </div>
+                            <h3 class="text-xl font-serif font-bold text-white tracking-widest mb-2">常見問題</h3>
+                            <p class="text-xs text-gray-400 max-w-[200px]">解答您對 Trading View 指標使用相關疑問</p>
+                        </button>
+                    </div>
+
+                    <!-- 小提醒 & 實戰操盤守則 -->
+                    <div class="p-6 glass-dark rounded-2xl border-l-4 border-gold reveal">
+                        <h4 class="text-lg font-serif font-bold text-gold mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-triangle-exclamation"></i> 實戰操盤守則
+                        </h4>
+                        <ul class="list-none pl-0 text-gray-300 space-y-2 text-sm font-sans">
+                            <li class="flex items-start gap-2">
+                                <span class="text-gold font-bold">•</span>
+                                <span>本指標僅提供作為交易輔助判斷工具，非具體買賣建議。市場有風險，交易需謹慎。</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-gold font-bold">•</span>
+                                <span>請先熟讀並確實理解 13333 法則與破框原則，搭配模擬倉練習後再行實盤實操。</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 底部官方 LINE 按鈕 (py-6 調整) -->
+                    <div class="mt-20 text-center reveal">
+                        <h4 class="text-2xl font-serif font-bold text-white mb-4">💬 聯繫專屬教練團隊</h4>
+                        <p class="text-gray-400 mb-8 font-sans">對指標、課程加入方式有任何不了解？隨時私訊官方小幫手為您解答！</p>
+                        <button onclick="openModal('contact', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-3 px-10 py-6 rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light hover:opacity-90 text-dark-950 font-bold text-lg shadow-neon-gold transition-all transform hover:-translate-y-1 cursor-pointer focus:outline-none">
+                            <i class="fa-brands fa-line text-2xl"></i>
+                            聯繫官方LINE
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer (背景透明 bg-transparent) -->
+            <footer class="bg-transparent border-t border-gold/15 py-10 text-center text-xs text-gray-500 font-mono">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <p>© 2026 ELI.AI.TRADES. All rights reserved. 版權所有，轉載必究。</p>
+                    <p class="mt-2 text-[10px] text-gray-600">Trading carries significant risk. Past performance is not indicative of future results.</p>
+                </div>
+            </footer>
+
+        </div> <!-- ==================== 結束 .bg-with-texture 包裝 ==================== -->
+    </main>
+
+    <!-- Modal 核心彈出容器 -->
+    <div id="dynamic-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4 sm:p-6 transition-all duration-300">
+        <div class="absolute inset-0 bg-dark-950/92 backdrop-blur-md transition-opacity duration-300" id="modal-backdrop" onclick="closeModal()"></div>
+        <div class="relative bg-dark-800 border border-gold/30 shadow-neon-gold rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col transition-all transform scale-95 opacity-0 duration-300" id="modal-panel">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-5 md:p-6 border-b border-gold/15 bg-dark-900 rounded-t-2xl z-10 shrink-0">
+                <h3 class="text-lg md:text-xl font-serif font-bold text-gold flex items-center gap-3" id="modal-title">
+                    標題
+                </h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white transition-colors w-8 h-8 rounded-full hover:bg-white/5 flex items-center justify-center focus:outline-none">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <!-- Body (內部滾動) -->
+            <div class="p-5 md:p-8 overflow-y-auto custom-scrollbar bg-dark-900" id="modal-body">
+                <!-- 動態注入 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ================== MODAL 內容模板 ================== -->
+
+    <!-- 了解外匯市場 -->
+    <div id="tpl-advantages" class="hidden">
+        <div class="space-y-6 py-4 max-h-[70vh] overflow-y-auto custom-scrollbar pr-1">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold">
+                    <i class="fa-solid fa-globe text-3xl text-gold"></i>
+                </div>
+                <h3 class="text-2xl font-serif font-bold text-white">全球外匯市場</h3>
+                <p class="text-gold-light text-xs font-semibold mt-1">FOREX MARKET ADVANTAGES</p>
+            </div>
+
+            <!-- Card 1: 資金門檻極低 -->
+            <div class="glass-dark rounded-2xl p-6 border border-gold/15 hover:border-gold/40 transition-all duration-300 shadow-neon-gold-subtle">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">🪙</span>
+                    <h4 class="text-lg font-serif font-bold text-white">01 / 資金門檻極低</h4>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    不需要準備大筆資金才能進場！外匯保證金擁有特殊的機制與靈活的交易單位，可以切分成「微型手（0.01手）」來進行交易。這意味著新手用非常少額的資金（例如幾十元、幾百元美金），就能啟動實盤練習，在可控的壓力下累積真正的盤感。
+                </p>
+            </div>
+
+            <!-- Card 2: 24小時不打烊交易 -->
+            <div class="glass-dark rounded-2xl p-6 border border-gold/15 hover:border-gold/40 transition-all duration-300 shadow-neon-gold-subtle">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">⏰</span>
+                    <h4 class="text-lg font-serif font-bold text-white">02 / 24小時不打烊交易</h4>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    外匯是全球性的金融市場。從週一到週五，隨著亞洲、歐洲、美洲等各地市場輪流開盤，盤勢 24 小時全天候運作。不論你是朝九晚五的上班族，還是習慣在夜深人靜時看盤的夜貓子，都能自由安排最適合自己的交易時間。
+                </p>
+            </div>
+
+            <!-- Card 3: 多空雙向彈性操作 -->
+            <div class="glass-dark rounded-2xl p-6 border border-gold/15 hover:border-gold/40 transition-all duration-300 shadow-neon-gold-subtle">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">📈</span>
+                    <h4 class="text-lg font-serif font-bold text-white">03 / 多空雙向彈性操作</h4>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    傳統股票通常只能「買漲（做多）」，遇到大盤崩盤時往往只能套牢或觀望。但外匯保證金可以雙向交易——當你預期匯率會升值就做多，預期會貶值就做空（賣出）。只要看對趨勢，不論市場行情是大漲還是大跌，都有交易與獲利的機會。
+                </p>
+            </div>
+
+            <!-- Card 4: 交易量大、不易被主力操控 -->
+            <div class="glass-dark rounded-2xl p-6 border border-gold/15 hover:border-gold/40 transition-all duration-300 shadow-neon-gold-subtle">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">🌍</span>
+                    <h4 class="text-lg font-serif font-bold text-white">04 / 交易量大、不易被主力操控</h4>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    外匯市場是目前全球規模最大的金融市場，每天的交易量高達數兆美元。因為資金體量極其龐大，沒有任何單一財團、主力大戶 or 單一政府能夠輕易操控價格。這讓市場走勢更貼近技術面，對資金量小的散戶來說相對公平。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 老師選擇諮詢彈窗 -->
+    <div id="tpl-teacher-select" class="hidden">
+        <div class="space-y-6 py-4 text-center">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold">
+                <i class="fa-solid fa-graduation-cap text-3xl text-gold"></i>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-white">你是透過哪位老師/助教認識交易啟航營？</h3>
+            <p class="text-gray-400 text-xs font-sans max-w-sm mx-auto">
+                為了提供最完善的一對一諮詢，並順利完成指標授權，請點選您當初認識我們的管道：
+            </p>
+            
+            <div class="flex flex-col gap-4 max-w-xs mx-auto pt-2">
+                <button onclick="selectTeacher('Sky 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                    Sky 老師
+                </button>
+                <button onclick="selectTeacher('Eli 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                    Eli 老師
+                </button>
+                <button onclick="selectTeacher('鄭詩懷老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                    鄭詩懷老師
+                </button>
+                <button onclick="selectTeacher('Gino / Darren / Luke 助教')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                    Gino / Darren / Luke 助教
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 聯繫官方LINE的彈窗 -->
+    <div id="tpl-contact" class="hidden">
+        <div class="space-y-6 py-4 text-center">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold">
+                <i class="fa-solid fa-graduation-cap text-3xl text-gold"></i>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-white">你是透過哪位老師/助教認識交易啟航營？</h3>
+            <p class="text-gray-400 text-xs font-sans max-w-sm mx-auto">
+                為了提供您最完善的一對一指標授權與學習諮詢，請點選您當初認識我們的管道：
+            </p>
+            
+            <div class="flex flex-col gap-4 max-w-xs mx-auto pt-2">
+                <button onclick="selectTeacher('Sky 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                    Sky 老師
+                </button>
+                <button onclick="selectTeacher('Eli 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                    Eli 老師
+                </button>
+                <button onclick="selectTeacher('鄭詩懷老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                    鄭詩懷老師
+                </button>
+                <button onclick="selectTeacher('Gino / Darren / Luke 助教')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                    Gino / Darren / Luke 助教
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 常見問題 -->
+    <div id="tpl-faq" class="hidden">
+        <div class="space-y-4 py-2 max-h-[60vh] overflow-y-auto custom-scrollbar pr-1">
+            
+            <!-- FAQ Item 1 -->
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
+                        <span class="text-gold font-mono">Q1.</span> 指標有使用期限嗎？
+                    </h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-3 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>沒有使用期限！只要您符合以下條件，就能永久免費使用：</p>
+                        <ul class="list-none pl-0 space-y-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold text-xs"></i> <span>使用指定券商帳戶，並達成入金標準</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold text-xs"></i> <span>帳戶餘額需維持大於 100</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold text-xs"></i> <span>每週保持至少 3 次交易</span></li>
+                        </ul>
+                        <p class="text-[10px] text-gray-400 mt-2 p-2.5 bg-dark-900/60 rounded-xl border border-gold/10">💡 每週五團隊會進行例行資格審查，若未達成以上條件，我們會暫時關閉指標授權，未來只要再次符合資格，都可以隨時重新申請開通！</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
+                        <span class="text-gold font-mono">Q2.</span> 這個指標支援哪些商品／市場？
+                    </h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-2 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>支援所有能在 TradingView 上顯示的商品，包括外匯、黃金、指數、美股、加密貨幣等。</p>
+                        <p>只要有 TradingView 帳號，無論任何市場都能無縫套用。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
+                        <span class="text-gold font-mono">Q3.</span> 我需要什麼等級的 TradingView 帳號才能用？
+                    </h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-2 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>免費帳號即可使用！</p>
+                        <p>不過，免費版目前限制只能同時載入 2 個指標。若您想要同時觀看首K、破框及其他輔助指標，建議可以升級至 Essential 以上版本，看盤流暢度會更高。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
+                        <span class="text-gold font-mono">Q4.</span> 申請後多久會開通？
+                    </h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>送出審核資料後，小幫手將核對名單，通常會在 1 個工作日內開通您的 TradingView 指標限用權限。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
+                        <span class="text-gold font-mono">Q5.</span> 要怎麼把指標加到圖表裡？
+                    </h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-2 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>簡單 4 步驟即可加入：</p>
+                        <div class="space-y-1.5 pl-2 font-mono text-xs text-gray-400">
+                            <p>1️⃣ 打開 TradingView 網頁或手機 App 並登入帳號</p>
+                            <p>2️⃣ 點擊圖表上方工具列中的「技術指標」（Indicators）</p>
+                            <p>3️⃣ 切換到左邊側欄的「僅限邀請」（Invite-only scripts）</p>
+                            <p>4️⃣ 點擊【Eli｜多時區首K策略】與【Eli｜多時區趨勢指標】即可將指標載入至圖表</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 6 -->
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
+                        <span class="text-gold font-mono">Q6.</span> 為什麼我加上指標後沒有顯示？
+                    </h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-2 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong></p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>可能有其他指標或程式衝突，可先移除其他指標後再次嘗試。</li>
+                            <li>嘗試關閉所有分頁並重新開啟 TradingView 頁面。</li>
+                            <li>若仍無法排除狀況，請私訊官方 LINE@ 請小幫手協助排查。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 7 -->
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
+                        <span class="text-gold font-mono">Q7.</span> 指標的參數可以調整嗎？
+                    </h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>可以！在圖表左上方指標名稱旁邊，點擊「⚙️ 設定」圖示，即可依照您個人偏好的交易週期、靈敏度、顏色外觀以及警報（Alert）通知做客製化微調。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 8 -->
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
+                        <span class="text-gold font-mono">Q8.</span> 指標會有教學嗎？
+                    </h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-2 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>當然有！我們專為學員準備了完整的線上學習資源：</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li><a href="https://www.youtube.com/@Eli.ai.trades/videos" target="_blank" class="text-gold-light hover:underline"><i class="fa-brands fa-youtube text-red-500"></i> YouTube 免費實戰解析與案例示範教學影片</a></li>
+                            <li>精心安排的指標實戰課（每週二、四、五），帶著大家邊看盤邊複習。</li>
+                            <li>社群與三位助教在線互動，及時解答您的技術提問。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 9 -->
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
+                        <span class="text-gold font-mono">Q9.</span> 如果我換電腦或換帳號，還能用嗎？
+                    </h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-2 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>指標是綁定在您的 TradingView 個人帳號。只要在任何電腦、手機上登入同一個 TradingView 帳號都可以正常使用。</p>
+                        <p class="text-[11px] text-gray-400">若未來真的需要更換 TradingView 帳號，請直接聯繫 LINE@ 小幫手協助更新授權名單。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 10 -->
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
+                        <span class="text-gold font-mono">Q10.</span> 指標會持續更新嗎？
+                    </h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>會的。我們會根據市場變化與學員回饋持續優化，更新後會自動同步到你的帳號，無需重新申請。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 11 -->
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
+                        <span class="text-gold font-mono">Q11.</span> 可以多人共用一個帳號嗎？
+                    </h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>不建議。指標綁定於個人帳號，一旦偵測到異常共用或外流，系統可能會自動停權。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 12 -->
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
+                        <span class="text-gold font-mono">Q12.</span> 開通模擬帳戶也可以申請指標的一週體驗嗎？
+                    </h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>可以的。只要開通指定券商的真實帳戶並完成 KYC 身份認證（不需先入金），即可向小幫手登記領取 1 週的首K指標體驗資格。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 小提醒 -->
+            <div class="p-4 rounded-xl bg-gold/5 border border-gold/20 text-center shadow-inner mt-4 font-sans">
+                <p class="text-gold font-bold text-xs md:text-sm mb-1">⚠️ 小提醒</p>
+                <p class="text-gray-300 text-xs md:text-sm leading-relaxed font-sans">
+                    本指標提供的是交易輔助工具，非買賣建議。<br>
+                    使用前請確保了解市場風險並搭配個人策略操作。
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 加入交易啟航營 -->
+    <div id="tpl-join-camp" class="hidden">
+        <div class="text-center py-8 px-4 font-serif">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gold/10 border border-gold/30 mb-6 shadow-neon-gold">
+                <i class="fa-solid fa-ship text-4xl text-gold animate-bounce"></i>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-4">加入交易啟航營</h3>
+            <p class="text-gray-300 text-base mb-8 leading-relaxed max-w-md mx-auto font-sans">
+                歡迎來到啟航訓練的第一步！<br>
+                在專屬 LINE 社群中，您將與熱愛交易的夥伴一同啟航，獲取第一手即時盤勢解析、指標分享及課程預告。
+            </p>
+        </div>
+    </div>
+
+    <!-- 一階新手課 -->
+    <div id="tpl-novice-class" class="hidden">
+        <div class="space-y-6 py-4 font-serif">
+            <div class="text-center">
+                <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
+                    <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite]"></div>
+                    <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
+                        <i class="fa-solid fa-compass text-3xl text-gold"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">一階新手課</h3>
+                <div class="text-gold text-sm md:text-base font-semibold mb-3 space-y-1 font-sans">
+                    <p>🕒 每週一 下午 2:00｜Darren助教</p>
+                    <p>🕒 每週四 晚上 8:30｜Luke助教</p>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed max-w-md mx-auto font-sans">
+                    帶你從零開始學習交易工具<br>
+                    歡迎無基礎的小白加入
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-base font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <i class="fa-solid fa-list-ol text-gold"></i> 課程內容
+                </h4>
+                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40 font-sans">
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-check text-gold mt-0.5"></i>
+                            <span>交易平台 MT5 操作教學</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-check text-gold mt-0.5"></i>
+                            <span>Trading View 圖表分析工具教學</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-check text-gold mt-0.5"></i>
+                            <span>註冊交易商並開通模擬倉，免費無風險練習</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-check text-gold mt-0.5"></i>
+                            <span>學習下單，實戰操作實盤</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-gold/5 border border-gold/20 text-center shadow-inner">
+                <p class="text-gold-light font-medium text-xs md:text-sm font-sans">✨ 新手課畢業後，即可立刻申請開通 <strong class="text-white">首Ｋ指標</strong> 免費體驗一週！ ✨</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 指標基礎課 -->
+    <div id="tpl-basic-class" class="hidden">
+        <div class="space-y-6 py-4 font-serif">
+            <div class="text-center">
+                <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
+                    <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite]"></div>
+                    <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
+                        <i class="fa-solid fa-chart-line text-3xl text-gold"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">指標基礎課</h3>
+                <p class="text-gold text-sm md:text-base font-semibold mb-3 font-sans">🕒 每週三 晚上 9:00｜Luke 助教</p>
+                <p class="text-gray-300 text-sm leading-relaxed max-w-md mx-auto">
+                    帶你認識「首K指標」、「破框趨勢指標」，運用 13333 法則與指標線圖，學會找到關鍵區間，看懂盤勢方向與關鍵起漲點
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-base font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <i class="fa-solid fa-shield-halved text-gold"></i> 參加資格
+                </h4>
+                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40 font-sans">
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gold/15 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-check text-gold text-sm"></i>
+                            </div>
+                            <span class="text-gray-300 font-sans">加入 <strong class="text-white">交易啟航營 LINE 社群</strong></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 開通首K指標 -->
+    <div id="tpl-firstk" class="hidden">
+        <div class="space-y-6 font-serif">
+            <div>
+                <h4 class="text-base font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <i class="fa-solid fa-unlock-keyhole text-gold"></i> 領取/開通資格
+                </h4>
+                <div class="glass-dark rounded-xl p-5 border border-gold/30 shadow-neon-gold relative bg-dark-800/40 text-sm">
+                    <div class="absolute -top-3 left-6 bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 px-3 py-0.5 rounded-full text-[10px] font-bold tracking-wider">
+                        標準方案
+                    </div>
+                    <ul class="space-y-3 mt-1.5 text-gray-300 font-sans">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-gold text-base"></i>
+                            <span>使用指定合作券商 <strong class="text-white">RS Finance</strong> 或 <strong class="text-white">BAB Markets</strong> 開設真實帳戶</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-gold text-base"></i>
+                            <span>單次新入金大於或等於 <strong class="text-gold font-bold text-lg">100U</strong></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
+                <!-- 流程圖 -->
+                <div>
+                    <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                        <i class="fa-solid fa-signs-post text-gold"></i> 領取流程
+                    </h4>
+                    <div class="space-y-4 relative before:absolute before:inset-0 before:ml-4 before:h-full before:w-0.5 before:bg-gold/20 font-sans">
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gold text-dark-950 font-bold text-xs shrink-0 z-10 font-mono">1</div>
+                            <div class="pt-1 flex flex-col items-start gap-1">
+                                <h5 class="text-sm font-bold text-white">聯繫官方小幫手</h5>
+                                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="text-[10px] bg-gold/20 hover:bg-gold/45 text-gold px-2.5 py-1 rounded border border-gold/30 transition-all font-bold cursor-pointer focus:outline-none">加入官方LINE</button>
+                            </div>
+                        </div>
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-dark-700 text-white font-bold text-xs shrink-0 z-10 font-mono">2</div>
+                            <div class="pt-1">
+                                <h5 class="text-sm font-bold text-gray-300 font-sans">閱讀說明頁內容</h5>
+                            </div>
+                        </div>
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-dark-700 text-white font-bold text-xs shrink-0 z-10 font-mono">3</div>
+                            <div class="pt-1">
+                                <h5 class="text-sm font-bold text-gray-300 font-sans">協助審核資料</h5>
+                                <p class="text-[11px] text-gray-400 mt-0.5 leading-relaxed font-sans">提供券商帳號、TV帳號等資訊供小幫手審查</p>
+                            </div>
+                        </div>
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-dark-700 text-white font-bold text-xs shrink-0 z-10 font-mono">4</div>
+                            <div class="pt-1">
+                                <h5 class="text-sm font-bold text-gray-300 font-sans">成功開通權限</h5>
+                                <p class="text-[11px] text-gray-400 mt-0.5 leading-relaxed font-sans">審核通過後，1 個工作日內開通</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 維持條件 -->
+                <div>
+                    <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                        <i class="fa-solid fa-triangle-exclamation text-gold"></i> 持有維持條件
+                    </h4>
+                    <div class="bg-dark-900/60 rounded-xl p-4 border border-white/5 space-y-3 text-xs text-gray-400 font-sans">
+                        <div class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-wallet text-gold mt-0.5"></i>
+                            <div>
+                                <h5 class="text-white font-bold font-sans">帳戶資金額度</h5>
+                                <p class="font-sans">帳戶內資產總值需維持大於等於 100 U</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-arrows-spin text-gold mt-0.5"></i>
+                            <div>
+                                <h5 class="text-white font-bold font-sans">維持活躍交易</h5>
+                                <p class="font-sans">每週須維持至少 3 筆真實交易</p>
+                            </div>
+                        </div>
+                        <p class="text-[10px] p-2 bg-gold/10 text-gold-light rounded-lg border border-gold/10 font-sans">⚠️ 每週五後台會進行系統自動核對。未符合維持條件將暫時回收指標限用，再次符合條件後聯繫小幫手即可秒重啟權限！</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 申領體驗按鈕 (保留免費體驗) -->
+            <div class="mt-6 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
+                <span class="text-xs text-gray-400">尚未入金？您也可以先免費申請 7 天完整版指標體驗！</span>
+                <button onclick="openModal('trial', '申請【首K指標】一週體驗')" class="px-5 py-2 rounded-xl bg-gold/10 hover:bg-gold/20 border border-gold/40 text-gold text-xs font-bold transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer">
+                    <i class="fa-solid fa-gift"></i> 申請 7 天免費體驗
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 開通破框指標 -->
+    <div id="tpl-pokwang" class="hidden">
+        <div class="space-y-6 text-sm">
+            <div>
+                <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <i class="fa-solid fa-unlock-keyhole text-gold"></i> 領取/開通資格
+                </h4>
+                <div class="glass-dark rounded-xl p-5 border border-gold/30 shadow-neon-gold relative bg-dark-800/40">
+                    <div class="absolute -top-3 left-6 bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 px-3 py-0.5 rounded-full text-[10px] font-bold tracking-wider">
+                        進階指標方案
+                    </div>
+                    <ul class="space-y-3 mt-1.5 text-gray-300 font-sans">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-gold text-base"></i>
+                            <span>使用指定合作券商 <strong class="text-white">RS Finance</strong> 或 <strong class="text-white">BAB Markets</strong> 真實帳戶</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-gold text-base"></i>
+                            <span>單次新入金大於 or 等於 <strong class="text-gold font-bold text-lg">500U</strong></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
+                <!-- 流程圖 -->
+                <div>
+                    <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                        <i class="fa-solid fa-signs-post text-gold"></i> 領取流程
+                    </h4>
+                    <div class="space-y-4 relative before:absolute before:inset-0 before:ml-4 before:h-full before:w-0.5 before:bg-gold/20 font-sans">
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gold text-dark-950 font-bold text-xs shrink-0 z-10 font-mono">1</div>
+                            <div class="pt-1 flex flex-col items-start gap-1 font-sans">
+                                <h5 class="text-sm font-bold text-white">聯繫官方小幫手</h5>
+                                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="text-[10px] bg-gold/20 hover:bg-gold/45 text-gold px-2.5 py-1 rounded border border-gold/30 transition-all font-bold cursor-pointer focus:outline-none">加入官方LINE</button>
+                            </div>
+                        </div>
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-dark-700 text-white font-bold text-xs shrink-0 z-10 font-mono">2</div>
+                            <div class="pt-1">
+                                <h5 class="text-sm font-bold text-gray-300 font-sans">閱讀說明頁內容</h5>
+                            </div>
+                        </div>
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-dark-700 text-white font-bold text-xs shrink-0 z-10 font-mono">3</div>
+                            <div class="pt-1">
+                                <h5 class="text-sm font-bold text-gray-300 font-sans">協助審核資料</h5>
+                                <p class="text-[11px] text-gray-400 mt-0.5 leading-relaxed font-sans">提供券商帳號、TV帳號等資訊供小幫手審查</p>
+                            </div>
+                        </div>
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-dark-700 text-white font-bold text-xs shrink-0 z-10 font-mono">4</div>
+                            <div class="pt-1">
+                                <h5 class="text-sm font-bold text-gray-300 font-sans">成功開通權限</h5>
+                                <p class="text-[11px] text-gray-400 mt-0.5 leading-relaxed font-sans">審核通過後，1 個工作日內開通</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 維持條件 -->
+                <div>
+                    <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                        <i class="fa-solid fa-triangle-exclamation text-gold"></i> 持有維持條件
+                    </h4>
+                    <div class="bg-dark-900/60 rounded-xl p-4 border border-white/5 space-y-3 text-xs text-gray-400 font-sans">
+                        <div class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-wallet text-gold mt-0.5"></i>
+                            <div>
+                                <h5 class="text-white font-bold font-sans">帳戶資金額度</h5>
+                                <p class="font-sans">破框指標帳戶內資產總值需維持大於等於 100 U</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-arrows-spin text-gold mt-0.5"></i>
+                            <div>
+                                <h5 class="text-white font-bold font-sans">維持活躍交易</h5>
+                                <p class="font-sans">每週須維持至少 3 筆真實交易</p>
+                            </div>
+                        </div>
+                        <p class="text-[10px] p-2 bg-gold/10 text-gold-light rounded-lg border border-gold/10 font-sans">⚠️ 每週五後台會進行系統自動核對。未符合維持條件將暫時回收指標限用，再次符合條件後聯繫小幫手即可秒重啟權限！</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 申領體驗按鈕 -->
+            <div class="mt-6 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
+                <span class="text-xs text-gray-400">想搶先體驗？滿足前置條件即可解鎖免費 1 週試用！</span>
+                <button onclick="openModal('pokwang-trial', '申請【破框指標】一週體驗')" class="px-5 py-2 rounded-xl bg-gold/10 hover:bg-gold/20 border border-gold/40 text-gold text-xs font-bold transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer">
+                    <i class="fa-solid fa-gift"></i> 申請 7 天免費體驗
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 破框一週體驗規範 -->
+    <div id="tpl-pokwang-trial" class="hidden">
+        <div class="space-y-6 py-4">
+            <div class="text-center font-serif">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold animate-pulse">
+                    <i class="fa-solid fa-gem text-3xl text-gold"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">申請【破框指標】一週體驗</h3>
+                <p class="text-gray-300 text-sm max-w-sm mx-auto font-sans">開通真實帳戶，即可免費獲得 1 週完整版指標體驗！</p>
+            </div>
+
+            <div>
+                <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <i class="fa-solid fa-clipboard-check text-gold"></i> 體驗規範
+                </h4>
+                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40 text-sm">
+                    <ul class="space-y-4 text-gray-300 font-sans">
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-check-double text-gold text-xs"></i>
+                            </div>
+                            <span class="font-sans">報名並參與指標基礎課</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-check-double text-gold text-xs"></i>
+                            </div>
+                            <span class="font-sans">已經成功領取並開通 首K指標</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center pt-4 font-sans">
+                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 font-bold text-base transition-all transform hover:-translate-y-1 focus:outline-none">
+                    <i class="fa-brands fa-line text-xl"></i>
+                    聯繫小幫手，立即開通體驗
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 首K一週體驗規範 -->
+    <div id="tpl-trial" class="hidden">
+        <div class="space-y-6 py-4">
+            <div class="text-center font-serif">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold animate-pulse">
+                    <i class="fa-solid fa-gift text-3xl text-gold"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">申請【首K指標】一週體驗</h3>
+                <p class="text-gray-300 text-sm max-w-sm mx-auto font-sans">開通真實帳戶，即可免費獲得 1 週完整版指標體驗！</p>
+            </div>
+
+            <div>
+                <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <i class="fa-solid fa-clipboard-check text-gold"></i> 體驗規範
+                </h4>
+                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40 font-sans">
+                    <ul class="space-y-3.5 text-sm text-gray-300">
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-building-columns text-gold text-xs"></i>
+                            </div>
+                            <span class="font-sans">使用 RS Finance 或 BAB Markets 券商帳戶</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-id-card text-gold text-xs"></i>
+                            </div>
+                            <span class="font-sans">開通真實帳戶並完成 KYC 身份認證</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center pt-4 font-sans">
+                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 font-bold text-base transition-all transform hover:-translate-y-1 focus:outline-none">
+                    <i class="fa-brands fa-line text-xl"></i>
+                    聯繫小幫手，立即開通體驗
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- 破框指標群 -->
+    <div id="tpl-indicator-group" class="hidden">
+        <div class="space-y-6 py-4">
+            <div class="text-center">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gold/10 mb-5 border border-gold/30 shadow-neon-gold">
+                    <i class="fa-solid fa-users text-4xl text-gold"></i>
+                </div>
+                <h3 class="text-xl md:text-2xl font-serif font-bold text-white mb-2">加入【指標群】</h3>
+                <p class="text-gold text-sm font-semibold mb-3">⭐ 專屬資格：開通【破框指標】之學員即可免費加入</p>
+                <p class="text-gray-300 text-base mb-8 leading-relaxed max-w-md mx-auto font-sans">
+                    一個看盤容易亂<br>
+                    但一群熱愛交易的人一起研究市場，會走得更穩<br>
+                    在指標群裡，每天都有戰友一起聊行情、看盤面、交流觀點<br>
+                    透過指標輔助判斷，抓進出場機會，不用再自己一個人盯盤焦慮
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 指標實戰課 -->
+    <div id="tpl-practical-class" class="hidden">
+        <div class="space-y-6 py-4">
+            <div class="text-center font-serif">
+                <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
+                    <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite_reverse]"></div>
+                    <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
+                        <svg viewBox="0 0 100 100" class="w-12 h-12 text-gold">
+                            <path d="M 35 38 C 15 15 5 50 25 55 C 25 80 35 90 50 90 C 65 90 75 80 75 55 C 95 50 85 15 65 38 Q 50 28 35 38 Z" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">指標實戰課</h3>
+                <div class="text-gold text-xs sm:text-sm font-semibold mb-3 space-y-1 font-sans">
+                    <p>🕒 每週二、四 晚上 9:00｜Gino 助教</p>
+                    <p>🕒 每週五 晚上 9:00｜Luke 助教</p>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed max-w-md mx-auto font-sans">
+                    深度拆解「首K指標」與「破框趨勢指標」的進階操作，直接帶入真實盤勢，手把手將看盤邏輯化為實戰策略
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <i class="fa-solid fa-shield-halved text-gold"></i> 參加資格
+                </h4>
+                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40">
+                    <ul class="space-y-3 font-sans">
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gold/15 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-check text-gold text-sm"></i>
+                            </div>
+                            <span class="text-gray-300">開通破框指標並加入 <strong class="text-white">破框指標專屬 LINE 社群</strong></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 進階策略課程 -->
+    <div id="tpl-advanced-class" class="hidden">
+        <div class="space-y-10 py-4 custom-scrollbar">
+            
+            <!-- Sky 老師 (狼) -->
+            <div class="space-y-4 font-serif">
+                <div class="text-center font-serif">
+                    <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
+                        <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite]"></div>
+                        <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
+                            <svg viewBox="0 0 100 100" class="w-12 h-12 text-gold">
+                                <path d="M 50 90 L 25 65 L 15 35 L 30 15 L 40 35 L 50 25 L 60 35 L 70 15 L 85 35 L 75 65 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">三破策略</h3>
+                    <p class="text-gold text-sm font-semibold">主講人：Sky 老師</p>
+                </div>
+                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40">
+                    <p class="text-gray-300 text-sm leading-relaxed font-sans">
+                        從「破型、破浪、破均」三大切面建立進出場邏輯，幫助交易者辨識市場轉折、順勢切入主力波段、洞察價格極限區間，告別指標迷宮。
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 my-4"></div>
+
+            <!-- Eli 老師 (狐狸) -->
+            <div class="space-y-4 font-serif">
+                <div class="text-center">
+                    <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
+                        <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite_reverse]"></div>
+                        <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
+                            <svg viewBox="0 0 100 100" class="w-12 h-12 text-gold">
+                                <path d="M 50 90 L 10 50 L 25 10 L 45 35 L 55 35 L 75 10 L 90 50 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">破框策略</h3>
+                    <p class="text-gold text-sm font-semibold">主講人：Eli 老師</p>
+                </div>
+                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40">
+                    <p class="text-gray-300 text-sm leading-relaxed font-sans">
+                        以價格結構切入的實戰系統，用「穿框強攻」順勢、「回框打點」逆勢兩大進場技術，搭配滾倉複利與空間反應模組，橫跨全市場操作。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================== SCRIPT 控制核心 ================== -->
+    <script>
+        const teacherConfigs = {
+            "Sky 老師": {
+                lineUrl: "https://lin.ee/7Jlzygy", 
+                qrCodeUrl: "https://i.meee.com.tw/wT7mzUJ.png" 
+            },
+            "Eli 老師": {
+                lineUrl: "https://lin.ee/PJZur1t", 
+                qrCodeUrl: "https://i.meee.com.tw/LLrl2e0.png" 
+            },
+            "鄭詩懷老師": {
+                lineUrl: "https://lin.ee/reEeDjC", 
+                qrCodeUrl: "https://i.meee.com.tw/96HIjPB.png"
+            },
+            "Gino / Darren / Luke 助教": {
+                lineUrl: "https://lin.ee/7Jlzygy", 
+                qrCodeUrl: "https://i.meee.com.tw/wT7mzUJ.png"
+            }
+        };
+
+        const apiKey = ""; 
+        let isAITyping = false;
+
+        function toggleChat() {
+            const chatContainer = document.getElementById('ai-chat-container');
+            chatContainer.classList.toggle('hidden');
+            if(!chatContainer.classList.contains('hidden')) {
+                scrollToBottom();
+                document.getElementById('chat-input').focus();
+            }
+        }
+
+        function scrollToBottom() {
+            const messages = document.getElementById('chat-messages');
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function quickQuestion(questionText) {
+            document.getElementById('chat-input').value = questionText;
+            sendChatMessage();
+        }
+
+        // 老師選擇重導向與訊息複製邏輯
+        function selectTeacher(teacherName) {
+            const config = teacherConfigs[teacherName] || { lineUrl: "https://lin.ee/ynOZNqS", qrCodeUrl: "" };
+            const messageText = `你好，我是透過${teacherName}認識交易啟航營的，我想諮詢指標開通與課程！`;
+            
+            const tempInput = document.createElement("input");
+            tempInput.value = messageText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
+            const finalQrUrl = config.qrCodeUrl || `https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=e5c158&bgcolor=0e0e12&data=${encodeURIComponent(config.lineUrl)}`;
+            
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `
+                <div class="text-center py-6 space-y-6 animate-fade-in font-serif">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold">
+                        <i class="fa-solid fa-qrcode text-3xl text-gold"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-1">立即加入官方 LINE</h3>
+                        <p class="text-gold-light text-sm font-semibold tracking-wider font-sans">領取指標 / 諮詢課程資訊</p>
+                    </div>
+                    
+                    <div class="inline-block p-4 rounded-2xl bg-dark-950 border border-gold/25 shadow-neon-gold relative group">
+                        <img src="${finalQrUrl}" alt="LINE QR Code" class="w-48 h-48 rounded-lg" onerror="this.src='https://placehold.co/200x200/0e0e12/e5c158?text=LINE+QR'"/>
+                        <div class="absolute inset-0 border border-gold/15 rounded-2xl pointer-events-none"></div>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <a href="${config.lineUrl}" target="_blank" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 font-bold text-sm shadow-neon-gold transition-all transform hover:-translate-y-0.5">
+                            <i class="fa-brands fa-line text-lg"></i>
+                            手機用戶直接點擊此處跳轉
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function fetchGeminiWithBackoff(url, requestBody) {
+            let delay = 1000; 
+            const maxRetries = 5;
+
+            for (let attempt = 0; attempt < maxRetries; attempt++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(requestBody)
+                    });
+
+                    if (response.status === 429 || response.status >= 500) {
+                        throw new Error(`Server returned status: ${response.status}`);
+                    }
+
+                    return response; 
+                } catch (error) {
+                    if (attempt === maxRetries - 1) {
+                        throw error; 
+                    }
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2;
+                }
+            }
+        }
+
+        async function sendChatMessage() {
+            if (isAITyping) return;
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            const text = input.value.trim();
+            if (!text) return;
+
+            isAITyping = true;
+
+            messages.innerHTML += `
+                <div class="flex justify-end animate-fade-in font-sans">
+                    <div class="text-sm bg-gradient-to-r from-gold-dark to-gold text-dark-950 p-3 rounded-2xl rounded-tr-none shadow-neon-gold max-w-[85%] font-medium">
+                        ${escapeHtml(text)}
+                    </div>
+                </div>
+            `;
+            input.value = '';
+            scrollToBottom();
+
+            const loadingId = 'loading-' + Date.now();
+            messages.innerHTML += `
+                <div class="flex gap-3 font-sans animate-fade-in" id="${loadingId}">
+                    <div class="w-8 h-8 rounded-lg bg-dark-800 border border-gold/15 flex items-center justify-center text-gold shrink-0">
+                        <i class="fa-solid fa-spinner animate-spin"></i>
+                    </div>
+                    <div class="text-sm bg-dark-800/80 p-3 rounded-2xl rounded-tl-none border border-gold/10 max-w-[85%] text-gray-200 leading-relaxed font-sans">
+                        導師正在思考中...
+                    </div>
+                </div>
+            `;
+            scrollToBottom();
+
+            try {
+                const systemPrompt = `您是交易啟航營的專業資深導師，請以親切溫柔、極致專業、適度幽默的繁體中文（台灣口吻），回答學員關於一階新手課、13333法則、首K指標、破框趨勢指標以及外匯/加密貨幣基礎交易相關的問題。問題是：`;
+                const requestUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                
+                const requestPayload = {
+                    contents: [{ 
+                        parts: [{ text: systemPrompt + text }] 
+                    }]
+                };
+
+                const response = await fetchGeminiWithBackoff(requestUrl, requestPayload);
+                const result = await response.json();
+                
+                let reply = result.candidates?.[0]?.content?.parts?.[0]?.text || "抱歉，目前我的連線腦袋有些打結，請稍後再試！";
+                
+                reply = reply
+                    .replace(/\n/g, '<br>')
+                    .replace(/\*\*(.*?)\*\"/g, '<strong>$1</strong>')
+                    .replace(/^\* (.*?)$/gm, '• $1');
+
+                document.getElementById(loadingId).remove();
+
+                messages.innerHTML += `
+                    <div class="flex gap-3 font-sans animate-fade-in">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-gold-dark to-gold-light flex items-center justify-center text-dark-950 shrink-0 shadow-neon-gold">
+                            <i class="fa-solid fa-robot text-xs animate-bounce" style="animation-duration: 3s"></i>
+                        </div>
+                        <div class="text-sm bg-dark-800/90 p-3 rounded-2xl rounded-tl-none border border-gold/10 max-w-[85%] leading-relaxed font-sans">
+                            ${reply}
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                document.getElementById(loadingId).remove();
+                messages.innerHTML += `
+                    <div class="flex gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-red-950/40 text-red-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                        </div>
+                        <div class="text-sm bg-red-950/20 text-red-400 p-3 rounded-2xl rounded-tl-none border border-red-900/30 max-w-[85%] font-sans">
+                            目前的伺服器星際訊號有些微弱，請稍後片刻再發送一次問題。🙏
+                        </div>
+                    </div>
+                `;
+            }
+            
+            isAITyping = false;
+            scrollToBottom();
+        }
+
+        function escapeHtml(string) {
+            return String(string).replace(/[&<>"']/g, function (s) {
+                return {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                }[s];
+            });
+        }
+
+        // --- Modal 控制功能 ---
+        function openModal(templateId, title) {
+            const modal = document.getElementById('dynamic-modal');
+            const backdrop = document.getElementById('modal-backdrop');
+            const panel = document.getElementById('modal-panel');
+            const body = document.getElementById('modal-body');
+            const titleEl = document.getElementById('modal-title');
+
+            titleEl.innerHTML = title;
+            const template = document.getElementById('tpl-' + templateId);
+            if (template) {
+                body.innerHTML = template.innerHTML;
+            } else {
+                body.innerHTML = '<p class="text-gray-400 text-center py-10 font-sans">內容尚未開放，請洽詢小幫手！</p>';
+            }
+
+            modal.classList.remove('hidden');
+            void modal.offsetWidth; 
+            
+            backdrop.classList.remove('opacity-0');
+            panel.classList.remove('scale-95', 'opacity-0');
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('dynamic-modal');
+            const backdrop = document.getElementById('modal-backdrop');
+            const panel = document.getElementById('modal-panel');
+
+            backdrop.classList.add('opacity-0');
+            panel.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300); 
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // --- 滾動觸發進場動畫 ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+            const revealObserver = new IntersectionObserver(revealCallback, {
+                root: null,
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 奢華 Header 滾動效果
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-[#030303]/95', 'shadow-neon-gold-subtle', 'border-gold/30');
+                } else {
+                    header.classList.remove('bg-[#030303]/95', 'shadow-neon-gold-subtle', 'border-gold/30');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
