@@ -142,6 +142,7 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(229, 193, 88, 0.5); }
     </style>
 
+    <!-- Schema Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -150,7 +151,6 @@
       "url": "https://skywork-debug.github.io/blueprint/"
     }
     </script>
-
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -247,7 +247,20 @@
     </button>
 
     <main class="pt-20">
+        <!-- Hero 區塊 -->
         <section id="about" class="relative pt-16 pb-24 lg:pt-28 lg:pb-32 overflow-hidden flex flex-col justify-center min-h-[92vh]">
+            <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-30">
+                <svg viewBox="0 0 1000 1000" class="w-[90%] h-[90%] text-gold animate-[spin_100s_linear_infinite]" fill="none" stroke="currentColor" stroke-width="0.75">
+                    <circle cx="500" cy="500" r="400" />
+                    <circle cx="500" cy="500" r="300" stroke-dasharray="4 4" />
+                    <circle cx="500" cy="500" r="200" />
+                    <ellipse cx="500" cy="500" rx="400" ry="150" />
+                    <ellipse cx="500" cy="500" rx="150" ry="400" />
+                    <line x1="100" y1="500" x2="900" y2="500" />
+                    <line x1="500" y1="100" x2="500" y2="900" />
+                </svg>
+            </div>
+            
             <div class="gold-glow top-[10%] left-1/2 -translate-x-1/2 z-0"></div>
             
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -277,6 +290,7 @@
         </section>
 
         <div class="bg-with-texture">
+            <!-- 交易學習升級藍圖 Section -->
             <section id="roadmap" class="py-24 bg-transparent relative border-t border-gold/15 overflow-hidden">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div class="text-center mb-20 reveal">
@@ -289,7 +303,7 @@
                     <div class="relative max-w-lg mx-auto reveal">
                         <div class="flex flex-col items-center w-full relative">
                             
-                            <!-- Section 1 -->
+                            <!-- Tier 1 -->
                             <div class="relative flex flex-col items-center w-full">
                                 <div class="flex flex-col items-center w-full relative z-10 mb-4">
                                     <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif font-black tracking-[0.25em] uppercase shadow-neon-gold">
@@ -327,7 +341,7 @@
                                 </button>
                             </div>
 
-                            <!-- Section 2 -->
+                            <!-- Tier 2 -->
                             <div class="flex flex-col items-center my-6 w-full relative z-10">
                                 <div class="h-8 w-[1px] bg-gold/50"></div>
                                 <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif font-black tracking-[0.25em] uppercase shadow-neon-gold">
@@ -355,7 +369,7 @@
                                 </button>
                             </div>
 
-                            <!-- Section 3 -->
+                            <!-- Tier 3 -->
                             <div class="flex flex-col items-center my-6 w-full relative z-10">
                                 <div class="h-8 w-[1px] bg-gold/50"></div>
                                 <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif font-black tracking-[0.25em] uppercase shadow-neon-gold">
@@ -383,7 +397,7 @@
                                 </button>
                             </div>
 
-                            <!-- Section 4 -->
+                            <!-- Tier 4 -->
                             <div class="flex flex-col items-center my-6 w-full relative z-10">
                                 <div class="h-8 w-[1px] bg-gold/50"></div>
                                 <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif font-black tracking-[0.25em] uppercase shadow-neon-gold">
@@ -405,6 +419,7 @@
                 </div>
             </section>
 
+            <!-- 支援中心 -->
             <section id="support" class="py-24 bg-transparent relative border-t border-gold/15 overflow-hidden">
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div class="text-center mb-16 reveal">
@@ -480,84 +495,435 @@
         </div>
     </div>
 
-    <!-- MODAL 內容模板 -->
+    <!-- ================== MODAL 內容模板（完整詳細介紹） ================== -->
+
+    <!-- 01 了解外匯市場 -->
     <div id="tpl-advantages" class="hidden">
         <div class="space-y-6 py-4 max-h-[70vh] overflow-y-auto custom-scrollbar pr-1">
             <div class="text-center mb-8">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold">
                     <i class="fa-solid fa-globe text-3xl text-gold"></i>
                 </div>
-                <h3 class="text-2xl font-serif font-bold text-white">全球外匯市場</h3>
+                <h3 class="text-2xl font-serif font-bold text-white">全球外匯市場優勢</h3>
                 <p class="text-gold-light text-xs font-semibold mt-1">FOREX MARKET ADVANTAGES</p>
             </div>
-            <div class="glass-dark rounded-2xl p-6 border border-gold/15 shadow-neon-gold-subtle">
-                <h4 class="text-lg font-serif font-bold text-white mb-2">01 / 資金門檻極低</h4>
-                <p class="text-gray-300 text-sm leading-relaxed">不需要準備大筆資金才能進場！外匯保證金可以切分成「微型手（0.01手）」進行交易，用少額資金即可啟動實盤練習。</p>
+
+            <div class="glass-dark rounded-2xl p-6 border border-gold/15 hover:border-gold/40 transition-all duration-300 shadow-neon-gold-subtle">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">🪙</span>
+                    <h4 class="text-lg font-serif font-bold text-white">01 / 資金門檻極低</h4>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed font-sans">
+                    不需要準備大筆資金才能進場！外匯保證金擁有特殊的機制與靈活的交易單位，可以切分成「微型手（0.01手）」來進行交易。這意味著新手用非常少額的資金（例如幾十元美金），就能啟動實盤練習，在可控的壓力下累積真正的盤感。
+                </p>
             </div>
-            <div class="glass-dark rounded-2xl p-6 border border-gold/15 shadow-neon-gold-subtle">
-                <h4 class="text-lg font-serif font-bold text-white mb-2">02 / 24小時不打烊交易</h4>
-                <p class="text-gray-300 text-sm leading-relaxed">週一至週五全天候運作，自由安排最適合自己的看盤與交易時間。</p>
+
+            <div class="glass-dark rounded-2xl p-6 border border-gold/15 hover:border-gold/40 transition-all duration-300 shadow-neon-gold-subtle">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">⏰</span>
+                    <h4 class="text-lg font-serif font-bold text-white">02 / 24小時不打烊交易</h4>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed font-sans">
+                    外匯是全球性的金融市場。從週一到週五，隨著亞洲、歐洲、美洲等各地市場輪流開盤，盤勢 24 小時全天候運作。不論你是朝九晚五的上班族，還是習慣在夜深人靜時看盤的夜貓子，都能自由安排最適合自己的交易時間。
+                </p>
+            </div>
+
+            <div class="glass-dark rounded-2xl p-6 border border-gold/15 hover:border-gold/40 transition-all duration-300 shadow-neon-gold-subtle">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">📈</span>
+                    <h4 class="text-lg font-serif font-bold text-white">03 / 多空雙向彈性操作</h4>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed font-sans">
+                    傳統股票通常只能「買漲（做多）」，遇到大盤崩盤時往往只能套牢或觀望。但外匯保證金可以雙向交易——當你預期匯率會升值就做多，預期會貶值就做空（賣出）。只要看對趨勢，不論市場行情是大漲還是大跌，都有交易與獲利的機會。
+                </p>
+            </div>
+
+            <div class="glass-dark rounded-2xl p-6 border border-gold/15 hover:border-gold/40 transition-all duration-300 shadow-neon-gold-subtle">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">🌍</span>
+                    <h4 class="text-lg font-serif font-bold text-white">04 / 交易量大、不易被主力操控</h4>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed font-sans">
+                    外匯市場是目前全球規模最大的金融市場，每天的交易量高達數兆美元。因為資金體量極其龐大，沒有任何單一財團、主力大戶 or 單一政府能夠輕易操控價格。這讓市場走勢更貼近技術面，對資金量小的散戶來說相對公平。
+                </p>
             </div>
         </div>
     </div>
 
+    <!-- 02 老師選擇諮詢彈窗 -->
     <div id="tpl-teacher-select" class="hidden">
         <div class="space-y-6 py-4 text-center font-serif">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold">
+                <i class="fa-solid fa-graduation-cap text-3xl text-gold"></i>
+            </div>
             <h3 class="text-xl font-bold text-white">你是透過哪位老師/助教認識交易啟航營？</h3>
-            <p class="text-gray-400 text-xs font-sans max-w-sm mx-auto">請點選您當初認識我們的管道，獲取專屬諮詢：</p>
+            <p class="text-gray-400 text-xs font-sans max-w-sm mx-auto">
+                為了提供最完善的一對一諮詢，並順利完成指標授權，請點選您當初認識我們的管道：
+            </p>
+            
             <div class="flex flex-col gap-4 max-w-xs mx-auto pt-2">
-                <button onclick="selectTeacher('Sky 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-bold">Sky 老師</button>
-                <button onclick="selectTeacher('Eli 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-bold">Eli 老師</button>
-                <button onclick="selectTeacher('鄭詩懷老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-bold">鄭詩懷老師</button>
-                <button onclick="selectTeacher('Gino / Darren / Luke 助教')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-bold">Gino / Darren / Luke 助教</button>
+                <button onclick="selectTeacher('Sky 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">Sky 老師</button>
+                <button onclick="selectTeacher('Eli 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">Eli 老師</button>
+                <button onclick="selectTeacher('鄭詩懷老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">鄭詩懷老師</button>
+                <button onclick="selectTeacher('Gino / Darren / Luke 助教')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">Gino / Darren / Luke 助教</button>
             </div>
         </div>
     </div>
 
+    <!-- 03 聯繫官方LINE -->
     <div id="tpl-contact" class="hidden">
         <div class="space-y-6 py-4 text-center font-serif">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold">
+                <i class="fa-solid fa-graduation-cap text-3xl text-gold"></i>
+            </div>
             <h3 class="text-xl font-bold text-white">你是透過哪位老師/助教認識交易啟航營？</h3>
-            <p class="text-gray-400 text-xs font-sans max-w-sm mx-auto">為了提供您最完善的一對一指標授權與學習諮詢，請點選您當初認識我們的管道：</p>
+            <p class="text-gray-400 text-xs font-sans max-w-sm mx-auto">
+                為了提供您最完善的一對一指標授權與學習諮詢，請點選您當初認識我們的管道：
+            </p>
+            
             <div class="flex flex-col gap-4 max-w-xs mx-auto pt-2">
-                <button onclick="selectTeacher('Sky 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-bold">Sky 老師</button>
-                <button onclick="selectTeacher('Eli 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-bold">Eli 老師</button>
-                <button onclick="selectTeacher('鄭詩懷老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-bold">鄭詩懷老師</button>
-                <button onclick="selectTeacher('Gino / Darren / Luke 助教')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-bold">Gino / Darren / Luke 助教</button>
+                <button onclick="selectTeacher('Sky 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-bold hover:bg-gold/10 transition-all text-base tracking-widest cursor-pointer">Sky 老師</button>
+                <button onclick="selectTeacher('Eli 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-bold hover:bg-gold/10 transition-all text-base tracking-widest cursor-pointer">Eli 老師</button>
+                <button onclick="selectTeacher('鄭詩懷老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-bold hover:bg-gold/10 transition-all text-base tracking-widest cursor-pointer">鄭詩懷老師</button>
+                <button onclick="selectTeacher('Gino / Darren / Luke 助教')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-bold hover:bg-gold/10 transition-all text-base tracking-widest cursor-pointer">Gino / Darren / Luke 助教</button>
             </div>
         </div>
     </div>
 
+    <!-- 04 常見問題 (Q1 - Q12 完整內容) -->
+    <div id="tpl-faq" class="hidden">
+        <div class="space-y-4 py-2 max-h-[60vh] overflow-y-auto custom-scrollbar pr-1">
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2"><span class="text-gold font-mono">Q1.</span> 指標有使用期限嗎？</h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-3 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>沒有使用期限！只要您符合以下條件，就能永久免費使用：</p>
+                        <ul class="list-none pl-0 space-y-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold text-xs"></i> <span>使用指定券商 BAB Markets 帳戶，完成開戶即可領取首K指標</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold text-xs"></i> <span>破框指標需維持帳戶餘額大於等於 300U</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold text-xs"></i> <span>每週保持至少 3 次真實交易</span></li>
+                        </ul>
+                        <p class="text-[10px] text-gray-400 mt-2 p-2.5 bg-dark-900/60 rounded-xl border border-gold/10">💡 每週五團隊會進行例行資格審查，若未達成以上條件暫時關閉授權，未來隨時重新符合資格均可再次申請開通！</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2"><span class="text-gold font-mono">Q2.</span> 這個指標支援哪些商品／市場？</h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-2 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>支援所有能在 TradingView 上顯示的商品，包括外匯、黃金、指數、美股、加密貨幣等。無論任何市場都能無縫套用。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2"><span class="text-gold font-mono">Q3.</span> 我需要什麼等級的 TradingView 帳號才能用？</h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-2 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>免費帳號即可使用！免費版目前限制同時載入 2 個指標，若欲 simultaneous 觀看首K與破框，建議升級至 Essential 以上版本看盤更流暢。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2"><span class="text-gold font-mono">Q4.</span> 申請後多久會開通？</h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>送出審核資料後，小幫手核對資料通常會在 1 個工作日內開通您的 TradingView 指標限用權限。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2"><span class="text-gold font-mono">Q5.</span> 要怎麼把指標加到圖表裡？</h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-2 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>4 步驟加入：1️⃣ 登入 TradingView 2️⃣ 點擊圖表上方「技術指標」 3️⃣ 切換至「僅限邀請」 4️⃣ 點擊【Eli｜多時區首K策略】或【Eli｜多時區趨勢指標】。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2"><span class="text-gold font-mono">Q6.</span> 為什麼我加上指標後沒有顯示？</h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-2 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>可能與其他指標衝突，可先移除其他指標或重整頁面。若仍無法顯示，請私訊官方 LINE@ 請小幫手協助。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2"><span class="text-gold font-mono">Q7.</span> 指標的參數可以調整嗎？</h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>可以！在圖表指標名稱旁邊點擊「⚙️ 設定」，即可依照個人偏好的交易週期、靈敏度、顏色與警報做客製化微調。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2"><span class="text-gold font-mono">Q8.</span> 指標會有教學嗎？</h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 space-y-2 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>有！我們包含：YouTube 免費實戰解析影片、指標實戰課直播（每週二、四、五），以及 LINE 社群中助教群即時解答。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2"><span class="text-gold font-mono">Q9.</span> 如果我換電腦或換帳號，還能用嗎？</h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>指標綁定在您的 TradingView 個人帳號。只要在任何裝置登入同一個 TV 帳號均可正常使用。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2"><span class="text-gold font-mono">Q10.</span> 指標會持續更新嗎？</h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>會的。我們會根據市場變化與學員回饋持續優化，更新後會自動同步到您的帳號。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2"><span class="text-gold font-mono">Q11.</span> 可以多人共用一個帳號嗎？</h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>不建議。指標綁定個人帳號，若偵測到異常共用或外流，系統可能會自動停權。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+                <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2"><span class="text-gold font-mono">Q12.</span> 開通模擬帳戶也可以申請指標體驗嗎？</h4>
+                    <i class="fa-solid fa-chevron-down text-gray-400 faq-icon transition-transform"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="px-6 pb-4 text-gray-300 text-xs md:text-sm font-sans">
+                        <p><strong class="text-gold">A：</strong>只要開通指定券商 BAB Markets 的真實帳戶並完成 KYC 身份認證（不需先入金），即可向小幫手直接登記領取首K指標。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-gold/5 border border-gold/20 text-center shadow-inner mt-4 font-sans">
+                <p class="text-gold font-bold text-xs md:text-sm mb-1">⚠️ 小提醒</p>
+                <p class="text-gray-300 text-xs md:text-sm leading-relaxed">
+                    本指標提供的是交易輔助工具，非買賣建議。使用前請確保了解市場風險並搭配個人策略操作。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 05 加入交易啟航營 -->
+    <div id="tpl-join-camp" class="hidden">
+        <div class="text-center py-8 px-4 font-serif">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gold/10 border border-gold/30 mb-6 shadow-neon-gold">
+                <i class="fa-solid fa-ship text-4xl text-gold animate-bounce"></i>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-4">加入交易啟航營</h3>
+            <p class="text-gray-300 text-base mb-8 leading-relaxed max-w-md mx-auto font-sans">
+                歡迎來到啟航訓練的第一步！<br>
+                在專屬 LINE 社群中，您將與熱愛交易的夥伴一同啟航，獲取第一手即時盤勢解析、指標分享及課程預告。
+            </p>
+        </div>
+    </div>
+
+    <!-- 06 一階新手課 -->
+    <div id="tpl-novice-class" class="hidden">
+        <div class="space-y-6 py-4 font-serif">
+            <div class="text-center">
+                <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
+                    <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite]"></div>
+                    <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
+                        <i class="fa-solid fa-compass text-3xl text-gold"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">一階新手課</h3>
+                <div class="text-gold text-sm md:text-base font-semibold mb-3 space-y-1 font-sans">
+                    <p>🕒 每週一 下午 2:00｜Darren助教</p>
+                    <p>🕒 每週四 晚上 8:30｜Luke助教</p>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed max-w-md mx-auto font-sans">
+                    帶你從零開始學習交易工具，歡迎無基礎的小白加入！
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-base font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <i class="fa-solid fa-list-ol text-gold"></i> 課程內容
+                </h4>
+                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40 font-sans">
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-gold mt-0.5"></i><span>交易平台 MT5 操作教學</span></li>
+                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-gold mt-0.5"></i><span>TradingView 圖表分析工具教學</span></li>
+                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-gold mt-0.5"></i><span>註冊 BAB Markets 並開通模擬倉，免費無風險練習</span></li>
+                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-gold mt-0.5"></i><span>學習下單，實戰操作實盤</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-gold/5 border border-gold/20 text-center shadow-inner">
+                <p class="text-gold-light font-medium text-xs md:text-sm font-sans">✨ 開戶即可直接申請開通 <strong class="text-white">首Ｋ指標</strong> 免費使用！ ✨</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 07 指標基礎課 -->
+    <div id="tpl-basic-class" class="hidden">
+        <div class="space-y-6 py-4 font-serif">
+            <div class="text-center">
+                <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
+                    <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite]"></div>
+                    <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
+                        <i class="fa-solid fa-chart-line text-3xl text-gold"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">指標基礎課</h3>
+                <p class="text-gold text-sm md:text-base font-semibold mb-3 font-sans">🕒 每週三 晚上 9:00｜Luke 助教</p>
+                <p class="text-gray-300 text-sm leading-relaxed max-w-md mx-auto font-sans">
+                    帶你認識「首K指標」、「破框趨勢指標」，運用 13333 法則與指標線圖，學會找到關鍵區間，看懂盤勢方向與關鍵起漲點。
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-base font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <i class="fa-solid fa-shield-halved text-gold"></i> 參加資格
+                </h4>
+                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40 font-sans">
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gold/15 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-check text-gold text-sm"></i>
+                            </div>
+                            <span class="text-gray-300">加入 <strong class="text-white">交易啟航營 LINE 社群</strong></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 08 開通首K指標 (開戶即領) -->
     <div id="tpl-firstk" class="hidden">
         <div class="space-y-6 font-serif">
             <div>
                 <h4 class="text-base font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                     <i class="fa-solid fa-unlock-keyhole text-gold"></i> 領取/開通資格
                 </h4>
-                <div class="glass-dark rounded-xl p-5 border border-gold/30 shadow-neon-gold bg-dark-800/40 text-sm">
-                    <ul class="space-y-3 text-gray-300 font-sans">
+                <div class="glass-dark rounded-xl p-5 border border-gold/30 shadow-neon-gold relative bg-dark-800/40 text-sm">
+                    <div class="absolute -top-3 left-6 bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 px-3 py-0.5 rounded-full text-[10px] font-bold tracking-wider">
+                        標準方案
+                    </div>
+                    <ul class="space-y-3 mt-1.5 text-gray-300 font-sans">
                         <li class="flex items-center gap-3">
                             <i class="fa-solid fa-circle-check text-gold text-base"></i>
-                            <span>使用指定合作券商 <strong class="text-white">BAB Markets</strong> 開設真實帳戶並完成 KYC 認證（無須入金門檻）</span>
+                            <span>使用指定合作券商 <strong class="text-white">BAB Markets</strong> 開設真實帳戶並完成 KYC 認證</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-gold text-base"></i>
+                            <span>無須入金門檻，註冊認證即可免費開通使用</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="text-center pt-2">
-                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 font-bold text-base transition-all">
-                    <i class="fa-brands fa-line text-xl"></i> 聯繫小幫手開通首K指標
-                </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
+                <div>
+                    <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                        <i class="fa-solid fa-signs-post text-gold"></i> 領取流程
+                    </h4>
+                    <div class="space-y-4 relative before:absolute before:inset-0 before:ml-4 before:h-full before:w-0.5 before:bg-gold/20 font-sans">
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gold text-dark-950 font-bold text-xs shrink-0 z-10 font-mono">1</div>
+                            <div class="pt-1 flex flex-col items-start gap-1">
+                                <h5 class="text-sm font-bold text-white">聯繫官方小幫手</h5>
+                                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="text-[10px] bg-gold/20 hover:bg-gold/45 text-gold px-2.5 py-1 rounded border border-gold/30 transition-all font-bold cursor-pointer">加入官方LINE</button>
+                            </div>
+                        </div>
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-dark-700 text-white font-bold text-xs shrink-0 z-10 font-mono">2</div>
+                            <div class="pt-1"><h5 class="text-sm font-bold text-gray-300">完成 BAB Markets 開戶認證</h5></div>
+                        </div>
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-dark-700 text-white font-bold text-xs shrink-0 z-10 font-mono">3</div>
+                            <div class="pt-1"><h5 class="text-sm font-bold text-gray-300">提供 TradingView 帳號審核</h5></div>
+                        </div>
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-dark-700 text-white font-bold text-xs shrink-0 z-10 font-mono">4</div>
+                            <div class="pt-1"><h5 class="text-sm font-bold text-gray-300">成功開通權限（1工作日內）</h5></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                        <i class="fa-solid fa-triangle-exclamation text-gold"></i> 持有維護條件
+                    </h4>
+                    <div class="bg-dark-900/60 rounded-xl p-4 border border-white/5 space-y-3 text-xs text-gray-400 font-sans">
+                        <div class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-arrows-spin text-gold mt-0.5"></i>
+                            <div>
+                                <h5 class="text-white font-bold">維持活躍交易</h5>
+                                <p>每週須維持至少 3 筆真實交易</p>
+                            </div>
+                        </div>
+                        <p class="text-[10px] p-2 bg-gold/10 text-gold-light rounded-lg border border-gold/10 font-sans">⚠️ 每週五進行系統核對。未符合將暫時回收授權，再次符合後私訊小幫手即可重啟！</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- 09 開通破框指標 (餘額≥300U) -->
     <div id="tpl-pokwang" class="hidden">
         <div class="space-y-6 text-sm font-serif">
             <div>
                 <h4 class="text-base font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                     <i class="fa-solid fa-unlock-keyhole text-gold"></i> 領取/開通資格
                 </h4>
-                <div class="glass-dark rounded-xl p-5 border border-gold/30 shadow-neon-gold bg-dark-800/40">
-                    <ul class="space-y-3 text-gray-300 font-sans">
+                <div class="glass-dark rounded-xl p-5 border border-gold/30 shadow-neon-gold relative bg-dark-800/40">
+                    <div class="absolute -top-3 left-6 bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 px-3 py-0.5 rounded-full text-[10px] font-bold tracking-wider">
+                        進階指標方案
+                    </div>
+                    <ul class="space-y-3 mt-1.5 text-gray-300 font-sans">
                         <li class="flex items-center gap-3">
                             <i class="fa-solid fa-circle-check text-gold text-base"></i>
                             <span>使用指定合作券商 <strong class="text-white">BAB Markets</strong> 真實帳戶</span>
@@ -569,71 +935,164 @@
                     </ul>
                 </div>
             </div>
-            <div class="text-center pt-2">
-                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 font-bold text-base transition-all">
-                    <i class="fa-brands fa-line text-xl"></i> 聯繫小幫手開通破框指標
-                </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
+                <div>
+                    <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                        <i class="fa-solid fa-signs-post text-gold"></i> 領取流程
+                    </h4>
+                    <div class="space-y-4 relative before:absolute before:inset-0 before:ml-4 before:h-full before:w-0.5 before:bg-gold/20 font-sans">
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gold text-dark-950 font-bold text-xs shrink-0 z-10 font-mono">1</div>
+                            <div class="pt-1 flex flex-col items-start gap-1 font-sans">
+                                <h5 class="text-sm font-bold text-white">聯繫官方小幫手</h5>
+                                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="text-[10px] bg-gold/20 hover:bg-gold/45 text-gold px-2.5 py-1 rounded border border-gold/30 transition-all font-bold cursor-pointer">加入官方LINE</button>
+                            </div>
+                        </div>
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-dark-700 text-white font-bold text-xs shrink-0 z-10 font-mono">2</div>
+                            <div class="pt-1"><h5 class="text-sm font-bold text-gray-300">核對帳戶餘額 (≥300U)</h5></div>
+                        </div>
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-dark-700 text-white font-bold text-xs shrink-0 z-10 font-mono">3</div>
+                            <div class="pt-1"><h5 class="text-sm font-bold text-gray-300">提供 TradingView 帳號審核</h5></div>
+                        </div>
+                        <div class="relative flex items-start gap-3">
+                            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-dark-700 text-white font-bold text-xs shrink-0 z-10 font-mono">4</div>
+                            <div class="pt-1"><h5 class="text-sm font-bold text-gray-300">成功開通破框指標權限</h5></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                        <i class="fa-solid fa-triangle-exclamation text-gold"></i> 持有維護條件
+                    </h4>
+                    <div class="bg-dark-900/60 rounded-xl p-4 border border-white/5 space-y-3 text-xs text-gray-400 font-sans">
+                        <div class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-wallet text-gold mt-0.5"></i>
+                            <div>
+                                <h5 class="text-white font-bold">帳戶資金額度</h5>
+                                <p>破框指標帳戶內資產總值需維持大於等於 300 U</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-arrows-spin text-gold mt-0.5"></i>
+                            <div>
+                                <h5 class="text-white font-bold">維持活躍交易</h5>
+                                <p>每週須維持至少 3 筆真實交易</p>
+                            </div>
+                        </div>
+                        <p class="text-[10px] p-2 bg-gold/10 text-gold-light rounded-lg border border-gold/10 font-sans">⚠️ 每週五進行自動核對。若未符合將暫時回收，再次符合條件聯繫小幫手即可開通！</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="tpl-join-camp" class="hidden">
-        <div class="text-center py-8 px-4 font-serif">
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-4">加入交易啟航營</h3>
-            <p class="text-gray-300 text-base mb-8 leading-relaxed max-w-md mx-auto font-sans">
-                歡迎來到啟航訓練的第一步！在專屬 LINE 社群中獲取第一手即時盤勢解析、指標分享及課程預告。
-            </p>
-        </div>
-    </div>
-
-    <div id="tpl-novice-class" class="hidden">
-        <div class="space-y-6 py-4 font-serif text-center">
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">一階新手課</h3>
-            <p class="text-gray-300 text-sm font-sans">帶你從零開始學習交易工具，歡迎無基礎的小白加入！</p>
-        </div>
-    </div>
-
-    <div id="tpl-basic-class" class="hidden">
-        <div class="space-y-6 py-4 font-serif text-center">
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">指標基礎課</h3>
-            <p class="text-gray-300 text-sm font-sans">認識首K與破框指標，學習 13333 法則與盤勢邏輯。</p>
-        </div>
-    </div>
-
+    <!-- 10 加入指標群 -->
     <div id="tpl-indicator-group" class="hidden">
-        <div class="space-y-6 py-4 font-serif text-center">
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">加入【指標群】</h3>
-            <p class="text-gold text-sm font-semibold mb-3">⭐ 專屬資格：開通【破框指標】之學員即可免費加入</p>
+        <div class="space-y-6 py-4">
+            <div class="text-center font-serif">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gold/10 mb-5 border border-gold/30 shadow-neon-gold">
+                    <i class="fa-solid fa-users text-4xl text-gold"></i>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">加入【指標群】</h3>
+                <p class="text-gold text-sm font-semibold mb-3">⭐ 專屬資格：開通【破框指標】之學員即可免費加入</p>
+                <p class="text-gray-300 text-base mb-8 leading-relaxed max-w-md mx-auto font-sans">
+                    一個看盤容易亂<br>
+                    但一群熱愛交易的人一起研究市場，會走得更穩<br>
+                    在指標群裡，每天都有戰友一起聊行情、看盤面、交流觀點<br>
+                    透過指標輔助判斷，抓進出場機會，不用再自己一個人盯盤焦慮！
+                </p>
+            </div>
         </div>
     </div>
 
+    <!-- 11 指標實戰課 -->
     <div id="tpl-practical-class" class="hidden">
-        <div class="space-y-6 py-4 font-serif text-center">
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">指標實戰課</h3>
-            <p class="text-gray-300 text-sm font-sans">深度拆解首K與破框趨勢指標的進階操作，直接帶入真實盤勢解析。</p>
+        <div class="space-y-6 py-4">
+            <div class="text-center font-serif">
+                <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
+                    <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite_reverse]"></div>
+                    <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
+                        <i class="fa-solid fa-laptop-code text-3xl text-gold"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-2">指標實戰課</h3>
+                <div class="text-gold text-xs sm:text-sm font-semibold mb-3 space-y-1 font-sans">
+                    <p>🕒 每週二、四 晚上 9:00｜Gino 助教</p>
+                    <p>🕒 每週五 晚上 9:00｜Luke 助教</p>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed max-w-md mx-auto font-sans">
+                    深度拆解「首K指標」與「破框趨勢指標」的進階操作，直接帶入真實盤勢，手把手將看盤邏輯化為實戰策略！
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
+                    <i class="fa-solid fa-shield-halved text-gold"></i> 參加資格
+                </h4>
+                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40">
+                    <ul class="space-y-3 font-sans">
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gold/15 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-check text-gold text-sm"></i>
+                            </div>
+                            <span class="text-gray-300">開通破框指標並加入 <strong class="text-white">破框指標專屬 LINE 社群</strong></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- 12 進階策略課程 -->
     <div id="tpl-advanced-class" class="hidden">
-        <div class="space-y-6 py-4 font-serif text-center">
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">進階策略課程</h3>
-            <p class="text-gray-300 text-sm font-sans">三破策略（Sky 老師）與 破框策略（Eli 老師）高階實戰系統。</p>
+        <div class="space-y-10 py-4 custom-scrollbar font-serif">
+            <!-- Sky 老師 -->
+            <div class="space-y-4">
+                <div class="text-center">
+                    <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
+                        <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite]"></div>
+                        <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
+                            <i class="fa-solid fa-dragon text-3xl text-gold"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">三破策略</h3>
+                    <p class="text-gold text-sm font-semibold">主講人：Sky 老師</p>
+                </div>
+                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40">
+                    <p class="text-gray-300 text-sm leading-relaxed font-sans">
+                        從「破型、破浪、破均」三大切面建立進出場邏輯，幫助交易者辨識市場轉折、順勢切入主力波段、洞察價格極限區間，告別指標迷宮。
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 my-4"></div>
+
+            <!-- Eli 老師 -->
+            <div class="space-y-4">
+                <div class="text-center">
+                    <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
+                        <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite_reverse]"></div>
+                        <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
+                            <i class="fa-solid fa-bolt text-3xl text-gold"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">破框策略</h3>
+                    <p class="text-gold text-sm font-semibold">主講人：Eli 老師</p>
+                </div>
+                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40">
+                    <p class="text-gray-300 text-sm leading-relaxed font-sans">
+                        以價格結構切入的實戰系統，用「穿框強攻」順勢、「回框打點」逆勢兩大進場技術，搭配滾倉複利與空間反應模組，橫跨全市場操作。
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div id="tpl-faq" class="hidden">
-        <div class="space-y-4 py-2 text-sm font-sans">
-            <div class="p-4 bg-dark-850 border border-gold/15 rounded-2xl">
-                <h4 class="font-bold text-white mb-1"><span class="text-gold">Q1.</span> 首K指標需要多少入金門檻？</h4>
-                <p class="text-gray-300">開通首K指標無須入金門檻，只要完成指定券商 BAB Markets 開戶認證即可！</p>
-            </div>
-            <div class="p-4 bg-dark-850 border border-gold/15 rounded-2xl">
-                <h4 class="font-bold text-white mb-1"><span class="text-gold">Q2.</span> 破框指標開通條件？</h4>
-                <p class="text-gray-300">使用 BAB Markets 券商且帳戶餘額維持在 300U 以上即可開通使用。</p>
-            </div>
-        </div>
-    </div>
-
+    <!-- SCRIPT 控制核心 -->
     <script>
         const teacherConfigs = {
             "Sky 老師": { lineUrl: "https://lin.ee/7Jlzygy", qrCodeUrl: "https://i.meee.com.tw/wT7mzUJ.png" },
@@ -642,28 +1101,92 @@
             "Gino / Darren / Luke 助教": { lineUrl: "https://lin.ee/7Jlzygy", qrCodeUrl: "https://i.meee.com.tw/wT7mzUJ.png" }
         };
 
+        const apiKey = ""; 
+        let isAITyping = false;
+
         function toggleChat() {
             const chatContainer = document.getElementById('ai-chat-container');
             chatContainer.classList.toggle('hidden');
+            if(!chatContainer.classList.contains('hidden')) {
+                scrollToBottom();
+                document.getElementById('chat-input').focus();
+            }
+        }
+
+        function scrollToBottom() {
+            const messages = document.getElementById('chat-messages');
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function quickQuestion(questionText) {
+            document.getElementById('chat-input').value = questionText;
+            sendChatMessage();
         }
 
         function selectTeacher(teacherName) {
-            const config = teacherConfigs[teacherName] || { lineUrl: "https://lin.ee/7Jlzygy" };
+            const config = teacherConfigs[teacherName] || { lineUrl: "https://lin.ee/7Jlzygy", qrCodeUrl: "https://i.meee.com.tw/wT7mzUJ.png" };
+            const messageText = `你好，我是透過${teacherName}認識交易啟航營的，我想諮詢指標開通與課程！`;
+            
+            const tempInput = document.createElement("input");
+            tempInput.value = messageText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
             const modalBody = document.getElementById('modal-body');
             modalBody.innerHTML = `
                 <div class="text-center py-6 space-y-6 font-serif">
-                    <h3 class="text-2xl font-bold text-white mb-1">已選擇：${teacherName}</h3>
-                    <p class="text-gold-light text-sm font-semibold font-sans">請掃描 QR Code 或點擊下方連結跳轉至官方 LINE</p>
-                    <div class="inline-block p-4 rounded-2xl bg-dark-950 border border-gold/25">
-                        <img src="${config.qrCodeUrl}" alt="LINE QR Code" class="w-48 h-48 rounded-lg"/>
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold">
+                        <i class="fa-solid fa-qrcode text-3xl text-gold"></i>
                     </div>
                     <div>
-                        <a href="${config.lineUrl}" target="_blank" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 font-bold text-sm">
-                            <i class="fa-brands fa-line text-lg"></i> 手機用戶點此跳轉
+                        <h3 class="text-2xl font-bold text-white mb-1">已選擇：${teacherName}</h3>
+                        <p class="text-gold-light text-sm font-semibold tracking-wider font-sans">請掃描 QR Code 或點擊下方按鈕加入專屬 LINE 諮詢</p>
+                    </div>
+                    
+                    <div class="inline-block p-4 rounded-2xl bg-dark-950 border border-gold/25 shadow-neon-gold relative group">
+                        <img src="${config.qrCodeUrl}" alt="LINE QR Code" class="w-48 h-48 rounded-lg"/>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <a href="${config.lineUrl}" target="_blank" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 font-bold text-sm shadow-neon-gold transition-all transform hover:-translate-y-0.5">
+                            <i class="fa-brands fa-line text-lg"></i> 手機用戶點此直接跳轉 LINE
                         </a>
                     </div>
                 </div>
             `;
+        }
+
+        async function sendChatMessage() {
+            if (isAITyping) return;
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            const text = input.value.trim();
+            if (!text) return;
+
+            isAITyping = true;
+            messages.innerHTML += `
+                <div class="flex justify-end font-sans">
+                    <div class="text-sm bg-gradient-to-r from-gold-dark to-gold text-dark-950 p-3 rounded-2xl rounded-tr-none shadow-neon-gold max-w-[85%] font-medium">
+                        ${escapeHtml(text)}
+                    </div>
+                </div>
+            `;
+            input.value = '';
+            scrollToBottom();
+        }
+
+        function escapeHtml(string) {
+            return String(string).replace(/[&<>"']/g, function (s) {
+                return {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                }[s];
+            });
         }
 
         function openModal(templateId, title) {
@@ -682,7 +1205,7 @@
             }
 
             modal.classList.remove('hidden');
-            void modal.offsetWidth;
+            void modal.offsetWidth; 
             backdrop.classList.remove('opacity-0');
             panel.classList.remove('scale-95', 'opacity-0');
             document.body.style.overflow = 'hidden';
@@ -702,9 +1225,22 @@
             }, 300);
         }
 
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             const revealElements = document.querySelectorAll('.reveal');
             revealElements.forEach(el => el.classList.add('active'));
+
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-[#030303]/95', 'shadow-neon-gold-subtle', 'border-gold/30');
+                } else {
+                    header.classList.remove('bg-[#030303]/95', 'shadow-neon-gold-subtle', 'border-gold/30');
+                }
+            });
         });
     </script>
 </body>
