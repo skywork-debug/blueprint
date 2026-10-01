@@ -28,22 +28,27 @@
                             },
                             colors: {
                                 gold: {
-                                    light: '#f3e5ab', // Champagne gold
-                                    DEFAULT: '#e5c158', // Main rich gold
-                                    dark: '#b5893d', // Deep bronze gold
-                                    accent: '#8a6f27', // Muted gold
-                                },
+                            light: '#fdf6dc', // 最亮白金
+                            DEFAULT: '#f3e5ab', // 主要白金
+                            dark: '#e3c98a',
+                            accent: '#cdb06a',
+                        },
                                 dark: {
-                                    950: '#030303', // Pure deep obsidian black
-                                    900: '#08080a',
-                                    800: '#0e0e12',
-                                    700: '#15151b',
-                                    600: '#1f1f27',
-                                }
+                            950: '#040917', // 深夜藍
+                            900: '#071026',
+                            800: '#0b1733',
+                            700: '#11214a',
+                            600: '#1a2f63',
+                        },
+                        ice: {
+                            light: '#cfe3ff',
+                            DEFAULT: '#7cb4ff',
+                            dark: '#2f6fe0',
+                        }
                             },
                             boxShadow: {
-                                'neon-gold': '0 0 25px rgba(229, 193, 88, 0.25)',
-                                'neon-gold-subtle': '0 0 15px rgba(229, 193, 88, 0.15)',
+                                'neon-gold': '0 0 28px rgba(92, 156, 255, 0.35)',
+                                'neon-gold-subtle': '0 0 16px rgba(92, 156, 255, 0.18)',
                                 'neon-purple': '0 0 20px rgba(168, 85, 247, 0.15)',
                             }
                         }
@@ -92,7 +97,7 @@
                     100% { background-position: 200% center; } 
                 }
                 .text-gold-gradient { 
-                    background: linear-gradient(135deg, #f3e5ab 0%, #e5c158 40%, #b5893d 70%, #f3e5ab 100%); 
+                    background: linear-gradient(135deg, #fffaf0 0%, #f3e5ab 40%, #e6cf95 70%, #fffaf0 100%); 
                     background-size: 200% auto; 
                     -webkit-background-clip: text; 
                     -webkit-text-fill-color: transparent; 
@@ -204,6 +209,99 @@
                     main, .tab-panel.active, .demo-svg .candle, .demo-svg .pop { animation: none; opacity: 1; }
                     .demo-svg .draw-line { animation: none; stroke-dashoffset: 0; }
                 }
+
+        /* ========================================== */
+        /* 深藍玻璃風格（Midnight Glass）覆寫          */
+        /* ========================================== */
+        body {
+            background-color: #040917;
+            background-image:
+                radial-gradient(1200px 600px at 85% 10%, rgba(47, 111, 224, 0.22), transparent 60%),
+                radial-gradient(900px 500px at 10% 90%, rgba(30, 58, 138, 0.35), transparent 60%),
+                linear-gradient(180deg, #050b1c 0%, #040917 55%, #030712 100%);
+            background-attachment: fixed;
+        }
+        /* 天花板燈帶般的暖光斜線 + 右側窗光 */
+        body::before, body::after { content: ""; position: fixed; pointer-events: none; z-index: 0; }
+        body::before {
+            left: -10%; top: 6%; width: 70%; height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 226, 170, 0.55), rgba(255, 236, 200, 0.15), transparent);
+            transform: rotate(-9deg); filter: blur(1px);
+            box-shadow: 0 0 40px 8px rgba(255, 214, 150, 0.12);
+        }
+        body::after {
+            right: -15%; top: 20%; width: 45%; height: 70%;
+            background: radial-gradient(closest-side, rgba(92, 156, 255, 0.16), transparent);
+        }
+        main, header, footer { position: relative; z-index: 1; }
+
+        /* 織紋背景改成深藍光網格 */
+        .bg-with-texture::before {
+            background-image:
+                radial-gradient(800px 400px at 50% 0%, rgba(47, 111, 224, 0.14), transparent 70%),
+                linear-gradient(180deg, rgba(7, 16, 38, 0.6), rgba(4, 9, 23, 0.85));
+            background-attachment: fixed;
+        }
+        .bg-with-texture::after {
+            background-image:
+                linear-gradient(rgba(124, 180, 255, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124, 180, 255, 0.045) 1px, transparent 1px);
+            background-size: 48px 48px;
+            background-color: transparent;
+            mask-image: linear-gradient(180deg, transparent, #000 15%, #000 85%, transparent);
+            -webkit-mask-image: linear-gradient(180deg, transparent, #000 15%, #000 85%, transparent);
+        }
+
+        /* 玻璃面板：半透明深藍 + 冰藍邊光 + 頂部高光 */
+        .glass-dark, .glass-premium {
+            background: linear-gradient(150deg, rgba(28, 52, 110, 0.42) 0%, rgba(9, 18, 42, 0.72) 55%, rgba(6, 12, 30, 0.82) 100%);
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            border: 1px solid rgba(124, 180, 255, 0.26);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.14),
+                inset 0 0 0 1px rgba(124, 180, 255, 0.04),
+                0 24px 60px -24px rgba(0, 0, 0, 0.85),
+                0 0 36px -12px rgba(92, 156, 255, 0.35);
+        }
+        .glass-premium { border-color: rgba(124, 180, 255, 0.34); }
+        header.glass-dark { background: rgba(6, 12, 30, 0.72); box-shadow: inset 0 -1px 0 rgba(124, 180, 255, 0.18); }
+
+        .gold-glow { background: radial-gradient(circle, rgba(92, 156, 255, 0.14) 0%, rgba(47, 111, 224, 0.04) 55%, transparent 75%); }
+        #scroll-progress { background: linear-gradient(90deg, #2f6fe0, #7cb4ff, #e5c158); box-shadow: 0 0 10px rgba(92, 156, 255, 0.7); }
+
+        /* 學習藍圖按鈕、彈窗、表格等深色區塊改深藍玻璃 */
+        .bg-dark-950\/90, .bg-dark-900\/90 { background: linear-gradient(150deg, rgba(24, 46, 100, 0.55), rgba(6, 12, 30, 0.85)) !important; backdrop-filter: blur(12px); }
+        #modal-panel { background: linear-gradient(160deg, #0d1a3a, #070f24); border-color: rgba(124, 180, 255, 0.3); }
+        #modal-panel > div, #modal-body { background: transparent !important; }
+        #indicator-subnav { background: rgba(5, 11, 28, 0.82) !important; }
+
+        /* 卡片滑過時的光澤改冷白光 */
+        .tilt-card .shine { background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(190, 220, 255, 0.18), transparent 55%); }
+
+        /* 漂浮玻璃面板 */
+        .fp-stage { perspective: 1200px; }
+        .fp-panel {
+            position: absolute; padding: 12px 14px 10px; border-radius: 16px;
+            background: linear-gradient(150deg, rgba(40, 72, 150, 0.35), rgba(8, 16, 40, 0.55));
+            border: 1px solid rgba(160, 200, 255, 0.35);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 40px -10px rgba(92, 156, 255, 0.55), 0 30px 60px -30px rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+            transform: rotateY(var(--r)) rotateX(6deg);
+            animation: fpFloat 9s ease-in-out infinite; animation-delay: var(--d);
+            opacity: 0.55;
+        }
+        .fp-title { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: rgba(229, 193, 88, 0.85); margin-bottom: 6px; }
+        .fp-body { height: 70px; }
+        @keyframes fpFloat {
+            0%, 100% { transform: rotateY(var(--r)) rotateX(6deg) translateY(0); }
+            50% { transform: rotateY(var(--r)) rotateX(6deg) translateY(-14px); }
+        }
+        @media (max-width: 767px) {
+            .fp-panel { opacity: 0.22; transform: scale(0.8); }
+            .fp-b, .fp-c { display: none; }
+        }
+        @media (prefers-reduced-motion: reduce) { .fp-panel { animation: none; } }
     </style>
 </head>
 <body class="antialiased selection:bg-gold selection:text-dark-950 font-serif">
@@ -212,11 +310,11 @@
 <div id="scroll-progress"></div>
 
     <!-- 頂部奢華導航欄 -->
-    <header class="fixed top-0 inset-x-0 z-[120] glass-dark border-b border-gold/15 transition-all duration-300">
+    <header class="fixed top-0 inset-x-0 z-[120] glass-dark border-b border-ice/15 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- 左側尊爵Logo (點擊回首頁) -->
             <a href="index.html" class="flex items-center gap-3.5">
-                <div class="w-11 h-11 rounded-lg bg-gradient-to-tr from-gold-dark via-gold to-gold-light flex items-center justify-center shadow-neon-gold">
+                <div class="w-11 h-11 rounded-lg bg-gradient-to-tr from-[#1e3a8a] via-[#2f6fe0] to-[#7cb4ff] flex items-center justify-center shadow-neon-gold">
                     <i class="fa-solid fa-compass text-dark-950 text-xl animate-spin" style="animation-duration: 25s"></i>
                 </div>
                 <div class="flex flex-col">
@@ -235,10 +333,10 @@
             <!-- 右側行動按鈕 -->
             <div class="flex items-center gap-2">
                 <!-- 手機版：指標介紹入口 -->
-                <a href="indicators.html" aria-label="指標介紹" class="md:hidden w-10 h-10 rounded-full border border-gold/30 text-gold flex items-center justify-center hover:bg-gold/10 transition-all">
+                <a href="indicators.html" aria-label="指標介紹" class="md:hidden w-10 h-10 rounded-full border border-ice/30 text-gold flex items-center justify-center hover:bg-ice/10 transition-all">
                     <i class="fa-solid fa-chart-line text-sm"></i>
                 </a>
-                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light hover:opacity-90 text-dark-950 text-xs md:text-sm font-bold shadow-neon-gold transition-all flex items-center gap-2 tracking-wider focus:outline-none cursor-pointer">
+                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#1e3a8a] via-[#2f6fe0] to-[#7cb4ff] hover:opacity-90 text-white text-xs md:text-sm font-bold shadow-neon-gold transition-all flex items-center gap-2 tracking-wider focus:outline-none cursor-pointer">
                     <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0 fill-current" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 5.84 2 10.53c0 2.91 1.72 5.51 4.5 7.07-.18.66-.65 2.37-.75 2.76-.1.39-.48 1.51.2 1.05.68-.46 3.11-2.11 3.86-2.57C10.59 18.95 11.29 19 12 19c5.52 0 10-3.84 10-8.53C22 5.84 17.52 2 12 2zm-4.73 11.13h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38a.37.37 0 0 1-.37.37zm2.46-.37a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38zm5.24 0a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V9.74l-1.39 1.83a.37.37 0 0 1-.59 0L10.37 9.74v2.01a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .3.18l1.64 2.16 1.64-2.16a.37.37 0 0 1 .3-.18h.84a.37.37 0 0 1 .37.37v4.38zm3.87-2.73a.37.37 0 0 1-.37.37h-1.68v1.14h1.68a.37.37 0 0 1 .37.37v.48a.37.37 0 0 1-.37.37h-2.89a.37.37 0 0 1-.37-.37V8.15c0-.2.17-.37.37-.37h2.89c.2 0 .37.17.37.37v.48c0 .2-.17.37-.37.37h-1.68v1.14h1.68c.2 0 .37.17.37.37v.48z"/>
                     </svg>聯繫官方LINE
@@ -252,10 +350,10 @@
 <!-- AI 交易導師助理視窗 -->
     <div id="ai-chat-container" class="fixed bottom-24 right-6 z-[150] w-[calc(100vw-32px)] sm:w-96 glass-premium rounded-2xl shadow-2xl flex flex-col hidden overflow-hidden transition-all duration-300">
         <!-- Chat Header -->
-        <div class="p-4 border-b border-gold/15 flex justify-between items-center bg-dark-900/90">
+        <div class="p-4 border-b border-ice/15 flex justify-between items-center bg-dark-900/90">
             <div class="flex items-center gap-3">
                 <div class="relative">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-gold-dark to-gold-light flex items-center justify-center text-dark-950 shadow-neon-gold">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#1e3a8a] to-[#5b9dff] flex items-center justify-center text-white shadow-neon-gold">
                         <i class="fa-solid fa-robot text-lg"></i>
                     </div>
                     <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-dark-950 rounded-full"></span>
@@ -275,34 +373,34 @@
         <!-- Messages Area -->
         <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-dark-950/40 font-serif">
             <div class="flex gap-3">
-                <div class="w-8 h-8 rounded-lg bg-dark-800 border border-gold/20 flex items-center justify-center text-gold shrink-0">
+                <div class="w-8 h-8 rounded-lg bg-dark-800 border border-ice/20 flex items-center justify-center text-gold shrink-0">
                     <i class="fa-solid fa-robot text-xs"></i>
                 </div>
-                <div class="text-sm bg-dark-800/80 p-3 rounded-2xl rounded-tl-none border border-gold/10 max-w-[85%] text-gray-200 leading-relaxed font-sans">
+                <div class="text-sm bg-dark-800/80 p-3 rounded-2xl rounded-tl-none border border-ice/10 max-w-[85%] text-gray-200 leading-relaxed font-sans">
                     您好！我是您的專屬交易啟航導師。關於新手課、13333法則、或者是首K、破框指標的使用邏輯，我都能一對一為您深入解答唷！
                 </div>
             </div>
         </div>
 
         <!-- Suggestion Chips -->
-        <div class="px-4 pb-2.5 pt-1.5 flex gap-1.5 overflow-x-auto custom-scrollbar whitespace-nowrap bg-dark-950/40 border-t border-gold/5 font-serif">
-            <button onclick="quickQuestion('什麼是新手課？')" class="text-xs bg-dark-800 hover:bg-dark-700 hover:border-gold/30 text-gray-300 px-3 py-1.5 rounded-full border border-gold/10 transition-all">新手課</button>
-            <button onclick="quickQuestion('什麼是 13333 法則？')" class="text-xs bg-dark-800 hover:bg-dark-700 hover:border-gold/30 text-gray-300 px-3 py-1.5 rounded-full border border-gold/10 transition-all">13333法則</button>
-            <button onclick="quickQuestion('首K與破框指標有何不同？')" class="text-xs bg-dark-800 hover:bg-dark-700 hover:border-gold/30 text-gray-300 px-3 py-1.5 rounded-full border border-gold/10 transition-all">雙指標核心</button>
+        <div class="px-4 pb-2.5 pt-1.5 flex gap-1.5 overflow-x-auto custom-scrollbar whitespace-nowrap bg-dark-950/40 border-t border-ice/5 font-serif">
+            <button onclick="quickQuestion('什麼是新手課？')" class="text-xs bg-dark-800 hover:bg-dark-700 hover:border-ice/30 text-gray-300 px-3 py-1.5 rounded-full border border-ice/10 transition-all">新手課</button>
+            <button onclick="quickQuestion('什麼是 13333 法則？')" class="text-xs bg-dark-800 hover:bg-dark-700 hover:border-ice/30 text-gray-300 px-3 py-1.5 rounded-full border border-ice/10 transition-all">13333法則</button>
+            <button onclick="quickQuestion('首K與破框指標有何不同？')" class="text-xs bg-dark-800 hover:bg-dark-700 hover:border-ice/30 text-gray-300 px-3 py-1.5 rounded-full border border-ice/10 transition-all">雙指標核心</button>
         </div>
 
         <!-- Input Area -->
-        <div class="p-3 border-t border-gold/15 flex gap-2 bg-dark-900/90 font-serif">
-            <input id="chat-input" type="text" placeholder="輸入您的交易問題..." onkeydown="if(event.key==='Enter') sendChatMessage()" class="flex-1 bg-dark-950 border border-gold/20 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold bg-dark-950/80">
-            <button onclick="sendChatMessage()" class="bg-gradient-to-r from-gold-dark to-gold-light hover:opacity-90 text-dark-950 px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-neon-gold flex items-center justify-center">
+        <div class="p-3 border-t border-ice/15 flex gap-2 bg-dark-900/90 font-serif">
+            <input id="chat-input" type="text" placeholder="輸入您的交易問題..." onkeydown="if(event.key==='Enter') sendChatMessage()" class="flex-1 bg-dark-950 border border-ice/20 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-ice focus:ring-1 focus:ring-gold bg-dark-950/80">
+            <button onclick="sendChatMessage()" class="bg-gradient-to-r from-[#1e3a8a] to-[#5b9dff] hover:opacity-90 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-neon-gold flex items-center justify-center">
                 <i class="fa-solid fa-paper-plane"></i>
             </button>
         </div>
     </div>
 
     <!-- AI 懸浮球 -->
-    <button onclick="toggleChat()" class="fixed bottom-6 right-6 z-[140] w-14 h-14 bg-gradient-to-tr from-gold-dark via-gold to-gold-light text-dark-950 rounded-full shadow-lg hover:shadow-gold/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all group border border-white/10">
-        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-gold-dark to-gold-light animate-ping opacity-25 group-hover:opacity-40"></div>
+    <button onclick="toggleChat()" class="fixed bottom-6 right-6 z-[140] w-14 h-14 bg-gradient-to-tr from-[#1e3a8a] via-[#2f6fe0] to-[#7cb4ff] text-white rounded-full shadow-lg hover:shadow-ice/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all group border border-white/10">
+        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-[#1e3a8a] to-[#5b9dff] animate-ping opacity-25 group-hover:opacity-40"></div>
         <i class="fa-solid fa-robot text-2xl relative z-10 transition-transform group-hover:rotate-12"></i>
     </button>
 
@@ -311,8 +409,8 @@
         <!-- Hero 區塊 -->
         <section id="about" class="relative pt-16 pb-24 lg:pt-28 lg:pb-32 overflow-hidden flex flex-col justify-center min-h-[92vh]">
             
-            <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-30">
-                <svg viewBox="0 0 1000 1000" class="w-[90%] h-[90%] text-gold animate-[spin_100s_linear_infinite]" fill="none" stroke="currentColor" stroke-width="0.75">
+            <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-20">
+                <svg viewBox="0 0 1000 1000" class="w-[90%] h-[90%] text-ice animate-[spin_100s_linear_infinite]" fill="none" stroke="currentColor" stroke-width="0.75">
                     <circle cx="500" cy="500" r="400" />
                     <circle cx="500" cy="500" r="300" stroke-dasharray="4 4" />
                     <circle cx="500" cy="500" r="200" />
@@ -327,6 +425,25 @@
                 <img src="交易啟航營.png" alt="背景帆船" onerror="this.style.display='none'" class="w-[120%] h-[120%] md:w-full md:h-full object-cover md:object-contain transform scale-110 md:scale-125">
             </div>
 
+            <!-- 漂浮玻璃面板（純裝飾） -->
+            <div class="fp-stage absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+                <div class="fp-panel fp-a" style="--r:-14deg;--d:0s;left:4%;top:16%;width:240px">
+                    <div class="fp-title">TREND · 1H</div>
+                    <div class="fp-body"><svg viewBox="0 0 200 70" class="w-full h-full"><defs><linearGradient id="fpA" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7cb4ff" stop-opacity=".35"/><stop offset="1" stop-color="#7cb4ff" stop-opacity="0"/></linearGradient></defs><path d="M0 55 C20 50 30 30 50 38 S80 58 100 40 S140 10 160 22 S190 30 200 12 V70 H0Z" fill="url(#fpA)"/><path d="M0 55 C20 50 30 30 50 38 S80 58 100 40 S140 10 160 22 S190 30 200 12" fill="none" stroke="#9cc7ff" stroke-width="1.6"/><path d="M0 60 C30 58 50 48 80 50 S130 34 160 36 S190 26 200 28" fill="none" stroke="#e5c158" stroke-width="1.1" opacity=".8"/></svg></div>
+                </div>
+                <div class="fp-panel fp-b" style="--r:12deg;--d:-2s;right:5%;top:12%;width:220px">
+                    <div class="fp-title">MOMENTUM</div>
+                    <div class="fp-body"><svg viewBox="0 0 200 70" class="w-full h-full"><rect x="8" y="50" width="10" height="18" rx="2" fill="#7cb4ff" opacity="0.7"/><rect x="27" y="42" width="10" height="26" rx="2" fill="#e5c158" opacity="0.8"/><rect x="46" y="46" width="10" height="22" rx="2" fill="#7cb4ff" opacity="0.7"/><rect x="65" y="34" width="10" height="34" rx="2" fill="#7cb4ff" opacity="0.7"/><rect x="84" y="38" width="10" height="30" rx="2" fill="#e5c158" opacity="0.8"/><rect x="103" y="24" width="10" height="44" rx="2" fill="#7cb4ff" opacity="0.7"/><rect x="122" y="28" width="10" height="40" rx="2" fill="#7cb4ff" opacity="0.7"/><rect x="141" y="16" width="10" height="52" rx="2" fill="#e5c158" opacity="0.8"/><rect x="160" y="20" width="10" height="48" rx="2" fill="#7cb4ff" opacity="0.7"/><rect x="179" y="6" width="10" height="62" rx="2" fill="#7cb4ff" opacity="0.7"/></svg></div>
+                </div>
+                <div class="fp-panel fp-c" style="--r:-8deg;--d:-4s;left:8%;bottom:10%;width:210px">
+                    <div class="fp-title">WIN RATE</div>
+                    <div class="fp-body"><svg viewBox="0 0 200 70" class="w-full h-full"><circle cx="50" cy="35" r="24" fill="none" stroke="rgba(124,180,255,.18)" stroke-width="6"/><circle cx="50" cy="35" r="24" fill="none" stroke="#e5c158" stroke-width="6" stroke-dasharray="105 151" transform="rotate(-90 50 35)" stroke-linecap="round"/><circle cx="140" cy="35" r="24" fill="none" stroke="rgba(124,180,255,.18)" stroke-width="6"/><circle cx="140" cy="35" r="24" fill="none" stroke="#7cb4ff" stroke-width="6" stroke-dasharray="70 151" transform="rotate(-90 140 35)" stroke-linecap="round"/></svg></div>
+                </div>
+                <div class="fp-panel fp-d" style="--r:10deg;--d:-1s;right:7%;bottom:14%;width:250px">
+                    <div class="fp-title">BREAKOUT · 15M</div>
+                    <div class="fp-body"><svg viewBox="0 0 200 70" class="w-full h-full"><defs><linearGradient id="fpA" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7cb4ff" stop-opacity=".35"/><stop offset="1" stop-color="#7cb4ff" stop-opacity="0"/></linearGradient></defs><path d="M0 55 C20 50 30 30 50 38 S80 58 100 40 S140 10 160 22 S190 30 200 12 V70 H0Z" fill="url(#fpA)"/><path d="M0 55 C20 50 30 30 50 38 S80 58 100 40 S140 10 160 22 S190 30 200 12" fill="none" stroke="#9cc7ff" stroke-width="1.6"/><path d="M0 60 C30 58 50 48 80 50 S130 34 160 36 S190 26 200 28" fill="none" stroke="#e5c158" stroke-width="1.1" opacity=".8"/></svg></div>
+                </div>
+            </div>
             <div class="gold-glow top-[10%] left-1/2 -translate-x-1/2 z-0"></div>
             
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -342,18 +459,18 @@
 
                 <!-- Feature Mini Tags -->
                 <div class="mt-12 flex flex-wrap justify-center gap-4 reveal">
-                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-gold/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-crown text-gold"></i> 頂尖師資領軍</span>
-                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-gold/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-gold"></i> 每週免費教學</span>
-                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-gold/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-gold"></i> 獨家實戰指標</span>
-                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-gold/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-gem text-gold"></i> 實用交易策略</span>
-                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-gold/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-shield-halved text-gold"></i> 風控心法觀念</span>
+                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-ice/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-crown text-gold"></i> 頂尖師資領軍</span>
+                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-ice/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-gold"></i> 每週免費教學</span>
+                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-ice/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-gold"></i> 獨家實戰指標</span>
+                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-ice/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-gem text-gold"></i> 實用交易策略</span>
+                    <span class="px-5 py-2.5 rounded-xl bg-dark-900/90 border border-ice/15 text-sm font-serif text-gold-light flex items-center gap-2"><i class="fa-solid fa-shield-halved text-gold"></i> 風控心法觀念</span>
                 </div>
                 
                 <div class="mt-14 flex flex-col sm:flex-row gap-5 justify-center items-center reveal">
-                    <button onclick="openModal('advantages', '了解外匯市場')" class="w-full sm:w-auto px-10 py-[16px] rounded-full glass-dark hover:bg-dark-800 text-white font-bold text-lg transition-all flex items-center justify-center gap-2 border-gold/25 hover:border-gold/60 tracking-widest cursor-pointer focus:outline-none">
+                    <button onclick="openModal('advantages', '了解外匯市場')" class="w-full sm:w-auto px-10 py-[16px] rounded-full glass-dark hover:bg-dark-800 text-white font-bold text-lg transition-all flex items-center justify-center gap-2 border-ice/25 hover:border-ice/60 tracking-widest cursor-pointer focus:outline-none">
                         了解外匯市場 <i class="fa-solid fa-arrow-right text-gold animate-pulse"></i>
                     </button>
-                    <a href="indicators.html" class="w-full sm:w-auto px-10 py-[16px] rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 font-bold text-lg transition-all flex items-center justify-center gap-2 shadow-neon-gold hover:opacity-90 hover:-translate-y-0.5 tracking-widest">
+                    <a href="indicators.html" class="w-full sm:w-auto px-10 py-[16px] rounded-full bg-gradient-to-r from-[#1e3a8a] via-[#2f6fe0] to-[#7cb4ff] text-white font-bold text-lg transition-all flex items-center justify-center gap-2 shadow-neon-gold hover:opacity-90 hover:-translate-y-0.5 tracking-widest">
                         <i class="fa-solid fa-chart-line"></i> 認識獨家指標
                     </a>
                 </div>
@@ -366,13 +483,13 @@
         <div class="bg-with-texture">
             
             <!-- 交易學習升級藍圖 Section -->
-            <section id="roadmap" class="py-24 bg-transparent relative border-t border-gold/15 overflow-hidden">
-                <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-gold/3 rounded-full blur-[130px] pointer-events-none translate-y-1/2 translate-x-1/3"></div>
+            <section id="roadmap" class="py-24 bg-transparent relative border-t border-ice/15 overflow-hidden">
+                <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-ice/3 rounded-full blur-[130px] pointer-events-none translate-y-1/2 translate-x-1/3"></div>
                 
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div class="text-center mb-20 reveal">
                         <span class="text-xs font-mono tracking-[0.3em] text-gold uppercase">THE BLUEPRINT ROADMAP</span>
-                        <h2 class="text-3xl md:text-5xl font-serif font-bold mb-4 mt-2 text-gold-gradient">🗺️ 交易學習升級藍圖</h2>
+                        <h2 class="text-3xl md:text-5xl font-serif font-bold mb-4 mt-2 text-gold-gradient">交易學習升級藍圖</h2>
                         <p class="text-gray-400 max-w-2xl mx-auto text-base">點擊卡片，了解課程規範、<br>開戶體驗門檻與實戰社群特權</p>
                         <div class="w-24 h-[1px] bg-gold-dark mx-auto mt-6"></div>
                     </div>
@@ -387,14 +504,14 @@
                             <div class="relative flex flex-col items-center w-full">
                                 
                                 <div class="flex flex-col items-center w-full relative z-10 mb-4">
-                                    <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
+                                    <div class="px-6 py-2.5 bg-gradient-to-r from-[#1e3a8a] via-[#2f6fe0] to-[#7cb4ff] text-white border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
                                         01 START
                                     </div>
-                                    <div class="h-6 w-[1px] bg-gold/50"></div>
+                                    <div class="h-6 w-[1px] bg-ice/50"></div>
                                 </div>
 
                                 <!-- 交易啟航營 -->
-                                <button onclick="openModal('join-camp', '加入【交易啟航營】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
+                                <button onclick="openModal('join-camp', '加入【交易啟航營】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-ice/30 hover:border-ice text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
                                     <div class="flex items-center justify-center gap-3">
                                         <i class="fa-solid fa-anchor text-sm"></i>
                                         加入【交易啟航營】
@@ -402,12 +519,12 @@
                                 </button>
                                 
                                 <div class="flex flex-col items-center my-4 relative">
-                                    <div class="h-8 w-[1px] bg-gold/40"></div>
+                                    <div class="h-8 w-[1px] bg-ice/40"></div>
                                     <i class="fa-solid fa-circle-chevron-down text-gold text-xs -mt-1"></i>
                                 </div>
 
                                 <!-- 新手課 -->
-                                <button onclick="openModal('novice-class', '報名【新手課】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
+                                <button onclick="openModal('novice-class', '報名【新手課】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-ice/30 hover:border-ice text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
                                     <div class="flex items-center justify-center gap-3">
                                         <i class="fa-solid fa-graduation-cap text-sm"></i>
                                         報名【新手課】
@@ -415,12 +532,12 @@
                                 </button>
                                 
                                 <div class="flex flex-col items-center my-4 relative">
-                                    <div class="h-8 w-[1px] bg-gold/40"></div>
+                                    <div class="h-8 w-[1px] bg-ice/40"></div>
                                     <i class="fa-solid fa-circle-chevron-down text-gold text-xs -mt-1"></i>
                                 </div>
 
                                 <!-- 指標基礎課 -->
-                                <button onclick="openModal('basic-class', '報名【指標基礎課】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
+                                <button onclick="openModal('basic-class', '報名【指標基礎課】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-ice/30 hover:border-ice text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
                                     <div class="flex items-center justify-center gap-3">
                                         <i class="fa-solid fa-compass text-sm"></i>
                                         報名【指標基礎課】
@@ -430,17 +547,17 @@
 
                             <!-- Section 2 Transition Line & 02 SYSTEM TIER Label -->
                             <div class="flex flex-col items-center my-6 w-full relative z-10">
-                                <div class="h-8 w-[1px] bg-gold/50"></div>
-                                <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
+                                <div class="h-8 w-[1px] bg-ice/50"></div>
+                                <div class="px-6 py-2.5 bg-gradient-to-r from-[#1e3a8a] via-[#2f6fe0] to-[#7cb4ff] text-white border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
                                     02 SYSTEM TIER
                                 </div>
-                                <div class="h-8 w-[1px] bg-gold/50"></div>
+                                <div class="h-8 w-[1px] bg-ice/50"></div>
                             </div>
 
                             <!-- Section 2: Indicator Suite -->
                             <div class="relative flex flex-col items-center w-full">
                                 <!-- 首K指標 (無金額備註) -->
-                                <button onclick="openModal('firstk', '開通【首K指標】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider font-serif-luxury">
+                                <button onclick="openModal('firstk', '開通【首K指標】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-ice/30 hover:border-ice text-gold font-serif font-bold shadow-neon-gold hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider font-serif-luxury">
                                     <div class="flex items-center justify-center gap-3">
                                         <i class="fa-solid fa-key text-sm"></i>
                                         開通【首K指標】
@@ -448,12 +565,12 @@
                                 </button>
 
                                 <div class="flex flex-col items-center my-4 relative">
-                                    <div class="h-8 w-[1px] bg-gold/40"></div>
+                                    <div class="h-8 w-[1px] bg-ice/40"></div>
                                     <i class="fa-solid fa-circle-chevron-down text-gold text-xs -mt-1"></i>
                                 </div>
 
                                 <!-- 破框指標 (無金額備註) -->
-                                <button onclick="openModal('pokwang', '開通【破框指標】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider font-serif-luxury">
+                                <button onclick="openModal('pokwang', '開通【破框指標】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-ice/30 hover:border-ice text-gold font-serif font-bold shadow-neon-gold hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider font-serif-luxury">
                                     <div class="flex items-center justify-center gap-3">
                                         <i class="fa-solid fa-vector-square text-sm"></i>
                                         開通【破框指標】
@@ -463,17 +580,17 @@
 
                             <!-- Section 3 Transition Line & 03 ELITE CLUB Label -->
                             <div class="flex flex-col items-center my-6 w-full relative z-10">
-                                <div class="h-8 w-[1px] bg-gold/50"></div>
-                                <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
+                                <div class="h-8 w-[1px] bg-ice/50"></div>
+                                <div class="px-6 py-2.5 bg-gradient-to-r from-[#1e3a8a] via-[#2f6fe0] to-[#7cb4ff] text-white border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
                                     03 ELITE CLUB
                                 </div>
-                                <div class="h-8 w-[1px] bg-gold/50"></div>
+                                <div class="h-8 w-[1px] bg-ice/50"></div>
                             </div>
 
                             <!-- Section 3: Elite Club -->
                             <div class="relative flex flex-col items-center w-full">
                                 <!-- 指標實戰社群 -->
-                                <button onclick="openModal('indicator-group', '加入【指標實戰社群】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
+                                <button onclick="openModal('indicator-group', '加入【指標實戰社群】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-ice/30 hover:border-ice text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
                                     <div class="flex items-center justify-center gap-3">
                                         <i class="fa-solid fa-users-viewfinder text-sm"></i>
                                         加入【指標實戰社群】
@@ -481,12 +598,12 @@
                                 </button>
 
                                 <div class="flex flex-col items-center my-4 relative">
-                                    <div class="h-8 w-[1px] bg-gold/40"></div>
+                                    <div class="h-8 w-[1px] bg-ice/40"></div>
                                     <i class="fa-solid fa-circle-chevron-down text-gold text-xs -mt-1"></i>
                                 </div>
 
                                 <!-- 指標實戰課 -->
-                                <button onclick="openModal('practical-class', '報名【指標實戰課】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
+                                <button onclick="openModal('practical-class', '報名【指標實戰課】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-ice/30 hover:border-ice text-gold font-serif font-bold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
                                     <div class="flex items-center justify-center gap-3">
                                         <i class="fa-solid fa-laptop-code text-sm"></i>
                                         報名【指標實戰課】
@@ -496,16 +613,16 @@
 
                             <!-- Section 4 Transition Line & 04 POWER STRATEGY Label -->
                             <div class="flex flex-col items-center my-6 w-full relative z-10">
-                                <div class="h-8 w-[1px] bg-gold/50"></div>
-                                <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
+                                <div class="h-8 w-[1px] bg-ice/50"></div>
+                                <div class="px-6 py-2.5 bg-gradient-to-r from-[#1e3a8a] via-[#2f6fe0] to-[#7cb4ff] text-white border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
                                     04 POWER STRATEGY
                                 </div>
-                                <div class="h-8 w-[1px] bg-gold/50"></div>
+                                <div class="h-8 w-[1px] bg-ice/50"></div>
                             </div>
 
                             <!-- Section 4: 開通【動能指標】 -->
                             <div class="relative flex flex-col items-center w-full">
-                                <button onclick="openModal('momentum', '開通【動能指標】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-gold/30 hover:border-gold text-gold font-serif font-bold shadow-neon-gold hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider font-serif-luxury">
+                                <button onclick="openModal('momentum', '開通【動能指標】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border border-ice/30 hover:border-ice text-gold font-serif font-bold shadow-neon-gold hover:shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider font-serif-luxury">
                                     <div class="flex items-center justify-center gap-3">
                                         <i class="fa-solid fa-bolt text-sm"></i>
                                         開通【動能指標】
@@ -515,17 +632,17 @@
 
                             <!-- Section 5 Transition Line & 05 ROYAL MASTER Label -->
                             <div class="flex flex-col items-center my-6 w-full relative z-10">
-                                <div class="h-8 w-[1px] bg-gold/50"></div>
-                                <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
+                                <div class="h-8 w-[1px] bg-ice/50"></div>
+                                <div class="px-6 py-2.5 bg-gradient-to-r from-[#1e3a8a] via-[#2f6fe0] to-[#7cb4ff] text-white border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
                                     05 ROYAL MASTER
                                 </div>
-                                <div class="h-8 w-[1px] bg-gold/50"></div>
+                                <div class="h-8 w-[1px] bg-ice/50"></div>
                             </div>
 
                             <!-- Section 5: Advanced Mastery -->
                             <div class="relative flex flex-col items-center w-full">
                                 <!-- 進階策略課程 -->
-                                <button onclick="openModal('advanced-class', '報名【進階策略課程】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border-2 border-gold hover:border-gold-light text-gold-light font-serif font-bold shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
+                                <button onclick="openModal('advanced-class', '報名【進階策略課程】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border-2 border-ice hover:border-gold-light text-gold-light font-serif font-bold shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
                                     <div class="flex items-center justify-center gap-3">
                                         <i class="fa-solid fa-crown text-sm"></i>
                                         報名【進階策略課程】
@@ -539,13 +656,13 @@
             </section>
 
             <!-- Q&A 常見問題與課表控制面板 Section -->
-            <section id="support" class="py-24 bg-transparent relative border-t border-gold/15 overflow-hidden">
+            <section id="support" class="py-24 bg-transparent relative border-t border-ice/15 overflow-hidden">
                 <div class="absolute top-0 right-0 w-[450px] h-[450px] bg-gold-dark/4 rounded-full blur-[110px] pointer-events-none -translate-y-1/2"></div>
                 
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div class="text-center mb-16 reveal">
                         <span class="text-xs font-mono tracking-[0.3em] text-gold uppercase">STUDENT SERVICE CENTER</span>
-                        <h2 class="text-3xl md:text-5xl font-serif font-bold mb-4 mt-2 text-gold-gradient">✨ 學習支援中心</h2>
+                        <h2 class="text-3xl md:text-5xl font-serif font-bold mb-4 mt-2 text-gold-gradient">學習支援中心</h2>
                         <p class="text-gray-450 max-w-2xl mx-auto text-base">解鎖本月課程時間表，及指標相關 FAQ</p>
                         <div class="w-24 h-[1px] bg-gold-dark mx-auto mt-6"></div>
                     </div>
@@ -553,11 +670,11 @@
                     <!-- 奢華黑金雙按鈕控制面板 -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl mx-auto mb-16 reveal">
                         <!-- 按鈕 1: 本月課表 -->
-                        <a href="https://skywork-debug.github.io/timetable/" target="_blank" class="relative group overflow-hidden py-8 px-6 rounded-3xl glass-dark border border-gold/25 hover:border-gold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all duration-300 transform hover:-translate-y-1 text-center flex flex-col items-center justify-center cursor-pointer">
+                        <a href="https://skywork-debug.github.io/timetable/" target="_blank" class="relative group overflow-hidden py-8 px-6 rounded-3xl glass-dark border border-ice/25 hover:border-ice shadow-neon-gold-subtle hover:shadow-neon-gold transition-all duration-300 transform hover:-translate-y-1 text-center flex flex-col items-center justify-center cursor-pointer">
                             <div class="absolute -right-4 -bottom-4 translate-x-2 translate-y-2 opacity-5 text-[100px] text-gold group-hover:scale-110 transition-transform">
                                 <i class="fa-solid fa-calendar-days"></i>
                             </div>
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-gold-dark to-gold-light flex items-center justify-center text-dark-950 text-2xl mb-4 shadow-neon-gold group-hover:scale-105 transition-transform">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#1e3a8a] to-[#5b9dff] flex items-center justify-center text-white text-2xl mb-4 shadow-neon-gold group-hover:scale-105 transition-transform">
                                 <i class="fa-solid fa-calendar-days"></i>
                             </div>
                             <h3 class="text-xl font-serif font-bold text-white tracking-widest mb-2">本月課表</h3>
@@ -565,11 +682,11 @@
                         </a>
 
                         <!-- 按鈕 2: 常見問題 -->
-                        <button onclick="openModal('faq', '✨ 指標常見問題解答')" class="relative group overflow-hidden py-8 px-6 rounded-3xl glass-dark border border-gold/25 hover:border-gold shadow-neon-gold-subtle hover:shadow-neon-gold transition-all duration-300 transform hover:-translate-y-1 text-center flex flex-col items-center justify-center cursor-pointer focus:outline-none">
+                        <button onclick="openModal('faq', '✨ 指標常見問題解答')" class="relative group overflow-hidden py-8 px-6 rounded-3xl glass-dark border border-ice/25 hover:border-ice shadow-neon-gold-subtle hover:shadow-neon-gold transition-all duration-300 transform hover:-translate-y-1 text-center flex flex-col items-center justify-center cursor-pointer focus:outline-none">
                             <div class="absolute -right-4 -bottom-4 translate-x-2 translate-y-2 opacity-5 text-[100px] text-gold group-hover:scale-110 transition-transform">
                                 <i class="fa-solid fa-circle-question"></i>
                             </div>
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-gold-dark to-gold-light flex items-center justify-center text-dark-950 text-2xl mb-4 shadow-neon-gold group-hover:scale-105 transition-transform">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#1e3a8a] to-[#5b9dff] flex items-center justify-center text-white text-2xl mb-4 shadow-neon-gold group-hover:scale-105 transition-transform">
                                 <i class="fa-solid fa-circle-question"></i>
                             </div>
                             <h3 class="text-xl font-serif font-bold text-white tracking-widest mb-2">常見問題</h3>
@@ -578,7 +695,7 @@
                     </div>
 
                     <!-- 小提醒 & 實戰操盤守則 -->
-                    <div class="p-6 glass-dark rounded-2xl border-l-4 border-gold reveal">
+                    <div class="p-6 glass-dark rounded-2xl border-l-4 border-ice reveal">
                         <h4 class="text-lg font-serif font-bold text-gold mb-3 flex items-center gap-2">
                             <i class="fa-solid fa-triangle-exclamation"></i> 實戰操盤守則
                         </h4>
@@ -598,7 +715,7 @@
                     <div class="mt-20 text-center reveal">
                         <h4 class="text-2xl font-serif font-bold text-white mb-4">💬 聯繫專屬教練團隊</h4>
                         <p class="text-gray-400 mb-8 font-sans">對指標、課程加入方式有任何不了解？<br>隨時私訊官方小幫手為您解答！</p>
-                        <button onclick="openModal('contact', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-3 px-10 py-6 rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light hover:opacity-90 text-dark-950 font-bold text-lg shadow-neon-gold transition-all transform hover:-translate-y-1 cursor-pointer focus:outline-none">
+                        <button onclick="openModal('contact', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-3 px-10 py-6 rounded-full bg-gradient-to-r from-[#1e3a8a] via-[#2f6fe0] to-[#7cb4ff] hover:opacity-90 text-white font-bold text-lg shadow-neon-gold transition-all transform hover:-translate-y-1 cursor-pointer focus:outline-none">
                             <svg class="w-6 h-6 shrink-0 fill-current" viewBox="0 0 24 24">
                                 <path d="M12 2C6.48 2 2 5.84 2 10.53c0 2.91 1.72 5.51 4.5 7.07-.18.66-.65 2.37-.75 2.76-.1.39-.48 1.51.2 1.05.68-.46 3.11-2.11 3.86-2.57C10.59 18.95 11.29 19 12 19c5.52 0 10-3.84 10-8.53C22 5.84 17.52 2 12 2zm-4.73 11.13h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38a.37.37 0 0 1-.37.37zm2.46-.37a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38zm5.24 0a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V9.74l-1.39 1.83a.37.37 0 0 1-.59 0L10.37 9.74v2.01a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .3.18l1.64 2.16 1.64-2.16a.37.37 0 0 1 .3-.18h.84a.37.37 0 0 1 .37.37v4.38zm3.87-2.73a.37.37 0 0 1-.37.37h-1.68v1.14h1.68a.37.37 0 0 1 .37.37v.48a.37.37 0 0 1-.37.37h-2.89a.37.37 0 0 1-.37-.37V8.15c0-.2.17-.37.37-.37h2.89c.2 0 .37.17.37.37v.48c0 .2-.17.37-.37.37h-1.68v1.14h1.68c.2 0 .37.17.37.37v.48z"/>
                             </svg>
@@ -608,7 +725,7 @@
                 </div>
             </section>
 
-            <footer class="bg-transparent border-t border-gold/15 py-10 text-center text-xs text-gray-500 font-mono">
+            <footer class="bg-transparent border-t border-ice/15 py-10 text-center text-xs text-gray-500 font-mono">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <p>© 2026 ELITE.TRADING.CAMP. All rights reserved. 版權所有，轉載必究。</p>
                     <p class="mt-2 text-[10px] text-gray-600">本指標僅提供作為交易輔助判斷工具，非買賣建議。Trading carries significant risk. Past performance is not indicative of future results.</p>
@@ -622,9 +739,9 @@
 <!-- Modal 核心彈出容器 -->
     <div id="dynamic-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4 sm:p-6 transition-all duration-300">
         <div class="absolute inset-0 bg-dark-950/92 backdrop-blur-md transition-opacity duration-300" id="modal-backdrop" onclick="closeModal()"></div>
-        <div class="relative bg-dark-800 border border-gold/30 shadow-neon-gold rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col transition-all transform scale-95 opacity-0 duration-300" id="modal-panel">
+        <div class="relative bg-dark-800 border border-ice/30 shadow-neon-gold rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col transition-all transform scale-95 opacity-0 duration-300" id="modal-panel">
             <!-- Header -->
-            <div class="flex items-center justify-between p-5 md:p-6 border-b border-gold/15 bg-dark-900 rounded-t-2xl z-10 shrink-0">
+            <div class="flex items-center justify-between p-5 md:p-6 border-b border-ice/15 bg-dark-900 rounded-t-2xl z-10 shrink-0">
                 <h3 class="text-lg md:text-xl font-serif font-bold text-gold flex items-center gap-3" id="modal-title">
                     標題
                 </h3>
@@ -645,7 +762,7 @@
     <div id="tpl-advantages" class="hidden">
         <div class="space-y-6 py-4 max-h-[70vh] overflow-y-auto custom-scrollbar pr-1">
             <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-ice/10 mb-4 border border-ice/30 shadow-neon-gold">
                     <i class="fa-solid fa-globe text-3xl text-gold"></i>
                 </div>
                 <h3 class="text-2xl font-serif font-bold text-white">全球外匯市場</h3>
@@ -653,7 +770,7 @@
             </div>
 
             <!-- Card 1 -->
-            <div class="glass-dark rounded-2xl p-6 border border-gold/15 hover:border-gold/40 transition-all duration-300 shadow-neon-gold-subtle">
+            <div class="glass-dark rounded-2xl p-6 border border-ice/15 hover:border-ice/40 transition-all duration-300 shadow-neon-gold-subtle">
                 <div class="flex items-center gap-3 mb-3">
                     <span class="text-2xl">🪙</span>
                     <h4 class="text-lg font-serif font-bold text-white">01 / 資金門檻極低</h4>
@@ -664,7 +781,7 @@
             </div>
 
             <!-- Card 2 -->
-            <div class="glass-dark rounded-2xl p-6 border border-gold/15 hover:border-gold/40 transition-all duration-300 shadow-neon-gold-subtle">
+            <div class="glass-dark rounded-2xl p-6 border border-ice/15 hover:border-ice/40 transition-all duration-300 shadow-neon-gold-subtle">
                 <div class="flex items-center gap-3 mb-3">
                     <span class="text-2xl">⏰</span>
                     <h4 class="text-lg font-serif font-bold text-white">02 / 24小時不打烊交易</h4>
@@ -675,7 +792,7 @@
             </div>
 
             <!-- Card 3 -->
-            <div class="glass-dark rounded-2xl p-6 border border-gold/15 hover:border-gold/40 transition-all duration-300 shadow-neon-gold-subtle">
+            <div class="glass-dark rounded-2xl p-6 border border-ice/15 hover:border-ice/40 transition-all duration-300 shadow-neon-gold-subtle">
                 <div class="flex items-center gap-3 mb-3">
                     <span class="text-2xl">📈</span>
                     <h4 class="text-lg font-serif font-bold text-white">03 / 多空雙向彈性操作</h4>
@@ -686,7 +803,7 @@
             </div>
 
             <!-- Card 4 -->
-            <div class="glass-dark rounded-2xl p-6 border border-gold/15 hover:border-gold/40 transition-all duration-300 shadow-neon-gold-subtle">
+            <div class="glass-dark rounded-2xl p-6 border border-ice/15 hover:border-ice/40 transition-all duration-300 shadow-neon-gold-subtle">
                 <div class="flex items-center gap-3 mb-3">
                     <span class="text-2xl">🌍</span>
                     <h4 class="text-lg font-serif font-bold text-white">04 / 交易量大、不易被主力操控</h4>
@@ -701,7 +818,7 @@
     <!-- 老師選擇諮詢彈窗 -->
     <div id="tpl-teacher-select" class="hidden">
         <div class="space-y-6 py-4 text-center">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-ice/10 mb-4 border border-ice/30 shadow-neon-gold">
                 <i class="fa-solid fa-graduation-cap text-3xl text-gold"></i>
             </div>
             <h3 class="text-xl font-serif font-bold text-white">你是透過哪位老師/助教<br>認識交易啟航營？</h3>
@@ -710,16 +827,16 @@
             </p>
             
             <div class="flex flex-col gap-4 max-w-xs mx-auto pt-2">
-                <button onclick="selectTeacher('Sky 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                <button onclick="selectTeacher('Sky 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-ice/30 hover:border-ice text-white font-serif font-bold hover:bg-ice/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
                     Sky 老師
                 </button>
-                <button onclick="selectTeacher('Eli 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                <button onclick="selectTeacher('Eli 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-ice/30 hover:border-ice text-white font-serif font-bold hover:bg-ice/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
                     Eli 老師
                 </button>
-                <button onclick="selectTeacher('鄭詩懷老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                <button onclick="selectTeacher('鄭詩懷老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-ice/30 hover:border-ice text-white font-serif font-bold hover:bg-ice/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
                     鄭詩懷老師
                 </button>
-                <button onclick="selectTeacher('Gino / Darren / Luke 助教')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                <button onclick="selectTeacher('Gino / Darren / Luke 助教')" class="w-full py-4 rounded-xl bg-dark-950 border border-ice/30 hover:border-ice text-white font-serif font-bold hover:bg-ice/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
                     Gino / Darren / Luke 助教
                 </button>
             </div>
@@ -729,7 +846,7 @@
     <!-- 聯繫官方LINE的彈窗 -->
     <div id="tpl-contact" class="hidden">
         <div class="space-y-6 py-4 text-center">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-ice/10 mb-4 border border-ice/30 shadow-neon-gold">
                 <i class="fa-solid fa-graduation-cap text-3xl text-gold"></i>
             </div>
             <h3 class="text-xl font-serif font-bold text-white">你是透過哪位老師/助教<br>認識交易啟航營？</h3>
@@ -738,16 +855,16 @@
             </p>
             
             <div class="flex flex-col gap-4 max-w-xs mx-auto pt-2">
-                <button onclick="selectTeacher('Sky 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                <button onclick="selectTeacher('Sky 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-ice/30 hover:border-ice text-white font-serif font-bold hover:bg-ice/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
                     Sky 老師
                 </button>
-                <button onclick="selectTeacher('Eli 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                <button onclick="selectTeacher('Eli 老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-ice/30 hover:border-ice text-white font-serif font-bold hover:bg-ice/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
                     Eli 老師
                 </button>
-                <button onclick="selectTeacher('鄭詩懷老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                <button onclick="selectTeacher('鄭詩懷老師')" class="w-full py-4 rounded-xl bg-dark-950 border border-ice/30 hover:border-ice text-white font-serif font-bold hover:bg-ice/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
                     鄭詩懷老師
                 </button>
-                <button onclick="selectTeacher('Gino / Darren / Luke 助教')" class="w-full py-4 rounded-xl bg-dark-950 border border-gold/30 hover:border-gold text-white font-serif font-bold hover:bg-gold/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
+                <button onclick="selectTeacher('Gino / Darren / Luke 助教')" class="w-full py-4 rounded-xl bg-dark-950 border border-ice/30 hover:border-ice text-white font-serif font-bold hover:bg-ice/10 transition-all text-base tracking-widest focus:outline-none cursor-pointer">
                     Gino / Darren / Luke 助教
                 </button>
             </div>
@@ -759,7 +876,7 @@
         <div class="space-y-4 py-2 max-h-[60vh] overflow-y-auto custom-scrollbar pr-1">
             
             <!-- FAQ Item 1 -->
-            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+            <div class="faq-item bg-dark-850 border border-ice/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-ice/45" onclick="this.classList.toggle('active')">
                 <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
                     <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
                         <span class="text-gold font-mono">Q1.</span> 指標有使用期限嗎？
@@ -779,13 +896,13 @@
                                 <span><strong>【破框指標】</strong>：帳戶餘額需維持大於 300U，且每週保持至少 3 次交易即可持續使用。</span>
                             </li>
                         </ul>
-                        <p class="text-[10px] text-gray-400 mt-2 p-2.5 bg-dark-900/60 rounded-xl border border-gold/10">💡 每週五團隊會進行例行資格審查，若未達成以上條件，系統會暫時關閉指標授權，未來只要再次符合資格，都可以隨時聯繫我們重新申請開通！</p>
+                        <p class="text-[10px] text-gray-400 mt-2 p-2.5 bg-dark-900/60 rounded-xl border border-ice/10">💡 每週五團隊會進行例行資格審查，若未達成以上條件，系統會暫時關閉指標授權，未來只要再次符合資格，都可以隨時聯繫我們重新申請開通！</p>
                     </div>
                 </div>
             </div>
 
             <!-- FAQ Item 2 -->
-            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+            <div class="faq-item bg-dark-850 border border-ice/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-ice/45" onclick="this.classList.toggle('active')">
                 <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
                     <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
                         <span class="text-gold font-mono">Q2.</span> 這個指標支援哪些商品／市場？
@@ -801,7 +918,7 @@
             </div>
 
             <!-- FAQ Item 3 -->
-            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+            <div class="faq-item bg-dark-850 border border-ice/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-ice/45" onclick="this.classList.toggle('active')">
                 <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
                     <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
                         <span class="text-gold font-mono">Q3.</span> 我需要什麼等級的 TradingView 帳號才能用？
@@ -817,7 +934,7 @@
             </div>
 
             <!-- FAQ Item 4 -->
-            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+            <div class="faq-item bg-dark-850 border border-ice/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-ice/45" onclick="this.classList.toggle('active')">
                 <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
                     <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
                         <span class="text-gold font-mono">Q4.</span> 申請後多久會開通？
@@ -832,7 +949,7 @@
             </div>
 
             <!-- FAQ Item 5 -->
-            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+            <div class="faq-item bg-dark-850 border border-ice/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-ice/45" onclick="this.classList.toggle('active')">
                 <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
                     <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
                         <span class="text-gold font-mono">Q5.</span> 要怎麼把指標加到圖表裡？
@@ -853,7 +970,7 @@
             </div>
 
             <!-- FAQ Item 6 -->
-            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+            <div class="faq-item bg-dark-850 border border-ice/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-ice/45" onclick="this.classList.toggle('active')">
                 <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
                     <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
                         <span class="text-gold font-mono">Q6.</span> 為什麼我加上指標後沒有顯示？
@@ -873,7 +990,7 @@
             </div>
 
             <!-- FAQ Item 7 -->
-            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+            <div class="faq-item bg-dark-850 border border-ice/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-ice/45" onclick="this.classList.toggle('active')">
                 <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
                     <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
                         <span class="text-gold font-mono">Q7.</span> 指標的參數可以調整嗎？
@@ -888,7 +1005,7 @@
             </div>
 
             <!-- FAQ Item 8 -->
-            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+            <div class="faq-item bg-dark-850 border border-ice/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-ice/45" onclick="this.classList.toggle('active')">
                 <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
                     <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
                         <span class="text-gold font-mono">Q8.</span> 指標會有教學嗎？
@@ -908,7 +1025,7 @@
             </div>
 
             <!-- FAQ Item 9 -->
-            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+            <div class="faq-item bg-dark-850 border border-ice/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-ice/45" onclick="this.classList.toggle('active')">
                 <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
                     <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
                         <span class="text-gold font-mono">Q9.</span> 如果我換電腦或換帳號，還能用嗎？
@@ -924,7 +1041,7 @@
             </div>
 
             <!-- FAQ Item 10 -->
-            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+            <div class="faq-item bg-dark-850 border border-ice/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-ice/45" onclick="this.classList.toggle('active')">
                 <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
                     <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
                         <span class="text-gold font-mono">Q10.</span> 指標會持續更新嗎？
@@ -939,7 +1056,7 @@
             </div>
 
             <!-- FAQ Item 11 -->
-            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+            <div class="faq-item bg-dark-850 border border-ice/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-ice/45" onclick="this.classList.toggle('active')">
                 <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
                     <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
                         <span class="text-gold font-mono">Q11.</span> 可以多人共用一個帳號嗎？
@@ -954,7 +1071,7 @@
             </div>
 
             <!-- FAQ Item 12 -->
-            <div class="faq-item bg-dark-850 border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-gold/45" onclick="this.classList.toggle('active')">
+            <div class="faq-item bg-dark-850 border border-ice/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:border-ice/45" onclick="this.classList.toggle('active')">
                 <div class="px-6 py-4 flex justify-between items-center hover:bg-white/5 transition-colors">
                     <h4 class="text-sm md:text-base font-serif font-bold text-white pr-4 flex items-center gap-2 font-serif">
                         <span class="text-gold font-mono">Q12.</span> 領取首K指標需要先入金嗎？
@@ -969,7 +1086,7 @@
             </div>
 
             <!-- 小提醒 -->
-            <div class="p-4 rounded-xl bg-gold/5 border border-gold/20 text-center shadow-inner mt-4 font-sans">
+            <div class="p-4 rounded-xl bg-ice/5 border border-ice/20 text-center shadow-inner mt-4 font-sans">
                 <p class="text-gold font-bold text-xs md:text-sm mb-1">⚠️ 小提醒</p>
                 <p class="text-gray-300 text-xs md:text-sm leading-relaxed font-sans">
                     本指標僅提供作為交易輔助判斷工具，非買賣建議。<br>
@@ -983,7 +1100,7 @@
     <!-- 加入交易啟航營 -->
     <div id="tpl-join-camp" class="hidden">
         <div class="text-center py-8 px-4 font-serif">
-            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gold/10 border border-gold/30 mb-6 shadow-neon-gold">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-ice/10 border border-ice/30 mb-6 shadow-neon-gold">
                 <i class="fa-solid fa-ship text-4xl text-gold animate-bounce"></i>
             </div>
             <h3 class="text-xl md:text-2xl font-bold text-white mb-4">加入交易啟航營</h3>
@@ -999,7 +1116,7 @@
         <div class="space-y-6 py-4 font-serif">
             <div class="text-center">
                 <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
-                    <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite]"></div>
+                    <div class="absolute inset-0 rounded-full border border-ice/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite]"></div>
                     <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
                         <i class="fa-solid fa-compass text-3xl text-gold"></i>
                     </div>
@@ -1019,7 +1136,7 @@
                 <h4 class="text-base font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                     <i class="fa-solid fa-list-ol text-gold"></i> 課程內容
                 </h4>
-                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40 font-sans">
+                <div class="glass-dark rounded-xl p-5 border border-ice/20 bg-dark-800/40 font-sans">
                     <ul class="space-y-3 text-sm text-gray-300 font-sans">
                         <li class="flex items-start gap-2.5">
                             <i class="fa-solid fa-circle-check text-gold mt-0.5"></i>
@@ -1041,7 +1158,7 @@
                 </div>
             </div>
 
-            <div class="p-4 rounded-xl bg-gold/5 border border-gold/20 text-center shadow-inner">
+            <div class="p-4 rounded-xl bg-ice/5 border border-ice/20 text-center shadow-inner">
                 <p class="text-gold-light font-medium text-xs md:text-sm font-sans">✨ 新手課畢業後，註冊券商帳戶即可立刻領取 <br><strong class="text-white">首Ｋ指標</strong>！ ✨</p>
             </div>
         </div>
@@ -1052,7 +1169,7 @@
         <div class="space-y-6 py-4 font-serif">
             <div class="text-center font-serif">
                 <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
-                    <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite]"></div>
+                    <div class="absolute inset-0 rounded-full border border-ice/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite]"></div>
                     <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
                         <i class="fa-solid fa-chart-line text-3xl text-gold"></i>
                     </div>
@@ -1068,10 +1185,10 @@
                 <h4 class="text-base font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                     <i class="fa-solid fa-shield-halved text-gold"></i> 參加資格
                 </h4>
-                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40 font-sans font-sans">
+                <div class="glass-dark rounded-xl p-5 border border-ice/20 bg-dark-800/40 font-sans font-sans">
                     <ul class="space-y-3">
                         <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-gold/15 flex items-center justify-center shrink-0">
+                            <div class="w-8 h-8 rounded-full bg-ice/15 flex items-center justify-center shrink-0">
                                 <i class="fa-solid fa-check text-gold text-sm font-sans"></i>
                             </div>
                             <span class="text-gray-300 font-sans">加入 <strong class="text-white">交易啟航營 LINE 社群</strong></span>
@@ -1085,7 +1202,7 @@
     <!-- 開通首K指標 -->
     <div id="tpl-firstk" class="hidden">
         <div class="space-y-6 font-serif">
-            <a href="indicators.html#firstk" class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-gold/5 border border-gold/25 hover:border-gold hover:bg-gold/10 transition-all group">
+            <a href="indicators.html#firstk" class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-ice/5 border border-ice/25 hover:border-ice hover:bg-ice/10 transition-all group">
                 <span class="text-sm text-gold-light font-sans"><i class="fa-solid fa-book-open text-gold mr-2"></i>想先了解首K指標能做什麼？</span>
                 <span class="text-xs text-gold font-bold whitespace-nowrap">看完整介紹 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
             </a>
@@ -1093,8 +1210,8 @@
                 <h4 class="text-base font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2 font-serif">
                     <i class="fa-solid fa-unlock-keyhole text-gold"></i> 領取/開通資格
                 </h4>
-                <div class="glass-dark rounded-xl p-5 border border-gold/30 shadow-neon-gold relative bg-dark-800/40 text-sm">
-                    <div class="absolute -top-3 left-6 bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 px-3 py-0.5 rounded-full text-[10px] font-bold tracking-wider font-sans">
+                <div class="glass-dark rounded-xl p-5 border border-ice/30 shadow-neon-gold relative bg-dark-800/40 text-sm">
+                    <div class="absolute -top-3 left-6 bg-gradient-to-r from-[#1e3a8a] to-[#5b9dff] text-white px-3 py-0.5 rounded-full text-[10px] font-bold tracking-wider font-sans">
                         首K專屬福利
                     </div>
                     <ul class="space-y-3 mt-1.5 text-gray-300 font-sans">
@@ -1116,12 +1233,12 @@
                     <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                         <i class="fa-solid fa-signs-post text-gold"></i> 領取流程
                     </h4>
-                    <div class="space-y-4 relative before:absolute before:inset-0 before:ml-4 before:h-full before:w-0.5 before:bg-gold/20 font-sans">
+                    <div class="space-y-4 relative before:absolute before:inset-0 before:ml-4 before:h-full before:w-0.5 before:bg-ice/20 font-sans">
                         <div class="relative flex items-start gap-3">
                             <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gold text-dark-950 font-bold text-xs shrink-0 z-10 font-mono">1</div>
                             <div class="pt-1 flex flex-col items-start gap-1">
                                 <h5 class="text-sm font-bold text-white">聯繫官方小幫手</h5>
-                                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="text-[10px] bg-gold/20 hover:bg-gold/45 text-gold px-2.5 py-1 rounded border border-gold/30 transition-all font-bold cursor-pointer focus:outline-none">加入官方LINE</button>
+                                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="text-[10px] bg-ice/20 hover:bg-ice/45 text-gold px-2.5 py-1 rounded border border-ice/30 transition-all font-bold cursor-pointer focus:outline-none">加入官方LINE</button>
                             </div>
                         </div>
                         <div class="relative flex items-start gap-3">
@@ -1153,7 +1270,7 @@
     <!-- 開通破框指標 -->
     <div id="tpl-pokwang" class="hidden">
         <div class="space-y-6 text-sm">
-            <a href="indicators.html#pokwang" class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-gold/5 border border-gold/25 hover:border-gold hover:bg-gold/10 transition-all group">
+            <a href="indicators.html#pokwang" class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-ice/5 border border-ice/25 hover:border-ice hover:bg-ice/10 transition-all group">
                 <span class="text-sm text-gold-light font-sans"><i class="fa-solid fa-book-open text-gold mr-2"></i>想先了解破框指標能做什麼？</span>
                 <span class="text-xs text-gold font-bold whitespace-nowrap">看完整介紹 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
             </a>
@@ -1161,8 +1278,8 @@
                 <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                     <i class="fa-solid fa-unlock-keyhole text-gold font-serif"></i> 領取/開通資格
                 </h4>
-                <div class="glass-dark rounded-xl p-5 border border-gold/30 shadow-neon-gold relative bg-dark-800/40">
-                    <div class="absolute -top-3 left-6 bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 px-3 py-0.5 rounded-full text-[10px] font-bold tracking-wider font-sans">
+                <div class="glass-dark rounded-xl p-5 border border-ice/30 shadow-neon-gold relative bg-dark-800/40">
+                    <div class="absolute -top-3 left-6 bg-gradient-to-r from-[#1e3a8a] to-[#5b9dff] text-white px-3 py-0.5 rounded-full text-[10px] font-bold tracking-wider font-sans">
                         進階指標方案
                     </div>
                     <ul class="space-y-3 mt-1.5 text-gray-300 font-sans">
@@ -1184,12 +1301,12 @@
                     <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                         <i class="fa-solid fa-signs-post text-gold"></i> 領取流程
                     </h4>
-                    <div class="space-y-4 relative before:absolute before:inset-0 before:ml-4 before:h-full before:w-0.5 before:bg-gold/20 font-sans font-sans">
+                    <div class="space-y-4 relative before:absolute before:inset-0 before:ml-4 before:h-full before:w-0.5 before:bg-ice/20 font-sans font-sans">
                         <div class="relative flex items-start gap-3">
                             <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gold text-dark-950 font-bold text-xs shrink-0 z-10 font-mono">1</div>
                             <div class="pt-1 flex flex-col items-start gap-1 font-sans">
                                 <h5 class="text-sm font-bold text-white">聯繫官方小幫手</h5>
-                                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="text-[10px] bg-gold/20 hover:bg-gold/45 text-gold px-2.5 py-1 rounded border border-gold/30 transition-all font-bold cursor-pointer focus:outline-none">加入官方LINE</button>
+                                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="text-[10px] bg-ice/20 hover:bg-ice/45 text-gold px-2.5 py-1 rounded border border-ice/30 transition-all font-bold cursor-pointer focus:outline-none">加入官方LINE</button>
                             </div>
                         </div>
                         <div class="relative flex items-start gap-3">
@@ -1235,7 +1352,7 @@
                                 <p class="font-sans">每週須維持至少 3 筆真實交易</p>
                             </div>
                         </div>
-                        <p class="text-[10px] p-2 bg-gold/10 text-gold-light rounded-lg border border-gold/10 font-sans">⚠️ 每週五後台會進行系統自動核對。未符合維持條件將暫時回收指標限用，再次符合條件後聯繫小幫手即可秒重啟權限！</p>
+                        <p class="text-[10px] p-2 bg-ice/10 text-gold-light rounded-lg border border-ice/10 font-sans">⚠️ 每週五後台會進行系統自動核對。未符合維持條件將暫時回收指標限用，再次符合條件後聯繫小幫手即可秒重啟權限！</p>
                     </div>
                 </div>
             </div>
@@ -1243,7 +1360,7 @@
             <!-- 申領體驗按鈕 -->
             <div class="mt-6 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
                 <span class="text-xs text-gray-400">想搶先體驗？滿足前置條件即可解鎖免費一週試用！</span>
-                <button onclick="openModal('pokwang-trial', '申請【破框指標】一週體驗')" class="px-5 py-2 rounded-xl bg-gold/10 hover:bg-gold/20 border border-gold/40 text-gold text-xs font-bold transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer">
+                <button onclick="openModal('pokwang-trial', '申請【破框指標】一週體驗')" class="px-5 py-2 rounded-xl bg-ice/10 hover:bg-ice/20 border border-ice/40 text-gold text-xs font-bold transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer">
                     <i class="fa-solid fa-gift font-sans"></i> 申請 7 天免費體驗
                 </button>
             </div>
@@ -1253,7 +1370,7 @@
     <!-- 開通動能指標 -->
     <div id="tpl-momentum" class="hidden">
         <div class="space-y-6 text-sm">
-            <a href="indicators.html#momentum" class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-gold/5 border border-gold/25 hover:border-gold hover:bg-gold/10 transition-all group">
+            <a href="indicators.html#momentum" class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-ice/5 border border-ice/25 hover:border-ice hover:bg-ice/10 transition-all group">
                 <span class="text-sm text-gold-light font-sans"><i class="fa-solid fa-book-open text-gold mr-2"></i>想先了解動能指標能做什麼？</span>
                 <span class="text-xs text-gold font-bold whitespace-nowrap">看完整介紹 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
             </a>
@@ -1261,8 +1378,8 @@
                 <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                     <i class="fa-solid fa-unlock-keyhole text-gold"></i> 領取/開通資格
                 </h4>
-                <div class="glass-dark rounded-xl p-5 border border-gold/30 shadow-neon-gold relative bg-dark-800/40">
-                    <div class="absolute -top-3 left-6 bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 px-3 py-0.5 rounded-full text-[10px] font-bold tracking-wider font-sans">
+                <div class="glass-dark rounded-xl p-5 border border-ice/30 shadow-neon-gold relative bg-dark-800/40">
+                    <div class="absolute -top-3 left-6 bg-gradient-to-r from-[#1e3a8a] to-[#5b9dff] text-white px-3 py-0.5 rounded-full text-[10px] font-bold tracking-wider font-sans">
                         高階指標方案
                     </div>
                     <ul class="space-y-3 mt-1.5 text-gray-300 font-sans">
@@ -1284,12 +1401,12 @@
                     <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                         <i class="fa-solid fa-signs-post text-gold"></i> 領取流程
                     </h4>
-                    <div class="space-y-4 relative before:absolute before:inset-0 before:ml-4 before:h-full before:w-0.5 before:bg-gold/20 font-sans">
+                    <div class="space-y-4 relative before:absolute before:inset-0 before:ml-4 before:h-full before:w-0.5 before:bg-ice/20 font-sans">
                         <div class="relative flex items-start gap-3">
                             <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gold text-dark-950 font-bold text-xs shrink-0 z-10 font-mono">1</div>
                             <div class="pt-1 flex flex-col items-start gap-1 font-sans">
                                 <h5 class="text-sm font-bold text-white">聯繫官方小幫手</h5>
-                                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="text-[10px] bg-gold/20 hover:bg-gold/45 text-gold px-2.5 py-1 rounded border border-gold/30 transition-all font-bold cursor-pointer focus:outline-none">加入官方LINE</button>
+                                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="text-[10px] bg-ice/20 hover:bg-ice/45 text-gold px-2.5 py-1 rounded border border-ice/30 transition-all font-bold cursor-pointer focus:outline-none">加入官方LINE</button>
                             </div>
                         </div>
                         <div class="relative flex items-start gap-3">
@@ -1335,7 +1452,7 @@
                                 <p class="font-sans">每週須維持至少 3 筆真實交易</p>
                             </div>
                         </div>
-                        <p class="text-[10px] p-2 bg-gold/10 text-gold-light rounded-lg border border-gold/10 font-sans">⚠️ 每週五後台會進行系統自動核對。未符合維持條件將暫時回收指標限用，再次符合條件後聯繫小幫手即可秒重啟權限！</p>
+                        <p class="text-[10px] p-2 bg-ice/10 text-gold-light rounded-lg border border-ice/10 font-sans">⚠️ 每週五後台會進行系統自動核對。未符合維持條件將暫時回收指標限用，再次符合條件後聯繫小幫手即可秒重啟權限！</p>
                     </div>
                 </div>
             </div>
@@ -1346,7 +1463,7 @@
     <div id="tpl-pokwang-trial" class="hidden">
         <div class="space-y-6 py-4">
             <div class="text-center font-serif">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold animate-pulse">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-ice/10 mb-4 border border-ice/30 shadow-neon-gold animate-pulse">
                     <i class="fa-solid fa-gem text-3xl text-gold"></i>
                 </div>
                 <h3 class="text-lg font-bold text-white mb-2">申請【破框指標】一週體驗</h3>
@@ -1357,16 +1474,16 @@
                 <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                     <i class="fa-solid fa-clipboard-check text-gold"></i> 體驗規範
                 </h4>
-                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40 text-sm">
+                <div class="glass-dark rounded-xl p-5 border border-ice/20 bg-dark-800/40 text-sm">
                     <ul class="space-y-4 text-gray-300 font-sans">
                         <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+                            <div class="w-8 h-8 rounded-full bg-ice/20 flex items-center justify-center shrink-0">
                                 <i class="fa-solid fa-check-double text-gold text-xs"></i>
                             </div>
                             <span class="font-sans">報名並參與指標基礎課</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+                            <div class="w-8 h-8 rounded-full bg-ice/20 flex items-center justify-center shrink-0">
                                 <i class="fa-solid fa-check-double text-gold text-xs"></i>
                             </div>
                             <span class="font-sans">已經成功領取並開通【首K指標】</span>
@@ -1376,7 +1493,7 @@
             </div>
             
             <div class="text-center pt-4 font-sans">
-                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 font-bold text-base transition-all transform hover:-translate-y-1 focus:outline-none">
+                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#1e3a8a] to-[#5b9dff] text-white font-bold text-base transition-all transform hover:-translate-y-1 focus:outline-none">
                     <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0 fill-current" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 5.84 2 10.53c0 2.91 1.72 5.51 4.5 7.07-.18.66-.65 2.37-.75 2.76-.1.39-.48 1.51.2 1.05.68-.46 3.11-2.11 3.86-2.57C10.59 18.95 11.29 19 12 19c5.52 0 10-3.84 10-8.53C22 5.84 17.52 2 12 2zm-4.73 11.13h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38a.37.37 0 0 1-.37.37zm2.46-.37a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38zm5.24 0a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V9.74l-1.39 1.83a.37.37 0 0 1-.59 0L10.37 9.74v2.01a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .3.18l1.64 2.16 1.64-2.16a.37.37 0 0 1 .3-.18h.84a.37.37 0 0 1 .37.37v4.38zm3.87-2.73a.37.37 0 0 1-.37.37h-1.68v1.14h1.68a.37.37 0 0 1 .37.37v.48a.37.37 0 0 1-.37.37h-2.89a.37.37 0 0 1-.37-.37V8.15c0-.2.17-.37.37-.37h2.89c.2 0 .37.17.37.37v.48c0 .2-.17.37-.37.37h-1.68v1.14h1.68c.2 0 .37.17.37.37v.48z"/>
                     </svg>聯繫小幫手，立即開通體驗
@@ -1389,7 +1506,7 @@
     <div id="tpl-trial" class="hidden">
         <div class="space-y-6 py-4">
             <div class="text-center font-serif">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold animate-pulse">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-ice/10 mb-4 border border-ice/30 shadow-neon-gold animate-pulse">
                     <i class="fa-solid fa-gift text-3xl text-gold"></i>
                 </div>
                 <h3 class="text-lg font-bold text-white mb-2">申請【首K指標】一週體驗</h3>
@@ -1400,16 +1517,16 @@
                 <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                     <i class="fa-solid fa-clipboard-check text-gold"></i> 體驗規範
                 </h4>
-                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40 font-sans">
+                <div class="glass-dark rounded-xl p-5 border border-ice/20 bg-dark-800/40 font-sans">
                     <ul class="space-y-3.5 text-sm text-gray-300">
                         <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+                            <div class="w-8 h-8 rounded-full bg-ice/20 flex items-center justify-center shrink-0">
                                 <i class="fa-solid fa-building-columns text-gold text-xs"></i>
                             </div>
                             <span class="font-sans">使用 BAB Markets 券商帳戶</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
+                            <div class="w-8 h-8 rounded-full bg-ice/20 flex items-center justify-center shrink-0">
                                 <i class="fa-solid fa-id-card text-gold text-xs"></i>
                             </div>
                             <span class="font-sans">開通真實帳戶並完成 KYC 身份認證</span>
@@ -1419,7 +1536,7 @@
             </div>
             
             <div class="text-center pt-4 font-sans">
-                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-dark to-gold-light text-dark-950 font-bold text-base transition-all transform hover:-translate-y-1 focus:outline-none">
+                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#1e3a8a] to-[#5b9dff] text-white font-bold text-base transition-all transform hover:-translate-y-1 focus:outline-none">
                     <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0 fill-current" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 5.84 2 10.53c0 2.91 1.72 5.51 4.5 7.07-.18.66-.65 2.37-.75 2.76-.1.39-.48 1.51.2 1.05.68-.46 3.11-2.11 3.86-2.57C10.59 18.95 11.29 19 12 19c5.52 0 10-3.84 10-8.53C22 5.84 17.52 2 12 2zm-4.73 11.13h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38a.37.37 0 0 1-.37.37zm2.46-.37a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38zm5.24 0a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V9.74l-1.39 1.83a.37.37 0 0 1-.59 0L10.37 9.74v2.01a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .3.18l1.64 2.16 1.64-2.16a.37.37 0 0 1 .3-.18h.84a.37.37 0 0 1 .37.37v4.38zm3.87-2.73a.37.37 0 0 1-.37.37h-1.68v1.14h1.68a.37.37 0 0 1 .37.37v.48a.37.37 0 0 1-.37.37h-2.89a.37.37 0 0 1-.37-.37V8.15c0-.2.17-.37.37-.37h2.89c.2 0 .37.17.37.37v.48c0 .2-.17.37-.37.37h-1.68v1.14h1.68c.2 0 .37.17.37.37v.48z"/>
                     </svg>
@@ -1433,7 +1550,7 @@
     <div id="tpl-indicator-group" class="hidden">
         <div class="space-y-6 py-4">
             <div class="text-center">
-                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gold/10 mb-5 border border-gold/30 shadow-neon-gold">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-ice/10 mb-5 border border-ice/30 shadow-neon-gold">
                     <i class="fa-solid fa-users text-4xl text-gold"></i>
                 </div>
                 <h3 class="text-xl md:text-2xl font-serif font-bold text-white mb-2">加入【指標實戰社群】</h3>
@@ -1453,7 +1570,7 @@
         <div class="space-y-6 py-4">
             <div class="text-center font-serif">
                 <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
-                    <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite_reverse]"></div>
+                    <div class="absolute inset-0 rounded-full border border-ice/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite_reverse]"></div>
                     <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
                         <svg viewBox="0 0 100 100" class="w-12 h-12 text-gold">
                             <path d="M 35 38 C 15 15 5 50 25 55 C 25 80 35 90 50 90 C 65 90 75 80 75 55 C 95 50 85 15 65 38 Q 50 28 35 38 Z" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1474,10 +1591,10 @@
                 <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                     <i class="fa-solid fa-shield-halved text-gold"></i> 參加資格
                 </h4>
-                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40">
+                <div class="glass-dark rounded-xl p-5 border border-ice/20 bg-dark-800/40">
                     <ul class="space-y-3 font-sans">
                         <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-gold/15 flex items-center justify-center shrink-0">
+                            <div class="w-8 h-8 rounded-full bg-ice/15 flex items-center justify-center shrink-0">
                                 <i class="fa-solid fa-check text-gold text-sm"></i>
                             </div>
                             <span class="text-gray-300">開通【破框指標】並加入 <strong class="text-white">指標實戰社群</strong></span>
@@ -1496,7 +1613,7 @@
             <div class="space-y-4 font-serif">
                 <div class="text-center font-serif">
                     <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
-                        <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite]"></div>
+                        <div class="absolute inset-0 rounded-full border border-ice/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite]"></div>
                         <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
                             <svg viewBox="0 0 100 100" class="w-12 h-12 text-gold">
                                 <path d="M 50 90 L 25 65 L 15 35 L 30 15 L 40 35 L 50 25 L 60 35 L 70 15 L 85 35 L 75 65 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
@@ -1506,7 +1623,7 @@
                     <h3 class="text-xl font-bold text-white">三破策略</h3>
                     <p class="text-gold text-sm font-semibold">主講人：Sky 老師</p>
                 </div>
-                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40">
+                <div class="glass-dark rounded-xl p-5 border border-ice/20 bg-dark-800/40">
                     <p class="text-gray-300 text-sm leading-relaxed font-sans">
                         從「破型、破浪、破均」三大切面建立進出場邏輯，幫助交易者辨識市場轉折、順勢切入主力波段、洞察價格極限區間，告別指標迷宮。
                     </p>
@@ -1519,7 +1636,7 @@
             <div class="space-y-4 font-serif">
                 <div class="text-center">
                     <div class="relative w-24 h-24 mx-auto mb-4 group cursor-default">
-                        <div class="absolute inset-0 rounded-full border border-gold/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite_reverse]"></div>
+                        <div class="absolute inset-0 rounded-full border border-ice/50 border-t-gold border-b-gold shadow-neon-gold animate-[spin_8s_linear_infinite_reverse]"></div>
                         <div class="absolute inset-1.5 rounded-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center border border-white/5">
                             <svg viewBox="0 0 100 100" class="w-12 h-12 text-gold">
                                 <path d="M 50 90 L 10 50 L 25 10 L 45 35 L 55 35 L 75 10 L 90 50 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
@@ -1529,7 +1646,7 @@
                     <h3 class="text-xl font-bold text-white">破框策略</h3>
                     <p class="text-gold text-sm font-semibold">主講人：Eli 老師</p>
                 </div>
-                <div class="glass-dark rounded-xl p-5 border border-gold/20 bg-dark-800/40">
+                <div class="glass-dark rounded-xl p-5 border border-ice/20 bg-dark-800/40">
                     <p class="text-gray-300 text-sm leading-relaxed font-sans">
                         以價格結構切入的實戰系統，用「穿框強攻」順勢、「回框打點」逆勢兩大進場技術，搭配滾倉複利與空間反應模組，橫跨全市場操作。
                     </p>
@@ -1602,7 +1719,7 @@
             const modalBody = document.getElementById('modal-body');
             modalBody.innerHTML = `
                 <div class="text-center py-6 space-y-6 animate-fade-in font-serif">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4 border border-gold/30 shadow-neon-gold">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-ice/10 mb-4 border border-ice/30 shadow-neon-gold">
                         <i class="fa-solid fa-qrcode text-3xl text-gold"></i>
                     </div>
                     <div>
@@ -1610,13 +1727,13 @@
                         <p class="text-gold-light text-sm font-semibold tracking-wider font-sans">領取指標 / 諮詢課程資訊</p>
                     </div>
 
-                    <div class="inline-block p-4 rounded-2xl bg-dark-950 border border-gold/25 shadow-neon-gold relative group">
+                    <div class="inline-block p-4 rounded-2xl bg-dark-950 border border-ice/25 shadow-neon-gold relative group">
                         <img src="${finalQrUrl}" alt="LINE QR Code" class="w-48 h-48 rounded-lg" onerror="this.src='https://placehold.co/200x200/0e0e12/e5c158?text=LINE+QR'"/>
-                        <div class="absolute inset-0 border border-gold/15 rounded-2xl pointer-events-none"></div>
+                        <div class="absolute inset-0 border border-ice/15 rounded-2xl pointer-events-none"></div>
                     </div>
 
                     <div class="pt-2">
-                        <a href="${config.lineUrl}" target="_blank" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 font-bold text-sm shadow-neon-gold transition-all transform hover:-translate-y-0.5">
+                        <a href="${config.lineUrl}" target="_blank" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#1e3a8a] via-[#2f6fe0] to-[#7cb4ff] text-white font-bold text-sm shadow-neon-gold transition-all transform hover:-translate-y-0.5">
                             <svg class="w-5 h-5 shrink-0 fill-current" viewBox="0 0 24 24">
                                 <path d="M12 2C6.48 2 2 5.84 2 10.53c0 2.91 1.72 5.51 4.5 7.07-.18.66-.65 2.37-.75 2.76-.1.39-.48 1.51.2 1.05.68-.46 3.11-2.11 3.86-2.57C10.59 18.95 11.29 19 12 19c5.52 0 10-3.84 10-8.53C22 5.84 17.52 2 12 2zm-4.73 11.13h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38a.37.37 0 0 1-.37.37zm2.46-.37a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38zm5.24 0a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V9.74l-1.39 1.83a.37.37 0 0 1-.59 0L10.37 9.74v2.01a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .3.18l1.64 2.16 1.64-2.16a.37.37 0 0 1 .3-.18h.84a.37.37 0 0 1 .37.37v4.38zm3.87-2.73a.37.37 0 0 1-.37.37h-1.68v1.14h1.68a.37.37 0 0 1 .37.37v.48a.37.37 0 0 1-.37.37h-2.89a.37.37 0 0 1-.37-.37V8.15c0-.2.17-.37.37-.37h2.89c.2 0 .37.17.37.37v.48c0 .2-.17.37-.37.37h-1.68v1.14h1.68c.2 0 .37.17.37.37v.48z"/>
                             </svg>
@@ -1665,7 +1782,7 @@
 
             messages.innerHTML += `
                 <div class="flex justify-end animate-fade-in font-sans">
-                    <div class="text-sm bg-gradient-to-r from-gold-dark to-gold text-dark-950 p-3 rounded-2xl rounded-tr-none shadow-neon-gold max-w-[85%] font-medium">
+                    <div class="text-sm bg-gradient-to-r from-[#1e40af] to-[#3b82f6] text-white p-3 rounded-2xl rounded-tr-none shadow-neon-gold max-w-[85%] font-medium">
                         ${escapeHtml(text)}
                     </div>
                 </div>
@@ -1676,10 +1793,10 @@
             const loadingId = 'loading-' + Date.now();
             messages.innerHTML += `
                 <div class="flex gap-3 font-sans animate-fade-in" id="${loadingId}">
-                    <div class="w-8 h-8 rounded-lg bg-dark-800 border border-gold/15 flex items-center justify-center text-gold shrink-0">
+                    <div class="w-8 h-8 rounded-lg bg-dark-800 border border-ice/15 flex items-center justify-center text-gold shrink-0">
                         <i class="fa-solid fa-spinner animate-spin"></i>
                     </div>
-                    <div class="text-sm bg-dark-800/80 p-3 rounded-2xl rounded-tl-none border border-gold/10 max-w-[85%] text-gray-200 leading-relaxed">
+                    <div class="text-sm bg-dark-800/80 p-3 rounded-2xl rounded-tl-none border border-ice/10 max-w-[85%] text-gray-200 leading-relaxed">
                         導師正在思考中...
                     </div>
                 </div>
@@ -1710,10 +1827,10 @@
 
                 messages.innerHTML += `
                     <div class="flex gap-3 font-sans animate-fade-in">
-                        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-gold-dark to-gold-light flex items-center justify-center text-dark-950 shrink-0 shadow-neon-gold">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#1e3a8a] to-[#5b9dff] flex items-center justify-center text-white shrink-0 shadow-neon-gold">
                             <i class="fa-solid fa-robot text-xs animate-bounce" style="animation-duration: 3s"></i>
                         </div>
-                        <div class="text-sm bg-dark-800/90 p-3 rounded-2xl rounded-tl-none border border-gold/10 max-w-[85%] leading-relaxed font-sans">
+                        <div class="text-sm bg-dark-800/90 p-3 rounded-2xl rounded-tl-none border border-ice/10 max-w-[85%] leading-relaxed font-sans">
                             ${reply}
                         </div>
                     </div>
@@ -1931,12 +2048,12 @@
             const step = (W - padL - padR) / data.length;
             const x = i => padL + step * i + step / 2;
             const bw = Math.max(4, step * 0.55);
-            const UP = '#e5c158', DOWN = '#5b5b66';
+            const UP = '#e5c158', DOWN = '#4a6aa8';
 
             let grid = '';
             for (let g = 0; g <= 4; g++) {
                 const gy = mainTop + (mainBottom - mainTop) * g / 4;
-                grid += `<line x1="${padL}" x2="${W - padR}" y1="${gy}" y2="${gy}" stroke="rgba(255,255,255,0.05)"/>`;
+                grid += `<line x1="${padL}" x2="${W - padR}" y1="${gy}" y2="${gy}" stroke="rgba(124,180,255,0.09)"/>`;
             }
 
             const candles = data.map((d, i) => {
@@ -1964,16 +2081,16 @@
                     <rect x="${xs}" y="${mainTop}" width="${xe - xs}" height="${mainBottom - mainTop}" fill="rgba(229,193,88,0.06)" ${d(T)}/>
                     <line x1="${xs}" x2="${xs}" y1="${mainTop}" y2="${mainBottom + 8}" stroke="#e5c158" stroke-width="1.2" stroke-dasharray="5 4" ${d(T)}/>
                     <line x1="${xe}" x2="${xe}" y1="${mainTop}" y2="${mainBottom + 8}" stroke="rgba(229,193,88,0.5)" stroke-width="1" stroke-dasharray="2 4" ${d(T)}/>
-                    <text x="${xs}" y="${mainBottom + 20}" fill="#e5c158" font-size="10" text-anchor="start" ${d(T)}>06:00</text>
-                    <text x="${xe}" y="${mainBottom + 20}" fill="#b5893d" font-size="10" text-anchor="middle" ${d(T)}>07:00</text>
+                    <text x="${xs}" y="${mainBottom + 20}" fill="#f3e5ab" font-size="10" text-anchor="start" ${d(T)}>06:00</text>
+                    <text x="${xe}" y="${mainBottom + 20}" fill="#f3e5ab" font-size="10" text-anchor="middle" ${d(T)}>07:00</text>
                     <text x="${(xs + xe) / 2}" y="${mainTop + 14}" fill="#f3e5ab" font-size="11" font-weight="bold" text-anchor="middle" ${d(T)}>首K</text>
 
                     <!-- 首K區間往右延伸 -->
                     <rect x="${xe}" y="${y(fh)}" width="${xr - xe}" height="${y(fl) - y(fh)}" fill="rgba(229,193,88,0.08)" ${d(T + 300)}/>
                     <line x1="${xs}" x2="${xr}" y1="${y(fh)}" y2="${y(fh)}" stroke="#e5c158" stroke-width="1.5" stroke-dasharray="6 4" ${d(T + 300)}/>
                     <line x1="${xs}" x2="${xr}" y1="${y(fl)}" y2="${y(fl)}" stroke="#b5893d" stroke-width="1.5" stroke-dasharray="6 4" ${d(T + 300)}/>
-                    <text x="${xr + 6}" y="${y(fh) + 4}" fill="#e5c158" font-size="11" ${d(T + 300)}>首K高點</text>
-                    <text x="${xr + 6}" y="${y(fl) + 4}" fill="#b5893d" font-size="11" ${d(T + 300)}>首K低點</text>
+                    <text x="${xr + 6}" y="${y(fh) + 4}" fill="#f3e5ab" font-size="11" ${d(T + 300)}>首K高點</text>
+                    <text x="${xr + 6}" y="${y(fl) + 4}" fill="#f3e5ab" font-size="11" ${d(T + 300)}>首K低點</text>
 
                     <!-- 三個區域的判斷 -->
                     <g ${d(T + 700)}>
@@ -2170,7 +2287,7 @@
                         const on = p.getAttribute('href') === '#' + id;
                         p.classList.toggle('bg-gold', on);
                         p.classList.toggle('text-dark-950', on);
-                        p.classList.toggle('border-gold', on);
+                        p.classList.toggle('border-ice', on);
                         p.classList.toggle('text-gray-300', !on);
                     });
                 });
@@ -2251,9 +2368,9 @@
             const header = document.querySelector('header');
             const onScroll = () => {
                 if (window.scrollY > 50) {
-                    header.classList.add('bg-[#030303]/95', 'shadow-neon-gold-subtle', 'border-gold/30');
+                    header.classList.add('bg-[#030303]/95', 'shadow-neon-gold-subtle', 'border-ice/30');
                 } else {
-                    header.classList.remove('bg-[#030303]/95', 'shadow-neon-gold-subtle', 'border-gold/30');
+                    header.classList.remove('bg-[#030303]/95', 'shadow-neon-gold-subtle', 'border-ice/30');
                 }
                 updateProgress();
                 rememberScroll();
