@@ -4,157 +4,218 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>交易啟航營｜交易學習升級藍圖</title>
-    
+    <meta name="description" content="交易啟航營：從零開始，手把手帶您建立屬於自己的交易底氣">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Noto Serif TC"', 'serif'],
-                        serif: ['"Noto Serif TC"', 'serif'],
-                        heading: ['"Cormorant Garamond"', '"Noto Serif TC"', 'serif'],
-                        mono: ['"Share Tech Mono"', 'monospace'],
-                    },
-                    colors: {
-                        gold: {
-                            light: '#f3e5ab', // Champagne gold
-                            DEFAULT: '#e5c158', // Main rich gold
-                            dark: '#b5893d', // Deep bronze gold
-                            accent: '#8a6f27', // Muted gold
-                        },
-                        dark: {
-                            950: '#030303', // Pure deep obsidian black
-                            900: '#08080a',
-                            800: '#0e0e12',
-                            700: '#15151b',
-                            600: '#1f1f27',
+                    theme: {
+                        extend: {
+                            fontFamily: {
+                                sans: ['"Noto Serif TC"', 'serif'],
+                                serif: ['"Noto Serif TC"', 'serif'],
+                                heading: ['"Cormorant Garamond"', '"Noto Serif TC"', 'serif'],
+                                mono: ['"Share Tech Mono"', 'monospace'],
+                            },
+                            colors: {
+                                gold: {
+                                    light: '#f3e5ab', // Champagne gold
+                                    DEFAULT: '#e5c158', // Main rich gold
+                                    dark: '#b5893d', // Deep bronze gold
+                                    accent: '#8a6f27', // Muted gold
+                                },
+                                dark: {
+                                    950: '#030303', // Pure deep obsidian black
+                                    900: '#08080a',
+                                    800: '#0e0e12',
+                                    700: '#15151b',
+                                    600: '#1f1f27',
+                                }
+                            },
+                            boxShadow: {
+                                'neon-gold': '0 0 25px rgba(229, 193, 88, 0.25)',
+                                'neon-gold-subtle': '0 0 15px rgba(229, 193, 88, 0.15)',
+                                'neon-purple': '0 0 20px rgba(168, 85, 247, 0.15)',
+                            }
                         }
-                    },
-                    boxShadow: {
-                        'neon-gold': '0 0 25px rgba(229, 193, 88, 0.25)',
-                        'neon-gold-subtle': '0 0 15px rgba(229, 193, 88, 0.15)',
-                        'neon-purple': '0 0 20px rgba(168, 85, 247, 0.15)',
                     }
                 }
-            }
-        }
     </script>
     <style>
         /* ========================================== */
-        /* 背景與遮罩包裝區塊 (Fixed)                 */
-        /* ========================================== */
-        body { 
-            background-color: #030303; 
-            color: #f3f4f6; 
-            overflow-x: hidden; 
-        }
-        /* 專屬織紋背景層：只在 .bg-with-texture 容器內生效並保持固定 */
-        .bg-with-texture {
-            position: relative;
-            z-index: 1;
-        }
-        .bg-with-texture::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -10;
-            background-image: url('https://i.meee.com.tw/aJ3AEKM.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed; /* 滑動時背景靜止不動 */
-        }
-        /* 獨立遮罩與微光網格層 */
-        .bg-with-texture::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -9;
-            pointer-events: none;
-            background-image: radial-gradient(circle, rgba(229, 193, 88, 0.04) 1px, transparent 1px);
-            background-size: 32px 32px;
-            background-color: rgba(3, 3, 3, 0.78); /* 78% 黑色遮罩，確保文字對比度極佳 */
-        }
-        
-        @keyframes shine { 
-            0% { background-position: -200% center; } 
-            100% { background-position: 200% center; } 
-        }
-        .text-gold-gradient { 
-            background: linear-gradient(135deg, #f3e5ab 0%, #e5c158 40%, #b5893d 70%, #f3e5ab 100%); 
-            background-size: 200% auto; 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            background-clip: text; 
-            animation: shine 6s linear infinite; 
-        }
-        .reveal { opacity: 0; transform: translateY(24px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        /* Glassmorphism from screenshots */
-        .glass-dark { 
-            background: rgba(10, 10, 12, 0.85); 
-            backdrop-filter: blur(16px); 
-            -webkit-backdrop-filter: blur(16px); 
-            border: 1px solid rgba(229, 193, 88, 0.18); 
-        }
-        .glass-premium { 
-            background: linear-gradient(135deg, rgba(14, 14, 18, 0.95) 0%, rgba(5, 5, 5, 0.98) 100%);
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px); 
-            border: 1px solid rgba(229, 193, 88, 0.25); 
-        }
-        
-        /* Glow elements */
-        .gold-glow { 
-            position: absolute; 
-            width: 70vw; 
-            height: 70vw; 
-            max-width: 850px; 
-            background: radial-gradient(circle, rgba(229,193,88,0.06) 0%, rgba(138,111,39,0.01) 60%, rgba(3,3,3,0) 80%); 
-            z-index: -1; 
-            pointer-events: none; 
-        }
-        
-        .faq-answer { 
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
-            max-height: 0; 
-            opacity: 0; 
-            overflow: hidden; 
-        }
-        .faq-item.active .faq-answer { 
-            max-height: 1000px; 
-            opacity: 1; 
-            padding-bottom: 1.25rem;
-        }
-        .faq-item.active .faq-icon { 
-            transform: rotate(180deg); 
-            color: #e5c158; 
-        }
-        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(5, 5, 5, 0.8); }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(229, 193, 88, 0.25); border-radius: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(229, 193, 88, 0.5); }
+                /* 背景與遮罩包裝區塊 (Fixed)                 */
+                /* ========================================== */
+                body { 
+                    background-color: #030303; 
+                    color: #f3f4f6; 
+                    overflow-x: hidden; 
+                }
+                /* 專屬織紋背景層：只在 .bg-with-texture 容器內生效並保持固定 */
+                .bg-with-texture {
+                    position: relative;
+                    z-index: 1;
+                }
+                .bg-with-texture::before {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    z-index: -10;
+                    background-image: url('https://i.meee.com.tw/aJ3AEKM.png');
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed; /* 滑動時背景靜止不動 */
+                }
+                /* 獨立遮罩與微光網格層 */
+                .bg-with-texture::after {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    z-index: -9;
+                    pointer-events: none;
+                    background-image: radial-gradient(circle, rgba(229, 193, 88, 0.04) 1px, transparent 1px);
+                    background-size: 32px 32px;
+                    background-color: rgba(3, 3, 3, 0.78); /* 78% 黑色遮罩，確保文字對比度極佳 */
+                }
+
+                @keyframes shine { 
+                    0% { background-position: -200% center; } 
+                    100% { background-position: 200% center; } 
+                }
+                .text-gold-gradient { 
+                    background: linear-gradient(135deg, #f3e5ab 0%, #e5c158 40%, #b5893d 70%, #f3e5ab 100%); 
+                    background-size: 200% auto; 
+                    -webkit-background-clip: text; 
+                    -webkit-text-fill-color: transparent; 
+                    background-clip: text; 
+                    animation: shine 6s linear infinite; 
+                }
+                .reveal { opacity: 0; transform: translateY(24px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+                .reveal.active { opacity: 1; transform: translateY(0); }
+
+                /* Glassmorphism from screenshots */
+                .glass-dark { 
+                    background: rgba(10, 10, 12, 0.85); 
+                    backdrop-filter: blur(16px); 
+                    -webkit-backdrop-filter: blur(16px); 
+                    border: 1px solid rgba(229, 193, 88, 0.18); 
+                }
+                .glass-premium { 
+                    background: linear-gradient(135deg, rgba(14, 14, 18, 0.95) 0%, rgba(5, 5, 5, 0.98) 100%);
+                    backdrop-filter: blur(20px); 
+                    -webkit-backdrop-filter: blur(20px); 
+                    border: 1px solid rgba(229, 193, 88, 0.25); 
+                }
+
+                /* Glow elements */
+                .gold-glow { 
+                    position: absolute; 
+                    width: 70vw; 
+                    height: 70vw; 
+                    max-width: 850px; 
+                    background: radial-gradient(circle, rgba(229,193,88,0.06) 0%, rgba(138,111,39,0.01) 60%, rgba(3,3,3,0) 80%); 
+                    z-index: -1; 
+                    pointer-events: none; 
+                }
+
+                .faq-answer { 
+                    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+                    max-height: 0; 
+                    opacity: 0; 
+                    overflow: hidden; 
+                }
+                .faq-item.active .faq-answer { 
+                    max-height: 1000px; 
+                    opacity: 1; 
+                    padding-bottom: 1.25rem;
+                }
+                .faq-item.active .faq-icon { 
+                    transform: rotate(180deg); 
+                    color: #e5c158; 
+                }
+                .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+                .custom-scrollbar::-webkit-scrollbar-track { background: rgba(5, 5, 5, 0.8); }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(229, 193, 88, 0.25); border-radius: 4px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(229, 193, 88, 0.5); }
+
+                /* ========================================== */
+                /* 新增：分頁 (View) 切換系統                  */
+                /* ========================================== */
+                main { animation: viewIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+                @keyframes viewIn {
+                    from { opacity: 0; transform: translateY(16px); }
+                    to   { opacity: 1; transform: translateY(0); }
+                }
+
+                /* 頂部閱讀進度條 */
+                #scroll-progress {
+                    position: fixed; top: 0; left: 0; height: 2px; width: 0;
+                    background: linear-gradient(90deg, #b5893d, #e5c158, #f3e5ab);
+                    box-shadow: 0 0 10px rgba(229,193,88,0.6);
+                    z-index: 130; transition: width 0.1s linear;
+                }
+
+                /* 導航目前所在頁 */
+                .nav-link.is-current { color: #e5c158; }
+                .nav-link.is-current::after {
+                    content: ""; display: block; height: 1px; margin-top: 4px;
+                    background: linear-gradient(90deg, transparent, #e5c158, transparent);
+                }
+
+                /* 指標卡片 3D 傾斜 + 光澤 */
+                .tilt-card { transform-style: preserve-3d; transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease; will-change: transform; }
+                .tilt-card .shine {
+                    position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+                    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(243,229,171,0.16), transparent 55%);
+                }
+                .tilt-card:hover .shine { opacity: 1; }
+
+                /* 子頁分頁籤 */
+                .tab-btn { position: relative; color: #9ca3af; transition: color 0.3s; }
+                .tab-btn::after {
+                    content: ""; position: absolute; left: 50%; bottom: -1px; height: 2px; width: 0;
+                    background: #e5c158; transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); transform: translateX(-50%);
+                }
+                .tab-btn.active { color: #f3e5ab; }
+                .tab-btn.active::after { width: 100%; }
+                .tab-panel { display: none; }
+                .tab-panel.active { display: block; animation: viewIn 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+                /* 示意圖動畫 */
+                .demo-svg .candle { opacity: 0; transform-box: fill-box; transform-origin: center bottom; animation: candleIn 0.45s ease forwards; }
+                @keyframes candleIn { from { opacity: 0; transform: scaleY(0.2); } to { opacity: 1; transform: scaleY(1); } }
+                .demo-svg .ind-overlay { transition: opacity 0.6s ease; }
+                .demo-svg.overlay-off .ind-overlay { opacity: 0; }
+                .demo-svg .draw-line { stroke-dasharray: 1200; stroke-dashoffset: 1200; animation: drawLine 1.6s ease forwards; }
+                @keyframes drawLine { to { stroke-dashoffset: 0; } }
+                .demo-svg .pop { opacity: 0; animation: popIn 0.5s ease forwards; }
+                @keyframes popIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+                @media (prefers-reduced-motion: reduce) {
+                    main, .tab-panel.active, .demo-svg .candle, .demo-svg .pop { animation: none; opacity: 1; }
+                    .demo-svg .draw-line { animation: none; stroke-dashoffset: 0; }
+                }
     </style>
 </head>
 <body class="antialiased selection:bg-gold selection:text-dark-950 font-serif">
 
+    
+<div id="scroll-progress"></div>
+
     <!-- 頂部奢華導航欄 -->
     <header class="fixed top-0 inset-x-0 z-[120] glass-dark border-b border-gold/15 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- 左側尊爵Logo -->
-            <div class="flex items-center gap-3.5">
+            <!-- 左側尊爵Logo (點擊回首頁) -->
+            <a href="index.html" class="flex items-center gap-3.5">
                 <div class="w-11 h-11 rounded-lg bg-gradient-to-tr from-gold-dark via-gold to-gold-light flex items-center justify-center shadow-neon-gold">
                     <i class="fa-solid fa-compass text-dark-950 text-xl animate-spin" style="animation-duration: 25s"></i>
                 </div>
@@ -162,16 +223,21 @@
                     <span class="font-serif font-bold tracking-widest text-white text-base md:text-lg">交易啟航營</span>
                     <span class="text-[10px] text-gold font-serif tracking-widest leading-none">ELITE TRADING CAMP</span>
                 </div>
-            </div>
+            </a>
             <!-- 中間桌面端導航按鈕 -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-serif font-medium text-gray-300">
-                <a href="#roadmap" class="hover:text-gold transition-colors tracking-widest">學習藍圖</a>
+                <a href="index.html#roadmap" data-nav="roadmap" class="nav-link hover:text-gold transition-colors tracking-widest">學習藍圖</a>
+                <a href="indicators.html" data-nav="indicators" class="nav-link hover:text-gold transition-colors tracking-widest">指標介紹</a>
                 <a href="https://skywork-debug.github.io/timetable/" target="_blank" class="hover:text-gold transition-colors tracking-widest">本月課表</a>
                 <button onclick="openModal('faq', '✨ 指標常見問題解答')" class="hover:text-gold transition-colors tracking-widest focus:outline-none cursor-pointer">常見問題</button>
             </nav>
 
-            <!-- 右側行動按鈕 (LINE諮詢 - 採用 SVG) -->
+            <!-- 右側行動按鈕 -->
             <div class="flex items-center gap-2">
+                <!-- 手機版：指標介紹入口 -->
+                <a href="indicators.html" aria-label="指標介紹" class="md:hidden w-10 h-10 rounded-full border border-gold/30 text-gold flex items-center justify-center hover:bg-gold/10 transition-all">
+                    <i class="fa-solid fa-chart-line text-sm"></i>
+                </a>
                 <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light hover:opacity-90 text-dark-950 text-xs md:text-sm font-bold shadow-neon-gold transition-all flex items-center gap-2 tracking-wider focus:outline-none cursor-pointer">
                     <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0 fill-current" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 5.84 2 10.53c0 2.91 1.72 5.51 4.5 7.07-.18.66-.65 2.37-.75 2.76-.1.39-.48 1.51.2 1.05.68-.46 3.11-2.11 3.86-2.57C10.59 18.95 11.29 19 12 19c5.52 0 10-3.84 10-8.53C22 5.84 17.52 2 12 2zm-4.73 11.13h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38a.37.37 0 0 1-.37.37zm2.46-.37a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38zm5.24 0a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V9.74l-1.39 1.83a.37.37 0 0 1-.59 0L10.37 9.74v2.01a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .3.18l1.64 2.16 1.64-2.16a.37.37 0 0 1 .3-.18h.84a.37.37 0 0 1 .37.37v4.38zm3.87-2.73a.37.37 0 0 1-.37.37h-1.68v1.14h1.68a.37.37 0 0 1 .37.37v.48a.37.37 0 0 1-.37.37h-2.89a.37.37 0 0 1-.37-.37V8.15c0-.2.17-.37.37-.37h2.89c.2 0 .37.17.37.37v.48c0 .2-.17.37-.37.37h-1.68v1.14h1.68c.2 0 .37.17.37.37v.48z"/>
@@ -181,7 +247,9 @@
         </div>
     </header>
 
-    <!-- AI 交易導師助理視窗 -->
+
+    
+<!-- AI 交易導師助理視窗 -->
     <div id="ai-chat-container" class="fixed bottom-24 right-6 z-[150] w-[calc(100vw-32px)] sm:w-96 glass-premium rounded-2xl shadow-2xl flex flex-col hidden overflow-hidden transition-all duration-300">
         <!-- Chat Header -->
         <div class="p-4 border-b border-gold/15 flex justify-between items-center bg-dark-900/90">
@@ -238,6 +306,7 @@
         <i class="fa-solid fa-robot text-2xl relative z-10 transition-transform group-hover:rotate-12"></i>
     </button>
 
+
     <main class="pt-20">
         <!-- Hero 區塊 -->
         <section id="about" class="relative pt-16 pb-24 lg:pt-28 lg:pb-32 overflow-hidden flex flex-col justify-center min-h-[92vh]">
@@ -284,6 +353,9 @@
                     <button onclick="openModal('advantages', '了解外匯市場')" class="w-full sm:w-auto px-10 py-[16px] rounded-full glass-dark hover:bg-dark-800 text-white font-bold text-lg transition-all flex items-center justify-center gap-2 border-gold/25 hover:border-gold/60 tracking-widest cursor-pointer focus:outline-none">
                         了解外匯市場 <i class="fa-solid fa-arrow-right text-gold animate-pulse"></i>
                     </button>
+                    <a href="indicators.html" class="w-full sm:w-auto px-10 py-[16px] rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 font-bold text-lg transition-all flex items-center justify-center gap-2 shadow-neon-gold hover:opacity-90 hover:-translate-y-0.5 tracking-widest">
+                        <i class="fa-solid fa-chart-line"></i> 認識獨家指標
+                    </a>
                 </div>
             </div>
         </section>
@@ -441,7 +513,7 @@
                                 </button>
                             </div>
 
-                            <!-- Section 5 Transition Line & 05 ROYAL MASTER Label (還原原本的04進階策略) -->
+                            <!-- Section 5 Transition Line & 05 ROYAL MASTER Label -->
                             <div class="flex flex-col items-center my-6 w-full relative z-10">
                                 <div class="h-8 w-[1px] bg-gold/50"></div>
                                 <div class="px-6 py-2.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 border border-gold-light/45 rounded-full text-xs md:text-sm font-serif-luxury font-black tracking-[0.25em] uppercase shadow-neon-gold">
@@ -450,7 +522,7 @@
                                 <div class="h-8 w-[1px] bg-gold/50"></div>
                             </div>
 
-                            <!-- Section 5: Advanced Mastery (還原為進階策略課程) -->
+                            <!-- Section 5: Advanced Mastery -->
                             <div class="relative flex flex-col items-center w-full">
                                 <!-- 進階策略課程 -->
                                 <button onclick="openModal('advanced-class', '報名【進階策略課程】')" class="group relative w-80 md:w-[28rem] text-center py-[21px] rounded-2xl bg-dark-950/90 border-2 border-gold hover:border-gold-light text-gold-light font-serif font-bold shadow-neon-gold transition-all hover:scale-105 hover:-translate-y-0.5 cursor-pointer focus:outline-none text-base md:text-lg tracking-wider">
@@ -536,18 +608,18 @@
                 </div>
             </section>
 
-            <!-- Footer -->
             <footer class="bg-transparent border-t border-gold/15 py-10 text-center text-xs text-gray-500 font-mono">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <p>© 2026 ELITE.TRADING.CAMP. All rights reserved. 版權所有，轉載必究。</p>
-                    <p class="mt-2 text-[10px] text-gray-600">Trading carries significant risk. Past performance is not indicative of future results.</p>
+                    <p class="mt-2 text-[10px] text-gray-600">本指標僅提供作為交易輔助判斷工具，非買賣建議。Trading carries significant risk. Past performance is not indicative of future results.</p>
                 </div>
             </footer>
 
         </div> <!-- ==================== 結束 .bg-with-texture 包裝 ==================== -->
     </main>
 
-    <!-- Modal 核心彈出容器 -->
+    
+<!-- Modal 核心彈出容器 -->
     <div id="dynamic-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4 sm:p-6 transition-all duration-300">
         <div class="absolute inset-0 bg-dark-950/92 backdrop-blur-md transition-opacity duration-300" id="modal-backdrop" onclick="closeModal()"></div>
         <div class="relative bg-dark-800 border border-gold/30 shadow-neon-gold rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col transition-all transform scale-95 opacity-0 duration-300" id="modal-panel">
@@ -1013,6 +1085,10 @@
     <!-- 開通首K指標 -->
     <div id="tpl-firstk" class="hidden">
         <div class="space-y-6 font-serif">
+            <a href="indicators.html#firstk" class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-gold/5 border border-gold/25 hover:border-gold hover:bg-gold/10 transition-all group">
+                <span class="text-sm text-gold-light font-sans"><i class="fa-solid fa-book-open text-gold mr-2"></i>想先了解首K指標能做什麼？</span>
+                <span class="text-xs text-gold font-bold whitespace-nowrap">看完整介紹 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
+            </a>
             <div>
                 <h4 class="text-base font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2 font-serif">
                     <i class="fa-solid fa-unlock-keyhole text-gold"></i> 領取/開通資格
@@ -1077,6 +1153,10 @@
     <!-- 開通破框指標 -->
     <div id="tpl-pokwang" class="hidden">
         <div class="space-y-6 text-sm">
+            <a href="indicators.html#pokwang" class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-gold/5 border border-gold/25 hover:border-gold hover:bg-gold/10 transition-all group">
+                <span class="text-sm text-gold-light font-sans"><i class="fa-solid fa-book-open text-gold mr-2"></i>想先了解破框指標能做什麼？</span>
+                <span class="text-xs text-gold font-bold whitespace-nowrap">看完整介紹 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
+            </a>
             <div>
                 <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                     <i class="fa-solid fa-unlock-keyhole text-gold font-serif"></i> 領取/開通資格
@@ -1173,6 +1253,10 @@
     <!-- 開通動能指標 -->
     <div id="tpl-momentum" class="hidden">
         <div class="space-y-6 text-sm">
+            <a href="indicators.html#momentum" class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-gold/5 border border-gold/25 hover:border-gold hover:bg-gold/10 transition-all group">
+                <span class="text-sm text-gold-light font-sans"><i class="fa-solid fa-book-open text-gold mr-2"></i>想先了解動能指標能做什麼？</span>
+                <span class="text-xs text-gold font-bold whitespace-nowrap">看完整介紹 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
+            </a>
             <div>
                 <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
                     <i class="fa-solid fa-unlock-keyhole text-gold"></i> 領取/開通資格
@@ -1404,7 +1488,7 @@
         </div>
     </div>
 
-    <!-- 進階策略課程 (還原為原本的05) -->
+    <!-- 進階策略課程 -->
     <div id="tpl-advanced-class" class="hidden">
         <div class="space-y-10 py-4 custom-scrollbar">
             
@@ -1454,8 +1538,11 @@
         </div>
     </div>
 
+
     <!-- ================== SCRIPT 控制核心 ================== -->
     <script>
+        const CURRENT_FILE = decodeURIComponent(location.pathname.split('/').pop()) || 'index.html';
+
         const teacherConfigs = {
             "Sky 老師": {
                 lineUrl: "https://lin.ee/7Jlzygy", 
@@ -1502,16 +1589,16 @@
         function selectTeacher(teacherName) {
             const config = teacherConfigs[teacherName] || { lineUrl: "https://lin.ee/ynOZNqS", qrCodeUrl: "" };
             const messageText = `你好，我是透過${teacherName}認識交易啟航營的，我想諮詢指標開通與課程！`;
-            
+
             const tempInput = document.createElement("input");
             tempInput.value = messageText;
             document.body.appendChild(tempInput);
             tempInput.select();
             document.execCommand("copy");
             document.body.removeChild(tempInput);
-            
+
             const finalQrUrl = config.qrCodeUrl || `https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=e5c158&bgcolor=0e0e12&data=${encodeURIComponent(config.lineUrl)}`;
-            
+
             const modalBody = document.getElementById('modal-body');
             modalBody.innerHTML = `
                 <div class="text-center py-6 space-y-6 animate-fade-in font-serif">
@@ -1522,12 +1609,12 @@
                         <h3 class="text-2xl font-bold text-white mb-1">立即加入官方 LINE</h3>
                         <p class="text-gold-light text-sm font-semibold tracking-wider font-sans">領取指標 / 諮詢課程資訊</p>
                     </div>
-                    
+
                     <div class="inline-block p-4 rounded-2xl bg-dark-950 border border-gold/25 shadow-neon-gold relative group">
                         <img src="${finalQrUrl}" alt="LINE QR Code" class="w-48 h-48 rounded-lg" onerror="this.src='https://placehold.co/200x200/0e0e12/e5c158?text=LINE+QR'"/>
                         <div class="absolute inset-0 border border-gold/15 rounded-2xl pointer-events-none"></div>
                     </div>
-                    
+
                     <div class="pt-2">
                         <a href="${config.lineUrl}" target="_blank" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light text-dark-950 font-bold text-sm shadow-neon-gold transition-all transform hover:-translate-y-0.5">
                             <svg class="w-5 h-5 shrink-0 fill-current" viewBox="0 0 24 24">
@@ -1602,7 +1689,7 @@
             try {
                 const systemPrompt = `您是交易啟航營的專業資深導師，請以親切溫柔、極致專業、適度幽默的繁體中文（台灣口吻），回答學員關於新手課、13333法則、首K指標、破框趨勢指標以及外匯/加密貨幣基礎交易相關的問題。問題是：`;
                 const requestUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-                
+
                 const requestPayload = {
                     contents: [{ 
                         parts: [{ text: systemPrompt + text }] 
@@ -1611,12 +1698,12 @@
 
                 const response = await fetchGeminiWithBackoff(requestUrl, requestPayload);
                 const result = await response.json();
-                
+
                 let reply = result.candidates?.[0]?.content?.parts?.[0]?.text || "抱歉，目前我的連線腦袋有些打結，請稍後再試！";
-                
+
                 reply = reply
                     .replace(/\n/g, '<br>')
-                    .replace(/\*\*(.*?)\*\"/g, '<strong>$1</strong>')
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                     .replace(/^\* (.*?)$/gm, '• $1');
 
                 document.getElementById(loadingId).remove();
@@ -1644,7 +1731,7 @@
                     </div>
                 `;
             }
-            
+
             isAITyping = false;
             scrollToBottom();
         }
@@ -1677,12 +1764,27 @@
                 body.innerHTML = '<p class="text-gray-400 text-center py-10 font-sans">內容尚未開放，請洽詢小幫手！</p>';
             }
 
+            // 在指標介紹頁時，彈窗裡的「看完整介紹」改成：關閉彈窗後捲到該指標
+            if (CURRENT_FILE === 'indicators.html') {
+                body.querySelectorAll('a[href^="indicators.html#"]').forEach(a => {
+                    a.addEventListener('click', e => {
+                        e.preventDefault();
+                        const id = a.getAttribute('href').split('#')[1];
+                        closeModal();
+                        setTimeout(() => {
+                            history.replaceState(null, '', '#' + id);
+                            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+                        }, 320);
+                    });
+                });
+            }
+
             modal.classList.remove('hidden');
             void modal.offsetWidth; 
-            
+
             backdrop.classList.remove('opacity-0');
             panel.classList.remove('scale-95', 'opacity-0');
-            
+
             document.body.style.overflow = 'hidden';
         }
 
@@ -1700,40 +1802,305 @@
             }, 300); 
         }
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
 
-        // --- 滾動觸發進場動畫 ---
+        function attachTilt(root) {
+            if (window.matchMedia('(hover: none)').matches) return; // 手機不做傾斜
+            root.querySelectorAll('[data-tilt]').forEach(card => {
+                card.addEventListener('pointermove', e => {
+                    const r = card.getBoundingClientRect();
+                    const px = (e.clientX - r.left) / r.width;
+                    const py = (e.clientY - r.top) / r.height;
+                    card.style.transform = `perspective(900px) rotateX(${(0.5 - py) * 8}deg) rotateY(${(px - 0.5) * 10}deg) translateY(-4px)`;
+                    card.style.setProperty('--mx', (px * 100) + '%');
+                    card.style.setProperty('--my', (py * 100) + '%');
+                });
+                card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+            });
+        }
+
+        /* ========================================================= */
+        /* 示意 K 線圖（純 SVG，非真實行情）                           */
+        /* ========================================================= */
+        function makeDemoSeries() {
+            let seed = 7;
+            const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+            // 盤整 → 突破 → 回測框線 → 再走一段
+            const path = i => i < 16 ? 100 + Math.sin(i * 0.9) * 2.4
+                            : i < 26 ? 100 + (i - 15) * 1.5
+                            : i < 31 ? 115 - (i - 25) * 2
+                            : 105 + (i - 30) * 2;
+            const out = [{ o: 99, h: 103.2, l: 96.8, c: 101.2 }];
+            let prev = out[0].c;
+            for (let i = 1; i < 36; i++) {
+                const c = path(i) + (rnd() - 0.5) * 1.2;
+                const o = prev;
+                out.push({ o, c, h: Math.max(o, c) + rnd() * 1.3, l: Math.min(o, c) - rnd() * 1.3 });
+                prev = c;
+            }
+            return out;
+        }
+
+        const demoOverlay = {}; // 各指標示意圖的「指標：開/關」狀態
+
+        function drawDemo(key) {
+            const box = document.getElementById('demo-chart-' + key);
+            if (demoOverlay[key] === undefined) demoOverlay[key] = true;
+            const demoOverlayOn = demoOverlay[key];
+            if (!box) return;
+            const data = makeDemoSeries();
+            const W = 640, H = 320, padL = 12, padR = 70;
+            const hasHist = key === 'momentum';
+            const mainBottom = hasHist ? 210 : 300, mainTop = 16;
+            const lo = Math.min(...data.map(d => d.l)) - 1, hi = Math.max(...data.map(d => d.h)) + 1;
+            const y = p => mainTop + (hi - p) / (hi - lo) * (mainBottom - mainTop);
+            const step = (W - padL - padR) / data.length;
+            const x = i => padL + step * i + step / 2;
+            const bw = Math.max(4, step * 0.55);
+            const UP = '#e5c158', DOWN = '#5b5b66';
+
+            let grid = '';
+            for (let g = 0; g <= 4; g++) {
+                const gy = mainTop + (mainBottom - mainTop) * g / 4;
+                grid += `<line x1="${padL}" x2="${W - padR}" y1="${gy}" y2="${gy}" stroke="rgba(255,255,255,0.05)"/>`;
+            }
+
+            const candles = data.map((d, i) => {
+                const col = d.c >= d.o ? UP : DOWN;
+                const top = y(Math.max(d.o, d.c)), bot = y(Math.min(d.o, d.c));
+                return `<g class="candle" style="animation-delay:${i * 35}ms">
+                    <line x1="${x(i)}" x2="${x(i)}" y1="${y(d.h)}" y2="${y(d.l)}" stroke="${col}" stroke-width="1.2"/>
+                    <rect x="${x(i) - bw / 2}" y="${top}" width="${bw}" height="${Math.max(1.5, bot - top)}" fill="${col}" rx="1"/>
+                </g>`;
+            }).join('');
+
+            const T = data.length * 35 + 200; // 疊加層延遲出現
+            let overlay = '';
+
+            if (key === 'firstk') {
+                const fh = data[0].h, fl = data[0].l;
+                const bi = data.findIndex((d, i) => i > 0 && d.c > fh);
+                overlay = `
+                    <rect x="${padL}" y="${y(fh)}" width="${W - padL - padR}" height="${y(fl) - y(fh)}" fill="rgba(229,193,88,0.07)" class="pop" style="animation-delay:${T}ms"/>
+                    <line x1="${padL}" x2="${W - padR}" y1="${y(fh)}" y2="${y(fh)}" stroke="#e5c158" stroke-width="1.4" stroke-dasharray="6 4" class="pop" style="animation-delay:${T}ms"/>
+                    <line x1="${padL}" x2="${W - padR}" y1="${y(fl)}" y2="${y(fl)}" stroke="#b5893d" stroke-width="1.4" stroke-dasharray="6 4" class="pop" style="animation-delay:${T}ms"/>
+                    <rect x="${x(0) - bw}" y="${y(data[0].h) - 4}" width="${bw * 2}" height="${y(data[0].l) - y(data[0].h) + 8}" fill="none" stroke="#f3e5ab" stroke-width="1" rx="3" class="pop" style="animation-delay:${T}ms"/>
+                    <text x="${W - padR + 6}" y="${y(fh) + 4}" fill="#e5c158" font-size="11" class="pop" style="animation-delay:${T}ms">首K高點</text>
+                    <text x="${W - padR + 6}" y="${y(fl) + 4}" fill="#b5893d" font-size="11" class="pop" style="animation-delay:${T}ms">首K低點</text>
+                    ${bi > 0 ? `<g class="pop" style="animation-delay:${T + 400}ms">
+                        <circle cx="${x(bi)}" cy="${y(data[bi].c)}" r="9" fill="none" stroke="#f3e5ab" stroke-width="1.5"/>
+                        <text x="${x(bi) - 30}" y="${y(data[bi].h) - 14}" fill="#f3e5ab" font-size="11">突破區間</text>
+                    </g>` : ''}`;
+            }
+
+            if (key === 'pokwang') {
+                const seg = data.slice(0, 16);
+                const bt = Math.max(...seg.map(d => d.h)), bb = Math.min(...seg.map(d => d.l));
+                const bi = data.findIndex((d, i) => i >= 16 && d.c > bt);
+                let ri = 26; for (let i = 26; i < 33; i++) if (data[i].l < data[ri].l) ri = i;
+                const x0 = x(0) - step / 2, x1 = x(15) + step / 2;
+                overlay = `
+                    <rect x="${x0}" y="${y(bt)}" width="${x1 - x0}" height="${y(bb) - y(bt)}" fill="rgba(229,193,88,0.08)" stroke="#e5c158" stroke-width="1.5" rx="4" class="pop" style="animation-delay:${T}ms"/>
+                    <line x1="${x1}" x2="${W - padR}" y1="${y(bt)}" y2="${y(bt)}" stroke="#e5c158" stroke-width="1" stroke-dasharray="4 4" class="pop" style="animation-delay:${T}ms"/>
+                    <text x="${x0 + 8}" y="${y(bt) + 16}" fill="#e5c158" font-size="11" class="pop" style="animation-delay:${T}ms">盤整框</text>
+                    ${bi > 0 ? `<g class="pop" style="animation-delay:${T + 400}ms">
+                        <path d="M ${x(bi)} ${y(data[bi].l) + 26} L ${x(bi)} ${y(data[bi].l) + 6}" stroke="#f3e5ab" stroke-width="2" marker-end="url(#arrowHead-${key})"/>
+                        <text x="${x(bi) - 14}" y="${y(data[bi].l) + 40}" fill="#f3e5ab" font-size="11" font-weight="bold">穿框</text>
+                    </g>` : ''}
+                    <g class="pop" style="animation-delay:${T + 800}ms">
+                        <circle cx="${x(ri)}" cy="${y(data[ri].l)}" r="9" fill="none" stroke="#f3e5ab" stroke-width="1.5"/>
+                        <text x="${x(ri) - 14}" y="${y(data[ri].l) + 26}" fill="#f3e5ab" font-size="11" font-weight="bold">回框</text>
+                    </g>`;
+            }
+
+            if (key === 'momentum') {
+                const hTop = 230, hBot = 305, mid = (hTop + hBot) / 2;
+                const mom = data.map((d, i) => i < 4 ? 0 : d.c - data[i - 4].c);
+                const mMax = Math.max(...mom.map(Math.abs)) || 1;
+                const bars = mom.map((m, i) => {
+                    const h = Math.abs(m) / mMax * (hBot - hTop) / 2;
+                    const prevAbs = i > 0 ? Math.abs(mom[i - 1]) : 0;
+                    const fading = Math.abs(m) < prevAbs;
+                    const col = m >= 0 ? (fading ? 'rgba(229,193,88,0.45)' : '#e5c158') : (fading ? 'rgba(120,120,135,0.45)' : '#787887');
+                    return `<rect x="${x(i) - bw / 2}" y="${m >= 0 ? mid - h : mid}" width="${bw}" height="${Math.max(1, h)}" fill="${col}" class="pop" style="animation-delay:${T + i * 20}ms"/>`;
+                }).join('');
+                let peak = 4; mom.forEach((m, i) => { if (i <= 26 && m > mom[peak]) peak = i; }); // 只看第一段上漲
+                overlay = `
+                    <line x1="${padL}" x2="${W - padR}" y1="${mid}" y2="${mid}" stroke="rgba(255,255,255,0.12)"/>
+                    <text x="${W - padR + 6}" y="${mid + 4}" fill="#9ca3af" font-size="10">動能</text>
+                    ${bars}
+                    <g class="pop" style="animation-delay:${T + 900}ms">
+                        <text x="${x(peak) - 18}" y="${hTop - 4}" fill="#f3e5ab" font-size="11" font-weight="bold">力道最強</text>
+                        <text x="${x(Math.min(peak + 4, data.length - 1)) - 6}" y="${hBot + 12}" fill="#9ca3af" font-size="10">轉弱</text>
+                    </g>`;
+            }
+
+            box.innerHTML = `
+                <svg viewBox="0 0 ${W} ${H + (hasHist ? 10 : 0)}" class="demo-svg w-full h-auto ${demoOverlayOn ? '' : 'overlay-off'}" font-family="'Noto Serif TC', serif" role="img" aria-label="指標示意圖">
+                    <defs>
+                        <marker id="arrowHead-${key}" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#f3e5ab"/>
+                        </marker>
+                    </defs>
+                    ${grid}
+                    ${candles}
+                    <g class="ind-overlay">${overlay}</g>
+                </svg>`;
+        }
+
+        function toggleDemoOverlay(key) {
+            demoOverlay[key] = !demoOverlay[key];
+            const on = demoOverlay[key];
+            const svg = document.querySelector('#demo-chart-' + key + ' svg');
+            if (svg) svg.classList.toggle('overlay-off', !on);
+            const btn = document.getElementById('demo-toggle-' + key);
+            if (btn) {
+                btn.className = on
+                    ? 'px-4 py-2 rounded-full text-xs font-bold bg-gold text-dark-950 transition-all focus:outline-none flex items-center gap-1.5'
+                    : 'px-4 py-2 rounded-full text-xs font-bold border border-white/20 text-gray-400 transition-all focus:outline-none flex items-center gap-1.5';
+                btn.innerHTML = on ? '<i class="fa-solid fa-eye"></i> <span>指標：開</span>' : '<i class="fa-solid fa-eye-slash"></i> <span>指標：關</span>';
+            }
+        }
+
+
+        /* ========================================================= */
+        /* 指標介紹頁：分頁籤、示意圖、浮動指標切換列                    */
+        /* ========================================================= */
+        function switchTab(key, name) {
+            const sec = document.getElementById(key);
+            if (!sec) return;
+            sec.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+            sec.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === name));
+        }
+
+        function initIndicatorPage() {
+            const sections = document.querySelectorAll('[data-indicator-section]');
+            if (!sections.length) return;
+
+            // 頁內跳轉（卡片、切換列、下一個）不新增瀏覽紀錄，讓「上一頁／回首頁」直接回到首頁
+            document.addEventListener('click', e => {
+                const a = e.target.closest('a[href^="#"]');
+                if (!a || a.closest('#modal-body')) return;
+                const target = document.getElementById(a.getAttribute('href').slice(1));
+                if (!target) return;
+                e.preventDefault();
+                history.replaceState(null, '', a.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // 示意圖：捲到畫面中才開始播放動畫
+            const demoObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        drawDemo(entry.target.dataset.demo);
+                        demoObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.25 });
+            document.querySelectorAll('[data-demo]').forEach(el => demoObserver.observe(el));
+
+            // 浮動切換列：標示目前看到的是哪一個指標
+            const pills = document.querySelectorAll('#indicator-subnav a');
+            const navObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const id = entry.target.id;
+                    pills.forEach(p => {
+                        const on = p.getAttribute('href') === '#' + id;
+                        p.classList.toggle('bg-gold', on);
+                        p.classList.toggle('text-dark-950', on);
+                        p.classList.toggle('border-gold', on);
+                        p.classList.toggle('text-gray-300', !on);
+                    });
+                });
+            }, { rootMargin: '-45% 0px -50% 0px' });
+            sections.forEach(s => navObserver.observe(s));
+        }
+
+        /* ========================================================= */
+        /* 回首頁、捲動位置、進場動畫、頁首效果                          */
+        /* ========================================================= */
+        // 「回首頁」：從首頁點進來就用瀏覽器返回（回到原本捲到的位置），否則直接前往首頁
+        function smartBack(fallbackUrl) {
+            try {
+                const ref = new URL(document.referrer);
+                const sameFolder = ref.origin === location.origin &&
+                    ref.pathname.replace(/index\.html$/, '') === location.pathname.replace(/[^/]*$/, '');
+                if (sameFolder && history.length > 1) { history.back(); return; }
+            } catch (e) {}
+            location.href = fallbackUrl;
+        }
+
+        // 按瀏覽器「上一頁」回來時，回到離開前看到的位置
+        const SCROLL_KEY = 'scroll:' + location.pathname;
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        let scrollSaveTimer;
+        function rememberScroll() {
+            clearTimeout(scrollSaveTimer);
+            scrollSaveTimer = setTimeout(() => {
+                try { sessionStorage.setItem(SCROLL_KEY, String(window.scrollY)); } catch (e) {}
+            }, 150);
+        }
+        function restoreScrollOnBack() {
+            let saved = null;
+            try { saved = sessionStorage.getItem(SCROLL_KEY); } catch (e) {}
+            const nav = performance.getEntriesByType('navigation')[0];
+            if (saved !== null && nav && nav.type === 'back_forward') {
+                document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+                const go = () => window.scrollTo({ top: Number(saved), behavior: 'instant' });
+                go();
+                requestAnimationFrame(go);
+                window.addEventListener('load', go, { once: true });
+            } else if (location.hash) {
+                // 從別頁連到「indicators.html#破框」這類網址時，等版面排好再對準位置
+                const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+                if (el) window.addEventListener('load', () => el.scrollIntoView({ behavior: 'instant' }), { once: true });
+            }
+        }
+
+        function updateProgress() {
+            const bar = document.getElementById('scroll-progress');
+            if (!bar) return;
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            const revealElements = document.querySelectorAll('.reveal');
-            const revealCallback = (entries, observer) => {
+            // 導航列標示目前所在頁
+            if (CURRENT_FILE === 'indicators.html') {
+                document.querySelectorAll('.nav-link[data-nav="indicators"]').forEach(a => a.classList.add('is-current'));
+            }
+
+            document.querySelectorAll('[data-tilt-group]').forEach(attachTilt);
+            initIndicatorPage();
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
                         observer.unobserve(entry.target);
                     }
                 });
-            };
-            const revealObserver = new IntersectionObserver(revealCallback, {
-                root: null,
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-            revealElements.forEach(el => revealObserver.observe(el));
+            }, { root: null, threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-            // 奢華 Header 滾動效果
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+            // 奢華 Header 滾動效果 + 進度條
             const header = document.querySelector('header');
-            window.addEventListener('scroll', () => {
+            const onScroll = () => {
                 if (window.scrollY > 50) {
                     header.classList.add('bg-[#030303]/95', 'shadow-neon-gold-subtle', 'border-gold/30');
                 } else {
                     header.classList.remove('bg-[#030303]/95', 'shadow-neon-gold-subtle', 'border-gold/30');
                 }
-            });
+                updateProgress();
+                rememberScroll();
+            };
+            restoreScrollOnBack();
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
         });
+
     </script>
 </body>
 </html>
