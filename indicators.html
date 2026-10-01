@@ -662,7 +662,7 @@
                         <ul class="reveal grid grid-cols-1 md:grid-cols-3 gap-4 text-sm font-sans">
                                 <li class="flex items-start gap-3 p-4 rounded-xl glass-dark border border-ice/10"><i class="fa-solid fa-user-check text-gold mt-1"></i><span class="text-gray-300">剛完成新手課，想建立第一套有規則可循的看盤框架</span></li>
                                 <li class="flex items-start gap-3 p-4 rounded-xl glass-dark border border-ice/10"><i class="fa-solid fa-user-check text-gold mt-1"></i><span class="text-gray-300">盤中容易追高殺低、缺乏方向依據的交易者</span></li>
-                                <li class="flex items-start gap-3 p-4 rounded-xl glass-dark border border-ice/10"><i class="fa-solid fa-user-check text-gold mt-1"></i><span class="text-gray-300">想以零入金門檻，先體驗指標輔助決策的效果</span></li>
+                                <li class="flex items-start gap-3 p-4 rounded-xl glass-dark border border-ice/10"><i class="fa-solid fa-user-check text-gold mt-1"></i><span class="text-gray-300">想以零入金門檻，先感受指標輔助決策的效果</span></li>
                         </ul>
                     </div>
 
@@ -811,7 +811,7 @@
                             </div>
                             <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                                 <button onclick="openModal('pokwang', '開通【破框指標】')" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#1e3a8a] via-[#2f6fe0] to-[#7cb4ff] text-white font-bold shadow-neon-gold hover:-translate-y-0.5 transition-all focus:outline-none">查看完整開通流程</button>
-                                <button onclick="openModal('pokwang-trial', '申請【破框指標】一週體驗')" class="px-8 py-3.5 rounded-full border border-ice/40 text-gold font-bold hover:bg-ice/10 transition-all focus:outline-none"><i class="fa-solid fa-gift mr-1.5"></i>申請 7 天免費體驗</button>
+                                
                             </div>
                         </div>
                     </div>
@@ -1022,17 +1022,11 @@
                                     <td class="p-4"><strong class="text-gold">≥ 300U</strong></td>
                                     <td class="p-4"><strong class="text-gold">≥ 3000U</strong></td>
                                 </tr>
-                                <tr class="border-b border-white/5">
+                                <tr>
                                     <td class="text-left p-4 text-gray-400">維持條件</td>
                                     <td class="p-4">無，永久使用</td>
                                     <td class="p-4">資產 ≥ 300U<br>每週 ≥ 3 筆交易</td>
                                     <td class="p-4">資產 ≥ 3000U<br>每週 ≥ 3 筆交易</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-left p-4 text-gray-400">免費體驗</td>
-                                    <td class="p-4 text-gray-500">—</td>
-                                    <td class="p-4">7 天體驗</td>
-                                    <td class="p-4 text-gray-500">—</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1671,14 +1665,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 申領體驗按鈕 -->
-            <div class="mt-6 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
-                <span class="text-xs text-gray-400">想搶先體驗？滿足前置條件即可解鎖免費一週試用！</span>
-                <button onclick="openModal('pokwang-trial', '申請【破框指標】一週體驗')" class="px-5 py-2 rounded-xl bg-ice/10 hover:bg-ice/20 border border-ice/40 text-gold text-xs font-bold transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer">
-                    <i class="fa-solid fa-gift font-sans"></i> 申請 7 天免費體驗
-                </button>
-            </div>
         </div>
     </div>
 
@@ -1774,93 +1760,6 @@
         </div>
     </div>
 
-    <!-- 破框一週體驗規範 -->
-    <div id="tpl-pokwang-trial" class="hidden">
-        <div class="space-y-6 py-4">
-            <div class="text-center font-serif">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-ice/10 mb-4 border border-ice/30 shadow-neon-gold animate-pulse">
-                    <i class="fa-solid fa-gem text-3xl text-gold"></i>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2">申請【破框指標】一週體驗</h3>
-                <p class="text-gray-300 text-sm max-w-sm mx-auto font-sans">開通真實帳戶，即可免費獲得一週完整版指標體驗！</p>
-            </div>
-
-            <div>
-                <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
-                    <i class="fa-solid fa-clipboard-check text-gold"></i> 體驗規範
-                </h4>
-                <div class="glass-dark rounded-xl p-5 border border-ice/20 bg-dark-800/40 text-sm">
-                    <ul class="space-y-4 text-gray-300 font-sans">
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-ice/20 flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-check-double text-gold text-xs"></i>
-                            </div>
-                            <span class="font-sans">報名並參與指標基礎課</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-ice/20 flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-check-double text-gold text-xs"></i>
-                            </div>
-                            <span class="font-sans">已經成功領取並開通【首K指標】</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="text-center pt-4 font-sans">
-                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#1e3a8a] to-[#5b9dff] text-white font-bold text-base transition-all transform hover:-translate-y-1 focus:outline-none">
-                    <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0 fill-current" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 5.84 2 10.53c0 2.91 1.72 5.51 4.5 7.07-.18.66-.65 2.37-.75 2.76-.1.39-.48 1.51.2 1.05.68-.46 3.11-2.11 3.86-2.57C10.59 18.95 11.29 19 12 19c5.52 0 10-3.84 10-8.53C22 5.84 17.52 2 12 2zm-4.73 11.13h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38a.37.37 0 0 1-.37.37zm2.46-.37a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38zm5.24 0a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V9.74l-1.39 1.83a.37.37 0 0 1-.59 0L10.37 9.74v2.01a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .3.18l1.64 2.16 1.64-2.16a.37.37 0 0 1 .3-.18h.84a.37.37 0 0 1 .37.37v4.38zm3.87-2.73a.37.37 0 0 1-.37.37h-1.68v1.14h1.68a.37.37 0 0 1 .37.37v.48a.37.37 0 0 1-.37.37h-2.89a.37.37 0 0 1-.37-.37V8.15c0-.2.17-.37.37-.37h2.89c.2 0 .37.17.37.37v.48c0 .2-.17.37-.37.37h-1.68v1.14h1.68c.2 0 .37.17.37.37v.48z"/>
-                    </svg>聯繫小幫手，立即開通體驗
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 首K一週體驗規範 -->
-    <div id="tpl-trial" class="hidden">
-        <div class="space-y-6 py-4">
-            <div class="text-center font-serif">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-ice/10 mb-4 border border-ice/30 shadow-neon-gold animate-pulse">
-                    <i class="fa-solid fa-gift text-3xl text-gold"></i>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2">申請【首K指標】一週體驗</h3>
-                <p class="text-gray-300 text-sm max-w-sm mx-auto font-sans">開通真實帳戶，即可免費獲得 1 週完整版指標體驗！</p>
-            </div>
-
-            <div>
-                <h4 class="text-base font-serif font-bold mb-3 text-white flex items-center gap-2 border-b border-white/10 pb-2">
-                    <i class="fa-solid fa-clipboard-check text-gold"></i> 體驗規範
-                </h4>
-                <div class="glass-dark rounded-xl p-5 border border-ice/20 bg-dark-800/40 font-sans">
-                    <ul class="space-y-3.5 text-sm text-gray-300">
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-ice/20 flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-building-columns text-gold text-xs"></i>
-                            </div>
-                            <span class="font-sans">使用 BAB Markets 券商帳戶</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-ice/20 flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-id-card text-gold text-xs"></i>
-                            </div>
-                            <span class="font-sans">開通真實帳戶並完成 KYC 身份認證</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="text-center pt-4 font-sans">
-                <button onclick="openModal('teacher-select', '💬 聯繫官方 LINE')" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#1e3a8a] to-[#5b9dff] text-white font-bold text-base transition-all transform hover:-translate-y-1 focus:outline-none">
-                    <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0 fill-current" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 5.84 2 10.53c0 2.91 1.72 5.51 4.5 7.07-.18.66-.65 2.37-.75 2.76-.1.39-.48 1.51.2 1.05.68-.46 3.11-2.11 3.86-2.57C10.59 18.95 11.29 19 12 19c5.52 0 10-3.84 10-8.53C22 5.84 17.52 2 12 2zm-4.73 11.13h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38a.37.37 0 0 1-.37.37zm2.46-.37a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .37.37v4.38zm5.24 0a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V9.74l-1.39 1.83a.37.37 0 0 1-.59 0L10.37 9.74v2.01a.37.37 0 0 1-.37.37h-.84a.37.37 0 0 1-.37-.37V8.15a.37.37 0 0 1 .37-.37h.84a.37.37 0 0 1 .3.18l1.64 2.16 1.64-2.16a.37.37 0 0 1 .3-.18h.84a.37.37 0 0 1 .37.37v4.38zm3.87-2.73a.37.37 0 0 1-.37.37h-1.68v1.14h1.68a.37.37 0 0 1 .37.37v.48a.37.37 0 0 1-.37.37h-2.89a.37.37 0 0 1-.37-.37V8.15c0-.2.17-.37.37-.37h2.89c.2 0 .37.17.37.37v.48c0 .2-.17.37-.37.37h-1.68v1.14h1.68c.2 0 .37.17.37.37v.48z"/>
-                    </svg>
-                    聯繫小幫手，立即開通體驗
-                </button>
-            </div>
-        </div>
-    </div>
-    
     <!-- 破框指標群 -->
     <div id="tpl-indicator-group" class="hidden">
         <div class="space-y-6 py-4">
